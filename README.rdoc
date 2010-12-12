@@ -1,11 +1,10 @@
 = DESCRIPTION:
 
-  A Light-weight Resources and Providers (LWRP) supporting 
-  automatic DNS configuration via DNSimple's API.
+A Light-weight Resources and Providers (LWRP) supporting automatic DNS configuration via DNSimple's API.
 
 = REQUIREMENTS:
 
-  A DNSimple account.
+A DNSimple account.
 
 = ATTRIBUTES: 
 
