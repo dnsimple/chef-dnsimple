@@ -1,0 +1,28 @@
+= DESCRIPTION:
+
+  A Light-weight Resources and Providers (LWRP) supporting 
+  automatic DNS configuration via DNSimple's API.
+
+= REQUIREMENTS:
+
+  A DNSimple account.
+
+= ATTRIBUTES: 
+
+  dnsimple.username
+  dnsimple.password
+  dnsimple.domain
+
+= USAGE:
+
+  include_recipe "dnsimple"
+
+  dnsimple_record "create a record" do  
+    name     "test"  
+    content  "16.8.4.2"
+    type     "A"
+    domain   node.dnsimple.domain
+    username node.dnsimple.username
+    password node.dnsimple.password
+    action   :create
+  end

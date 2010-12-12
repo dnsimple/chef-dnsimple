@@ -1,0 +1,29 @@
+{
+  "name": "dnsimple",
+  "description": "Installs/Configures dnsimple",
+  "long_description": "= DESCRIPTION:\n\n  A Light-weight Resources and Providers (LWRP) supporting \n  automatic DNS configuration via DNSimple's API.\n\n= REQUIREMENTS:\n\n  A DNSimple account.\n\n= ATTRIBUTES: \n\n  dnsimple.username\n  dnsimple.password\n\n= USAGE:\n\n  include_recipe \"dnsimple\"\n\n  dnsimple_record \"create a record\" do\n    record  \"www.my-domain.com\"\n    content \"16.8.4.2\"\n    type    \"A\"\n    action  :create_or_update\n  end\n",
+  "maintainer": "DNSimple",
+  "maintainer_email": "ops@dnsimple.com",
+  "license": "Apache 2.0",
+  "platforms": {
+  },
+  "dependencies": {
+  },
+  "recommendations": {
+  },
+  "suggestions": {
+  },
+  "conflicting": {
+  },
+  "providing": {
+  },
+  "replacing": {
+  },
+  "attributes": {
+  },
+  "groupings": {
+  },
+  "recipes": {
+  },
+  "version": "0.1.0"
+}
