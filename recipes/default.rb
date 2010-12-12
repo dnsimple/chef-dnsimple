@@ -20,7 +20,7 @@
 r = gem_package "dnsimple-ruby" do
   action :nothing
 end
-r.run_action( :upgrade )
+r.run_action( :install )
 
 require 'rubygems'
 Gem.clear_paths
