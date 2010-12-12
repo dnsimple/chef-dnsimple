@@ -1,10 +1,8 @@
-require 'dnsimple'
-
 def credentials( username, password )
+  require 'dnsimple'
   DNSimple::Client.username = username
   DNSimple::Client.password = password
 end
-
 
 action :create do
   credentials( new_resource.username, new_resource.password )

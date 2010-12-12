@@ -2,7 +2,7 @@
 # Cookbook Name:: dnsimple
 # Recipe:: default
 #
-# Copyright 2010, DNSimple
+# Copyright 2010, Heavy Water Software Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,4 +17,10 @@
 # limitations under the License.
 #
 
-gem_package "dnsimple-ruby"
+r = gem_package "dnsimple-ruby" do
+  action :nothing
+end
+r.run_action( :upgrade )
+
+require 'rubygems'
+Gem.clear_paths
