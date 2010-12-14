@@ -4,7 +4,7 @@ A Light-weight Resources and Providers (LWRP) supporting automatic DNS configura
 
 = REQUIREMENTS:
 
-A DNSimple account.
+A DNSimple account at http://dnsimple.com
 
 = ATTRIBUTES: 
 
