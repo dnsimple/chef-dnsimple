@@ -21,7 +21,7 @@ r = gem_package "fog" do
   action :nothing
   not_if "gem list fog --installed --version '>= 0.7.0'"
 end
-r.run_action( :install )
+r.run_action( :upgrade )
 
 require 'rubygems'
 Gem.clear_paths
