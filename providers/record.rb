@@ -1,9 +1,4 @@
-def connect( email, password )
-  require "fog"
-  Fog::DNS.new( :provider => "DNSimple",
-                :dnsimple_email => email,
-                :dnsimple_password => password )
-end
+include DNSimple::Connection
 
 action :create do
   domain =  new_resource.domain
@@ -11,9 +6,6 @@ action :create do
   content = new_resource.content
   type =    new_resource.type
   ttl =     new_resource.ttl
-
-  dnsimple = connect( new_resource.username,
-                      new_resource.password )
 
   zone = dnsimple.zones.get( domain )
 
@@ -39,7 +31,6 @@ action :create do
 end
 
 action :destroy do
-  dnsimple = connect( new_resource.username, new_resource.password )
   zone = dnsimple.zones.get( new_resource.domain )
 
   zone.records.all.each do |r|
