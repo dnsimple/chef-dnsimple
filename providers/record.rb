@@ -1,3 +1,21 @@
+#
+# Copyright:: Copyright (c) 2010-2011, Heavy Water Software
+# Copyright:: Copyright (c) 2012, Joshua Timberman
+# License:: Apache License, Version 2.0
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
 include DNSimple::Connection
 
 action :create do
@@ -10,23 +28,29 @@ action :create do
   zone = dnsimple.zones.get( domain )
 
   zone.records.all.each do |r|
+    Chef::Log.debug "Checking if #{name} exists as #{content} and #{ttl}"
     # do nothing if the record already exists
     break if(( r.name == name ) and
-             ( r.ip == content ) and
+             ( r.value == content ) and
              ( r.ttl == ttl ))
 
     # delete any record with the name we're trying to create
-    r.destroy if r.name == name
+    if r.name == name
+      Chef::Log.debug "Cannot modify a record, must destroy #{name} first"
+      r.destroy
+    end
   end
 
   begin
+    Chef::Log.debug "Attempting to create record type #{type} for #{name} as #{content}"
     record = zone.records.create( :name => name,
-                                  :ip => content,
+                                  :value => content,
                                   :type => type,
                                   :ttl => ttl )
+    new_resource.updated_by_last_action(true)
     Chef::Log.info "DNSimple: created #{type} record for #{name}.#{domain}"
-  rescue Excon::Errors::NotAcceptable
-    # record already exists. moving on.
+  rescue Excon::Errors::UnprocessableEntity
+    Chef::Log.debug "DNSimple: #{name}.#{domain} already exists, moving on"
   end
 end
 
@@ -36,6 +60,7 @@ action :destroy do
   zone.records.all.each do |r|
     if ( r.name == new_resource.name ) and ( r.type == new_resource.type )
       r.destroy
+      new_resource.updated_by_last_action(true)
       Chef::Log.info "DNSimple: destroyed #{new_resource.type} record " +
         "for #{new_resource.name}.#{new_resource.domain}"
     end
