@@ -34,9 +34,9 @@ Resources/Providers
 dnsimple\_record
 ----------------
 
-Manage a DNS resource record through the DNSimple API. This LWRP uses
-the [fog Ruby library](http://rubygems.org/gems/fog) to connect and
-use the API.
+Manage a DNS resource record through the DNSimple API. This LWRP uses the
+[DNSimple gem](http://rubygems.org/gems/dnsimple-ruby) to connect and use
+the API.
 
 ### Actions:
 
@@ -87,10 +87,10 @@ SPF, URL, TXT, NS, SRV, NAPTR, PTR, AAA, SSHFP, or HFINO.
 Usage
 =====
 
-Add the the `dnsimple` recipe to a node's run list, or with
-`include_recipe` to install the [fog](http://rubygems.org/gems/fog)
-gem, which is used to interact with the DNSimple API. See
-examples of the LWRP usage above.
+Add the the `dnsimple` recipe to a node's run list, or with `include_recipe`
+to install the [dnsimple-ruby](http://rubygems.org/gems/dnsimple-ruby) gem,
+which is used to interact with the DNSimple API. See examples of the LWRP
+usage above.
 
 License and Author
 ==================
