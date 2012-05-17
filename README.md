@@ -8,6 +8,17 @@ automatic DNS configuration via DNSimple's API.
 Changes
 =======
 
+0.5.0
+-----
+* Use [dnsimple-ruby gem](http://rubygems.org/gems/dnsimple-ruby) instead of
+  Fog
+* Support the `priority` attribute of the `dnsimple_record` LWRP
+* Node attribute `dnsimple.fog_version` is no longer used; set
+  `dnsimple.gem_version` to a version of the [dnsimple-ruby
+  gem](http://rubygems.org/gems/dnsimple-ruby) instead
+
+0.4.0
+-----
 * Convert README to markdown so it is displayed nice on Community
   site.
 * Add default action `:create` for `dnsimple_record`.
@@ -57,7 +68,7 @@ SPF, URL, TXT, NS, SRV, NAPTR, PTR, AAA, SSHFP, or HFINO.
     | *type*     | Type of DNS record         |         |
     | *content*  | String content of record   |         |
     | *ttl*      | Time to live.              | 3600    |
-    | *priority* | Priorty of update          |         |
+    | *priority* | Record priority            |         |
     | *username* | DNSimple username          |         |
     | *password* | DNSimple password          |         |
     | *test*     | Unused at this time        | false   |
@@ -97,6 +108,7 @@ License and Author
 
 Author:: Darrin Eden (<darrin@heavywater.ca>)
 Author:: Joshua Timberman (<opensource@housepub.org>)
+Author:: Dan Crosta (<dcrosta@late.am>)
 
 Copyright:: 2010-2011 Heavy Water Software
 
