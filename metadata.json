@@ -1,31 +1,32 @@
 {
-  "providing": {
-  },
-  "long_description": "\nDescription\n===========\n\nA Light-weight Resource and Provider (LWRP) supporting\nautomatic DNS configuration via DNSimple's API.\n\nChanges\n=======\n\n* Convert README to markdown so it is displayed nice on Community\n  site.\n* Add default action `:create` for `dnsimple_record`.\n* Set values that `type` can be equal to in `dnsimple_record` resource.\n\nRequirements\n============\n\nA DNSimple account at http://dnsimple.com\n\nAttributes\n==========\n\nAll attributes are `nil`, or `false` by default.\n\n- `node[:dnsimple][:username]`: Your DNSimple login username.\n- `node[:dnsimple][:password]`: Your DNSimple login password.\n- `node[:dnsimple][:domain]`: The domain that this node should use.\n- `node[:dnsimple][:test]`: Unused at this time.\n\nResources/Providers\n===================\n\ndnsimple\\_record\n----------------\n\nManage a DNS resource record through the DNSimple API. This LWRP uses the\n[DNSimple gem](http://rubygems.org/gems/dnsimple-ruby) to connect and use\nthe API.\n\n### Actions:\n\n    | Action    | Description          | Default |\n    |-----------|----------------------|---------|\n    | *create*  | Create the record.   | Yes     |\n    | *destroy* | Destroy the record.  |         |\n\n### Parameter Attributes:\n\nThe type of record can be one of the following: A, CNAME, ALIAS, MX,\nSPF, URL, TXT, NS, SRV, NAPTR, PTR, AAA, SSHFP, or HFINO.\n\n    | Parameter  | Description                | Default |\n    |------------|----------------------------|---------|\n    | *domain*   | Domain to manage           |         |\n    | *name*     | _Name_: Name of the record |         |\n    | *type*     | Type of DNS record         |         |\n    | *content*  | String content of record   |         |\n    | *ttl*      | Time to live.              | 3600    |\n    | *priority* | Priorty of update          |         |\n    | *username* | DNSimple username          |         |\n    | *password* | DNSimple password          |         |\n    | *test*     | Unused at this time        | false   |\n\n### Examples\n\n    dnsimple_record \"create an A record\" do\n      name     \"test\"\n      content  \"16.8.4.2\"\n      type     \"A\"\n      domain   node[:dnsimple][:domain]\n      username node[:dnsimple][:username]\n      password node[:dnsimple][:password]\n      action   :create\n    end\n\n    dnsimple_record \"create a CNAME record for a Google Apps site calendar\" do\n      name     \"calendar\"\n      content  \"ghs.google.com\"\n      type     \"CNAME\"\n      domain   node[:dnsimple][:domain]\n      username node[:dnsimple][:username]\n      password node[:dnsimple][:password]\n      action   :create\n    end\n\nUsage\n=====\n\nAdd the the `dnsimple` recipe to a node's run list, or with `include_recipe`\nto install the [dnsimple-ruby](http://rubygems.org/gems/dnsimple-ruby) gem,\nwhich is used to interact with the DNSimple API. See examples of the LWRP\nusage above.\n\nLicense and Author\n==================\n\nAuthor:: Darrin Eden (<darrin@heavywater.ca>)\nAuthor:: Joshua Timberman (<opensource@housepub.org>)\n\nCopyright:: 2010-2011 Heavy Water Software\n\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.\n",
-  "suggestions": {
-  },
-  "description": "Installs/Configures dnsimple",
-  "conflicting": {
-  },
-  "maintainer_email": "ops@dnsimple.com",
-  "name": "dnsimple",
-  "recipes": {
-    "dnsimple": "Installs dnsimple-ruby gem to use w/ the dnsimple_record"
-  },
-  "attributes": {
-  },
-  "replacing": {
-  },
   "recommendations": {
   },
   "platforms": {
+    "debian": ">= 0.0.0",
     "ubuntu": ">= 0.0.0"
   },
-  "version": "0.5.0",
+  "long_description": "\nDescription\n===========\n\nA Light-weight Resource and Provider (LWRP) supporting\nautomatic DNS configuration via DNSimple's API.\n\nChanges\n=======\n\n* Convert README to markdown so it is displayed nice on Community\n  site.\n* Add default action `:create` for `dnsimple_record`.\n* Set values that `type` can be equal to in `dnsimple_record` resource.\n\nRequirements\n============\n\nA DNSimple account at http://dnsimple.com\n\nAttributes\n==========\n\nAll attributes are `nil`, or `false` by default.\n\n- `node[:dnsimple][:username]`: Your DNSimple login username.\n- `node[:dnsimple][:password]`: Your DNSimple login password.\n- `node[:dnsimple][:domain]`: The domain that this node should use.\n- `node[:dnsimple][:test]`: Unused at this time.\n\nResources/Providers\n===================\n\ndnsimple\\_record\n----------------\n\nManage a DNS resource record through the DNSimple API. This LWRP uses the\n[DNSimple gem](http://rubygems.org/gems/dnsimple-ruby) to connect and use\nthe API.\n\n### Actions:\n\n    | Action    | Description          | Default |\n    |-----------|----------------------|---------|\n    | *create*  | Create the record.   | Yes     |\n    | *destroy* | Destroy the record.  |         |\n\n### Parameter Attributes:\n\nThe type of record can be one of the following: A, CNAME, ALIAS, MX,\nSPF, URL, TXT, NS, SRV, NAPTR, PTR, AAA, SSHFP, or HFINO.\n\n    | Parameter  | Description                | Default |\n    |------------|----------------------------|---------|\n    | *domain*   | Domain to manage           |         |\n    | *name*     | _Name_: Name of the record |         |\n    | *type*     | Type of DNS record         |         |\n    | *content*  | String content of record   |         |\n    | *ttl*      | Time to live.              | 3600    |\n    | *priority* | Priorty of update          |         |\n    | *username* | DNSimple username          |         |\n    | *password* | DNSimple password          |         |\n    | *test*     | Unused at this time        | false   |\n\n### Examples\n\n    dnsimple_record \"create an A record\" do\n      name     \"test\"\n      content  \"16.8.4.2\"\n      type     \"A\"\n      domain   node[:dnsimple][:domain]\n      username node[:dnsimple][:username]\n      password node[:dnsimple][:password]\n      action   :create\n    end\n\n    dnsimple_record \"create a CNAME record for a Google Apps site calendar\" do\n      name     \"calendar\"\n      content  \"ghs.google.com\"\n      type     \"CNAME\"\n      domain   node[:dnsimple][:domain]\n      username node[:dnsimple][:username]\n      password node[:dnsimple][:password]\n      action   :create\n    end\n\nUsage\n=====\n\nAdd the the `dnsimple` recipe to a node's run list, or with `include_recipe`\nto install the [dnsimple-ruby](http://rubygems.org/gems/dnsimple-ruby) gem,\nwhich is used to interact with the DNSimple API. See examples of the LWRP\nusage above.\n\nLicense and Author\n==================\n\nAuthor:: Darrin Eden (<darrin@heavywater.ca>)\nAuthor:: Joshua Timberman (<opensource@housepub.org>)\n\nCopyright:: 2010-2011 Heavy Water Software\n\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.\n",
+  "name": "dnsimple",
   "groupings": {
   },
+  "conflicting": {
+  },
+  "description": "Installs/Configures dnsimple",
+  "suggestions": {
+  },
   "license": "Apache 2.0",
+  "maintainer": "DNSimple",
+  "version": "0.5.0",
+  "replacing": {
+  },
+  "providing": {
+  },
+  "attributes": {
+  },
   "dependencies": {
   },
-  "maintainer": "DNSimple"
+  "maintainer_email": "ops@dnsimple.com",
+  "recipes": {
+    "dnsimple": "Installs dnsimple-ruby gem to use w/ the dnsimple_record"
+  }
 }
