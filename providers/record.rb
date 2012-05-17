@@ -16,11 +16,14 @@
 # limitations under the License.
 #
 
-require "rubygems"
-require "dnsimple"
-
-
 action :create do
+  begin
+    require "rubygems"
+    require "dnsimple"
+  rescue LoadError
+    Chef::Log.error("Missing gem 'dnsimple'")
+  end
+
   domain =  new_resource.domain
   name =    new_resource.name
   content = new_resource.content
@@ -71,6 +74,13 @@ action :create do
 end
 
 action :destroy do
+  begin
+    require "rubygems"
+    require "dnsimple"
+  rescue LoadError
+    Chef::Log.error("Missing gem 'dnsimple'")
+  end
+
   DNSimple::Client.username = new_resource.username || node["dnsimple"]["username"]
   DNSimple::Client.password = new_resource.password || node["dnsimple"]["password"]
 
