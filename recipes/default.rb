@@ -17,10 +17,10 @@
 # limitations under the License.
 #
 
-gem_package "fog" do
-  version node['dnsimple']['fog_version']
+gem_package "dnsimple-ruby" do
+  version node["dnsimple"]["gem_version"]
   action :nothing
 end.run_action( :install )
 
-require 'rubygems'
+require "rubygems"
 Gem.clear_paths
