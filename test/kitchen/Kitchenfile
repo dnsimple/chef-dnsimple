@@ -1,0 +1,3 @@
+cookbook "dnsimple" do
+  runtimes []
+end
