@@ -31,6 +31,10 @@ action :create do
   ttl =     new_resource.ttl
   prio =    new_resource.priority
 
+  if prio == ''
+    prio = nil
+  end
+
   DNSimple::Client.username = new_resource.username || node["dnsimple"]["username"]
   DNSimple::Client.password = new_resource.password || node["dnsimple"]["password"]
 
@@ -40,15 +44,20 @@ action :create do
   exists = false
   records.each do |r|
     Chef::Log.debug "Checking if #{name} exists as #{content} and #{ttl}"
+    if r.prio == ''
+      r.prio = nil
+    end
+
     # do nothing if the record already exists
     exists = (( r.name == name ) and
               ( r.record_type == type ) and
               ( r.content == content ) and
-              ( r.ttl == ttl ))
+              ( r.ttl == ttl ) and
+              ( r.prio == prio ))
     break if exists
 
     # delete any record with the name we're trying to create
-    if r.name == name
+    if r.name == name and r.record_type == type and r.prio == prio
       Chef::Log.debug "Cannot modify a record, must destroy #{name} first"
       r.destroy
     end
