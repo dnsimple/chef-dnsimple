@@ -36,7 +36,6 @@ All attributes are `nil`, or `false` by default.
 
 - `node[:dnsimple][:username]`: Your DNSimple login username.
 - `node[:dnsimple][:password]`: Your DNSimple login password.
-- `node[:dnsimple][:domain]`: The domain that this node should use.
 - `node[:dnsimple][:test]`: Unused at this time.
 
 Resources/Providers
@@ -75,21 +74,17 @@ SPF, URL, TXT, NS, SRV, NAPTR, PTR, AAA, SSHFP, or HFINO.
 
 ### Examples
 
-    dnsimple_record "create an A record" do
-      name     "test"
+    dnsimple_record "test.example.com" do
       content  "16.8.4.2"
       type     "A"
-      domain   node[:dnsimple][:domain]
       username node[:dnsimple][:username]
       password node[:dnsimple][:password]
       action   :create
     end
 
-    dnsimple_record "create a CNAME record for a Google Apps site calendar" do
-      name     "calendar"
+    dnsimple_record "calendar.example.com" do
       content  "ghs.google.com"
       type     "CNAME"
-      domain   node[:dnsimple][:domain]
       username node[:dnsimple][:username]
       password node[:dnsimple][:password]
       action   :create

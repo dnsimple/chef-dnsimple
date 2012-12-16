@@ -31,6 +31,12 @@ action :create do
   ttl     = new_resource.ttl
   prio    = new_resource.priority
 
+  if domain.nil?
+    parsed = name.match(/^(.*?)\.?([^\.]+\.[^\.]+)$/)
+    name   = parsed[1]
+    domain = parsed[2]
+  end
+
   if prio == ''
     prio = nil
   end

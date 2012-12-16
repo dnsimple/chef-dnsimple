@@ -18,8 +18,8 @@
 
 actions :create, :destroy
 
-attribute :domain,   :kind_of => String, :required => true
-attribute :name,     :kind_of => String, :required => true
+attribute :name,     :kind_of => String, :required => true, :name_attribute => true
+attribute :domain,   :kind_of => String, :default => nil
 attribute :type,     :kind_of => String, :equal_to => ["A", "CNAME", "ALIAS", "MX", "SPF", "URL", "TXT", "NS", "SRV", "NAPTR", "PTR", "AAA", "SSHFP", "HFINO"]
 attribute :content,  :kind_of => String
 attribute :ttl,      :kind_of => Integer, :default => 3600

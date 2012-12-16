@@ -17,5 +17,4 @@
 
 default[:dnsimple][:username] = nil # DNSimple username
 default[:dnsimple][:password] = nil # DNSimple password
-default[:dnsimple][:domain] = nil   # Default domain to use
 default[:dnsimple][:gem_version] = "1.2.6"
