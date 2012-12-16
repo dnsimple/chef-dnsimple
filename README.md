@@ -8,6 +8,10 @@ automatic DNS configuration via DNSimple's API.
 Changes
 =======
 
+0.5.1
+-----
+* Make `name` the name attribute, and infer `domain` if only `name` is set
+
 0.5.0
 -----
 * Use [dnsimple-ruby gem](http://rubygems.org/gems/dnsimple-ruby) instead of
