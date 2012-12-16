@@ -36,7 +36,6 @@ All attributes are `nil`, or `false` by default.
 
 - `node[:dnsimple][:username]`: Your DNSimple login username.
 - `node[:dnsimple][:password]`: Your DNSimple login password.
-- `node[:dnsimple][:test]`: Unused at this time.
 
 Resources/Providers
 ===================
@@ -70,7 +69,6 @@ SPF, URL, TXT, NS, SRV, NAPTR, PTR, AAA, SSHFP, or HFINO.
     | *priority* | Record priority            |         |
     | *username* | DNSimple username          |         |
     | *password* | DNSimple password          |         |
-    | *test*     | Unused at this time        | false   |
 
 ### Examples
 
