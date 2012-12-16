@@ -24,12 +24,12 @@ action :create do
     Chef::Log.error("Missing gem 'dnsimple'")
   end
 
-  domain =  new_resource.domain
-  name =    new_resource.name
+  domain  = new_resource.domain
+  name    = new_resource.name
   content = new_resource.content
-  type =    new_resource.type
-  ttl =     new_resource.ttl
-  prio =    new_resource.priority
+  type    = new_resource.type
+  ttl     = new_resource.ttl
+  prio    = new_resource.priority
 
   if prio == ''
     prio = nil
