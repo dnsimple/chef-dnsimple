@@ -35,11 +35,11 @@ action :create do
     prio = nil
   end
 
-  DNSimple::Client.username = new_resource.username || node["dnsimple"]["username"]
-  DNSimple::Client.password = new_resource.password || node["dnsimple"]["password"]
+  ::DNSimple::Client.username = new_resource.username || node["dnsimple"]["username"]
+  ::DNSimple::Client.password = new_resource.password || node["dnsimple"]["password"]
 
-  zone = DNSimple::Domain.find(domain)
-  records = DNSimple::Record.all(zone)
+  zone = ::DNSimple::Domain.find(domain)
+  records = ::DNSimple::Record.all(zone)
 
   exists = false
   records.each do |r|
@@ -66,17 +66,17 @@ action :create do
   if !exists
     begin
       Chef::Log.info "Attempting to create record type #{type} for #{name} as #{content}"
-      record = DNSimple::Record.create( zone,
-                                        name,
-                                        type,
-                                        content,
-                                        :ttl => ttl, :prio => prio )
+      record = ::DNSimple::Record.create( zone,
+                                          name,
+                                          type,
+                                          content,
+                                          :ttl => ttl, :prio => prio )
 
       new_resource.updated_by_last_action(true)
       Chef::Log.info "DNSimple: created #{type} record for #{name}.#{domain}"
     rescue DNSimple::RecordExists
       Chef::Log.debug "DNSimple: #{name}.#{domain} already exists, moving on"
-    rescue DNSimple::Error => err
+    rescue ::DNSimple::Error => err
       Chef::Log.error "DNSimple: #{name}.#{domain} could not be created: #{err}"
     end
   end
@@ -90,11 +90,11 @@ action :destroy do
     Chef::Log.error("Missing gem 'dnsimple'")
   end
 
-  DNSimple::Client.username = new_resource.username || node["dnsimple"]["username"]
-  DNSimple::Client.password = new_resource.password || node["dnsimple"]["password"]
+  ::DNSimple::Client.username = new_resource.username || node["dnsimple"]["username"]
+  ::DNSimple::Client.password = new_resource.password || node["dnsimple"]["password"]
 
-  zone = DNSimple::Domain.find(new_resource.domain)
-  records = DNSimple::Record.all(zone)
+  zone = ::DNSimple::Domain.find(new_resource.domain)
+  records = ::DNSimple::Record.all(zone)
 
   records.each do |r|
     if ( r.name == new_resource.name ) and ( r.record_type == new_resource.type )
