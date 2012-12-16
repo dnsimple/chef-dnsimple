@@ -36,6 +36,7 @@ All attributes are `nil`, or `false` by default.
 
 - `node[:dnsimple][:username]`: Your DNSimple login username.
 - `node[:dnsimple][:password]`: Your DNSimple login password.
+- `node[:dnsimple][:gem_version]`: The version of the DNSimple gem to install
 
 Resources/Providers
 ===================
