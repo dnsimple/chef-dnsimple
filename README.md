@@ -8,6 +8,10 @@ automatic DNS configuration via DNSimple's API.
 Changes
 =======
 
+0.5.2
+-----
+* Use `chef_gem` instead of `gem_package`
+
 0.5.1
 -----
 * Make `name` the name attribute, and infer `domain` if only `name` is set
