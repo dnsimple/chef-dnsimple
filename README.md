@@ -8,6 +8,25 @@ automatic DNS configuration via DNSimple's API.
 Changes
 =======
 
+0.5.2
+-----
+* Use `chef_gem` instead of `gem_package`
+
+0.5.1
+-----
+* Make `name` the name attribute, and infer `domain` if only `name` is set
+
+0.5.0
+-----
+* Use [dnsimple-ruby gem](http://rubygems.org/gems/dnsimple-ruby) instead of
+  Fog
+* Support the `priority` attribute of the `dnsimple_record` LWRP
+* Node attribute `dnsimple.fog_version` is no longer used; set
+  `dnsimple.gem_version` to a version of the [dnsimple-ruby
+  gem](http://rubygems.org/gems/dnsimple-ruby) instead
+
+0.4.0
+-----
 * Convert README to markdown so it is displayed nice on Community
   site.
 * Add default action `:create` for `dnsimple_record`.
@@ -25,8 +44,7 @@ All attributes are `nil`, or `false` by default.
 
 - `node[:dnsimple][:username]`: Your DNSimple login username.
 - `node[:dnsimple][:password]`: Your DNSimple login password.
-- `node[:dnsimple][:domain]`: The domain that this node should use.
-- `node[:dnsimple][:test]`: Unused at this time.
+- `node[:dnsimple][:gem_version]`: The version of the DNSimple gem to install
 
 Resources/Providers
 ===================
@@ -34,9 +52,9 @@ Resources/Providers
 dnsimple\_record
 ----------------
 
-Manage a DNS resource record through the DNSimple API. This LWRP uses
-the [fog Ruby library](http://rubygems.org/gems/fog) to connect and
-use the API.
+Manage a DNS resource record through the DNSimple API. This LWRP uses the
+[DNSimple gem](http://rubygems.org/gems/dnsimple-ruby) to connect and use
+the API.
 
 ### Actions:
 
@@ -57,28 +75,23 @@ SPF, URL, TXT, NS, SRV, NAPTR, PTR, AAA, SSHFP, or HFINO.
     | *type*     | Type of DNS record         |         |
     | *content*  | String content of record   |         |
     | *ttl*      | Time to live.              | 3600    |
-    | *priority* | Priorty of update          |         |
+    | *priority* | Record priority            |         |
     | *username* | DNSimple username          |         |
     | *password* | DNSimple password          |         |
-    | *test*     | Unused at this time        | false   |
 
 ### Examples
 
-    dnsimple_record "create an A record" do
-      name     "test"
+    dnsimple_record "test.example.com" do
       content  "16.8.4.2"
       type     "A"
-      domain   node[:dnsimple][:domain]
       username node[:dnsimple][:username]
       password node[:dnsimple][:password]
       action   :create
     end
 
-    dnsimple_record "create a CNAME record for a Google Apps site calendar" do
-      name     "calendar"
+    dnsimple_record "calendar.example.com" do
       content  "ghs.google.com"
       type     "CNAME"
-      domain   node[:dnsimple][:domain]
       username node[:dnsimple][:username]
       password node[:dnsimple][:password]
       action   :create
@@ -87,16 +100,17 @@ SPF, URL, TXT, NS, SRV, NAPTR, PTR, AAA, SSHFP, or HFINO.
 Usage
 =====
 
-Add the the `dnsimple` recipe to a node's run list, or with
-`include_recipe` to install the [fog](http://rubygems.org/gems/fog)
-gem, which is used to interact with the DNSimple API. See
-examples of the LWRP usage above.
+Add the the `dnsimple` recipe to a node's run list, or with `include_recipe`
+to install the [dnsimple-ruby](http://rubygems.org/gems/dnsimple-ruby) gem,
+which is used to interact with the DNSimple API. See examples of the LWRP
+usage above.
 
 License and Author
 ==================
 
 Author:: Darrin Eden (<darrin@heavywater.ca>)
 Author:: Joshua Timberman (<opensource@housepub.org>)
+Author:: Dan Crosta (<dcrosta@late.am>)
 
 Copyright:: 2010-2011 Heavy Water Software
 

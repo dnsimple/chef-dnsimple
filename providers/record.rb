@@ -16,49 +16,94 @@
 # limitations under the License.
 #
 
-include DNSimple::Connection
-
 action :create do
-  domain =  new_resource.domain
-  name =    new_resource.name
+  begin
+    require "rubygems"
+    require "dnsimple"
+  rescue LoadError
+    Chef::Log.error("Missing gem 'dnsimple'")
+  end
+
+  domain  = new_resource.domain
+  name    = new_resource.name
   content = new_resource.content
-  type =    new_resource.type
-  ttl =     new_resource.ttl
+  type    = new_resource.type
+  ttl     = new_resource.ttl
+  prio    = new_resource.priority
 
-  zone = dnsimple.zones.get( domain )
+  if domain.nil?
+    parsed = name.match(/^(.*?)\.?([^\.]+\.[^\.]+)$/)
+    name   = parsed[1]
+    domain = parsed[2]
+  end
 
-  zone.records.all.each do |r|
+  if prio == ''
+    prio = nil
+  end
+
+  ::DNSimple::Client.username = new_resource.username || node["dnsimple"]["username"]
+  ::DNSimple::Client.password = new_resource.password || node["dnsimple"]["password"]
+
+  zone = ::DNSimple::Domain.find(domain)
+  records = ::DNSimple::Record.all(zone)
+
+  exists = false
+  records.each do |r|
     Chef::Log.debug "Checking if #{name} exists as #{content} and #{ttl}"
+    if r.prio == ''
+      r.prio = nil
+    end
+
     # do nothing if the record already exists
-    break if(( r.name == name ) and
-             ( r.value == content ) and
-             ( r.ttl == ttl ))
+    exists = (( r.name == name ) and
+              ( r.record_type == type ) and
+              ( r.content == content ) and
+              ( r.ttl == ttl ) and
+              ( r.prio == prio ))
+    break if exists
 
     # delete any record with the name we're trying to create
-    if r.name == name
+    if r.name == name and r.record_type == type and r.prio == prio
       Chef::Log.debug "Cannot modify a record, must destroy #{name} first"
       r.destroy
     end
   end
 
-  begin
-    Chef::Log.debug "Attempting to create record type #{type} for #{name} as #{content}"
-    record = zone.records.create( :name => name,
-                                  :value => content,
-                                  :type => type,
-                                  :ttl => ttl )
-    new_resource.updated_by_last_action(true)
-    Chef::Log.info "DNSimple: created #{type} record for #{name}.#{domain}"
-  rescue Excon::Errors::UnprocessableEntity
-    Chef::Log.debug "DNSimple: #{name}.#{domain} already exists, moving on"
+  if !exists
+    begin
+      Chef::Log.info "Attempting to create record type #{type} for #{name} as #{content}"
+      record = ::DNSimple::Record.create( zone,
+                                          name,
+                                          type,
+                                          content,
+                                          :ttl => ttl, :prio => prio )
+
+      new_resource.updated_by_last_action(true)
+      Chef::Log.info "DNSimple: created #{type} record for #{name}.#{domain}"
+    rescue DNSimple::RecordExists
+      Chef::Log.debug "DNSimple: #{name}.#{domain} already exists, moving on"
+    rescue ::DNSimple::Error => err
+      Chef::Log.error "DNSimple: #{name}.#{domain} could not be created: #{err}"
+    end
   end
 end
 
 action :destroy do
-  zone = dnsimple.zones.get( new_resource.domain )
+  begin
+    require "rubygems"
+    require "dnsimple"
+  rescue LoadError
+    Chef::Log.error("Missing gem 'dnsimple'")
+  end
 
-  zone.records.all.each do |r|
-    if ( r.name == new_resource.name ) and ( r.type == new_resource.type )
+  ::DNSimple::Client.username = new_resource.username || node["dnsimple"]["username"]
+  ::DNSimple::Client.password = new_resource.password || node["dnsimple"]["password"]
+
+  zone = ::DNSimple::Domain.find(new_resource.domain)
+  records = ::DNSimple::Record.all(zone)
+
+  records.each do |r|
+    if ( r.name == new_resource.name ) and ( r.record_type == new_resource.type )
       r.destroy
       new_resource.updated_by_last_action(true)
       Chef::Log.info "DNSimple: destroyed #{new_resource.type} record " +
