@@ -17,6 +17,14 @@
 # limitations under the License.
 #
 
+package 'libxslt-dev' do
+  only_if { node['platform'] == 'debian' || node['platform'] == 'ubuntu' }
+end
+
+package 'libxml2-dev' do
+  only_if { node['platform'] == 'debian' || node['platform'] == 'ubuntu' }
+end
+
 gem_package "fog" do
   version node['dnsimple']['fog_version']
   action :nothing
