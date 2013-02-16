@@ -17,10 +17,14 @@
 # limitations under the License.
 #
 
-gem_package "fog" do
-  version node['dnsimple']['fog_version']
-  action :nothing
-end.run_action( :install )
+%w( libxml2-dev libxslt1-dev ).each do |pkg|
+  r = package( pkg ) { action :nothing }
+  r.run_action( :install )
+end
 
-require 'rubygems'
-Gem.clear_paths
+chef_gem "fog" do
+  version node['dnsimple']['fog_version']
+  action :install
+end
+
+require 'fog'
