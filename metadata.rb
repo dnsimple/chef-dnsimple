@@ -1,3 +1,4 @@
+name             "dnsimple"
 maintainer       "DNSimple"
 maintainer_email "ops@dnsimple.com"
 license          "Apache 2.0"
