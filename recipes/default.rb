@@ -23,7 +23,7 @@
 end
 
 chef_gem "fog" do
-  #version node['dnsimple']['fog_version']
+  version node['dnsimple']['fog_version']
   action :install
 end
 
