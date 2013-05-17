@@ -8,4 +8,10 @@ version          '0.5.0'
 
 recipe   'dnsimple', 'Installs fog gem to use w/ the dnsimple_record'
 
+supports 'amazon'
+supports 'centos'
+supports 'debian'
+supports 'fedora'
+supports 'redhat'
+supports 'rhel'
 supports 'ubuntu'
