@@ -17,7 +17,10 @@
 # limitations under the License.
 #
 
-%w( libxml2-dev libxslt1-dev ).each do |pkg|
+value_for_platform_family(
+  'debian' => ['libxml2-dev', 'libxslt1-dev'],
+  'rhel' => ['libxml2-devel', 'libxslt-devel'],
+).each do |pkg|
   r = package( pkg ) { action :nothing }
   r.run_action( :install )
 end
