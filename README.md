@@ -8,6 +8,7 @@ automatic DNS configuration via DNSimple's API.
 Changes
 =======
 
+* Change method of disabling Excon's peer verification.
 * Convert README to markdown so it is displayed nice on Community
   site.
 * Add default action `:create` for `dnsimple_record`.
