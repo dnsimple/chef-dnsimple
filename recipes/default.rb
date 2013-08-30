@@ -17,6 +17,8 @@
 # limitations under the License.
 #
 
+include_recipe 'build-essential'
+
 %w( libxml2-dev libxslt1-dev ).each do |pkg|
   r = package( pkg ) { action :nothing }
   r.run_action( :install )
