@@ -29,20 +29,21 @@ action :create do
 
   zone.records.all.each do |r|
     Chef::Log.debug "Checking if #{name} exists as #{content} and #{ttl}"
-    # do nothing if the record already exists
-    break if(( r.name == name ) and
-             ( r.value == content ) and
-             ( r.ttl == ttl ))
+    # do nothing if the record already exists, same content and type
+    break if ((r.name == name) &&
+             (r.value == content) &&
+             (r.ttl == ttl) &&
+             (r.type == type))
 
-    # delete any record with the name we're trying to create
-    if r.name == name
+    # delete any record with the name and type we're trying to create
+    if ((r.name == name) && (r.type == type))
       Chef::Log.debug "Cannot modify a record, must destroy #{name} first"
       r.destroy
     end
   end
 
   begin
-    Chef::Log.debug "Attempting to create record type #{type} for #{name} as #{content}"
+    Chef::Log.debug "Attempting to create record type #{type} for #{name} as #{content} with type #{type}"
     record = zone.records.create( :name => name,
                                   :value => content,
                                   :type => type,
