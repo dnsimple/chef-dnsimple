@@ -1,6 +1,6 @@
 begin
-  require "fog"
-  Excon.defaults[:ssl_verify_peer] = false
+  require "fog/dnsimple"
+  Excon.defaults[:ssl_verify_peer] = true
 rescue LoadError
   Chef::Log.warn("Missing gem 'fog'")
 end
