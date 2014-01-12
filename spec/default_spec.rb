@@ -1,6 +1,6 @@
 require_relative 'spec_helper'
 
-describe 'chef-dnsimple::default' do
+describe 'dnsimple::default' do
   let(:chef_run) { ChefSpec::Runner.new.converge(described_recipe) }
 
   it 'installs libxml2-dev and libxslt1-dev packages' do

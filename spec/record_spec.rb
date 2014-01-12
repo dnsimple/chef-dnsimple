@@ -1,17 +1,9 @@
 require 'spec_helper'
 
-class ChefSpec::Runner
-  def append(recipe)
-    runner = Chef::Runner.new(recipe.run_context)
-    runner.converge
-    self
-  end
-end
-
-describe 'chef-dnsimple::record' do
+describe 'dnsimple_test::record' do
   let(:chef_run) do
-    runner = ChefSpec::Runner.new(:step_into => ['chef_dnsimple_record'])
-    runner.converge
+    runner = ChefSpec::Runner.new(:step_into => ['dnsimple_record'])
+    runner.converge(described_recipe)
   end
   before do
     Fog.mock!
@@ -21,7 +13,7 @@ describe 'chef-dnsimple::record' do
 
   context 'with a no existing record with the same name' do
     it 'creates record' do
-      chef_run_with_recipe('name', 'A', '1.1.1.1')
+      chef_run
       record = dnsimple_zone.records.detect { |r| r.name == 'name' }
       expect(record.name).to eq 'name'
       expect(record.type).to eq 'A'
@@ -32,7 +24,7 @@ describe 'chef-dnsimple::record' do
   context 'with an existing record with the same name and ttl' do
     context 'and different type' do
       it 'does not delete existing record and creates new record' do
-        chef_run_with_recipe('', 'A', '1.1.1.1')
+        chef_run
         expected_records = {
           'NS' => '1.2.3.4',
           'A' => '1.1.1.1'
@@ -51,7 +43,7 @@ describe 'chef-dnsimple::record' do
 
     context 'and same type' do
       it 'deletes existing record and creates new record' do
-        chef_run_with_recipe('existing', 'A', '1.1.1.1')
+        chef_run
 
         record = dnsimple_zone.records.detect { |r| r.name == 'existing' }
         expect(record.value).to eq '1.1.1.1'
@@ -71,23 +63,5 @@ describe 'chef-dnsimple::record' do
     dnsimple_client.zones.create({domain: 'example.com'})
     dnsimple_zone.records.create({name: '', type: 'NS', value: '1.2.3.4', ttl: 3600})
     dnsimple_zone.records.create({name: 'existing', type: 'A', value: '2.2.2.2', ttl: 3600})
-  end
-
-  def chef_run_with_recipe(record_name, record_type, record_value)
-    recipe = fake_recipe(chef_run, 'dnsimple_spec', 'record') do
-      chef_dnsimple_record record_name do
-        type record_type
-        content record_value
-        domain 'example.com'
-        username 'user@email.com'
-        password 'my123password'
-      end
-    end
-    chef_run.append(recipe)
-  end
-
-  def fake_recipe(run, cookbook_name, recipe_name, &block)
-    recipe = Chef::Recipe.new(cookbook_name, recipe_name, run.run_context)
-    recipe.instance_eval(&block)
   end
 end

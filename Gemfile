@@ -4,4 +4,5 @@ group :test do
   gem "test-kitchen"
   gem "chefspec", "~> 3.0"
   gem "fog", :git => 'https://github.com/josacar/fog'
+  gem "berkshelf"
 end
