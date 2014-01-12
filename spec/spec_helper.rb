@@ -22,4 +22,6 @@ RSpec.configure do |config|
 
   # Specify the operating version to mock Ohai data from
   # config.version = '12.04'
+  config.order = :random
+  require 'support/shared_context'
 end
