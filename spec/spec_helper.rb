@@ -3,6 +3,7 @@ require 'chefspec'
 
 # Uncomment to use ChefSpec's Berkshelf extension
 require 'chefspec/berkshelf'
+require_relative 'support/shared_context'
 
 RSpec.configure do |config|
   # Specify the path for Chef Solo to find cookbooks
@@ -22,6 +23,7 @@ RSpec.configure do |config|
 
   # Specify the operating version to mock Ohai data from
   # config.version = '12.04'
+
+  # Specify examples order
   config.order = :random
-  require 'support/shared_context'
 end
