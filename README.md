@@ -1,4 +1,3 @@
-
 Description
 ===========
 
@@ -7,6 +6,8 @@ automatic DNS configuration via DNSimple's API.
 
 Changes
 =======
+
+[![Build Status](https://travis-ci.org/aetrion/chef-dnsimple.png?branch=master)](https://travis-ci.org/aetrion/chef-dnsimple)
 
 * Change method of disabling Excon's peer verification.
 * Convert README to markdown so it is displayed nice on Community
