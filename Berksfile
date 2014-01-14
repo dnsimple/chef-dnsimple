@@ -1,4 +1,5 @@
 site :opscode
 metadata
 
- cookbook 'dnsimple_test', path: 'test/fixtures/cookbooks/dnsimple_test'
+cookbook 'build-essential', '~> 1.4.2'
+cookbook 'dnsimple_test', path: 'test/fixtures/cookbooks/dnsimple_test'
