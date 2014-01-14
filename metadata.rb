@@ -17,4 +17,3 @@ supports 'rhel'
 supports 'ubuntu'
 
 depends 'build-essential', '~> 1.4.2'
-
