@@ -3,6 +3,6 @@ source "https://rubygems.org"
 group :test do
   gem "test-kitchen"
   gem "chefspec", "~> 3.0"
-  gem "fog", :git => 'https://github.com/josacar/fog'
+  gem "fog", :git => 'https://github.com/fog/fog'
   gem "berkshelf"
 end
