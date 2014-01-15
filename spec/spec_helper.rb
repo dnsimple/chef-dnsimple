@@ -19,10 +19,10 @@ RSpec.configure do |config|
   # config.path = 'ohai.json'
 
   # Specify the operating platform to mock Ohai data from
-  # config.platform = 'ubuntu'
+  config.platform = 'ubuntu'
 
   # Specify the operating version to mock Ohai data from
-  # config.version = '12.04'
+  config.version = '12.04'
 
   # Specify examples order
   config.order = :random
