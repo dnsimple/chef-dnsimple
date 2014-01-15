@@ -27,7 +27,7 @@ value_for_platform_family(
   r.run_action( :install )
 end
 
-chef_gem "fog" do
+chef_gem 'fog' do
   version node['dnsimple']['fog_version']
   action :install
 end
