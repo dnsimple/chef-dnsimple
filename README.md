@@ -97,10 +97,11 @@ examples of the LWRP usage above.
 License and Author
 ==================
 
-Author:: Darrin Eden (<darrin@heavywater.ca>)
+Author:: Darrin Eden (<darrin@dnsimple.com>)
+
 Author:: Joshua Timberman (<opensource@housepub.org>)
 
-Copyright:: 2010-2011 Heavy Water Software
+Copyright:: 2014 Aetrion LLC
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
