@@ -1,5 +1,7 @@
 .bundle
 .cache
-bin
 .kitchen/
 .kitchen.local.yml
+bin
+Berksfile.lock
+Gemfile.lock
