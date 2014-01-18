@@ -91,9 +91,9 @@ examples of the LWRP usage above.
 
 ## License and Author
 
-Author:: [Darrin Eden](https://github.com/dje)
-Author:: [Joshua Timberman](https://github.com/jtimberman)
-Author:: [Jose Luis Salas](https://github.com/josacar)
+* Author:: [Darrin Eden](https://github.com/dje)
+* Author:: [Joshua Timberman](https://github.com/jtimberman)
+* Author:: [Jose Luis Salas](https://github.com/josacar)
 
 Copyright:: 2014 Aetrion LLC
 
