@@ -19,7 +19,7 @@
 include DNSimple::Connection
 
 def whyrun_supported?
-    true
+  true
 end
 
 def load_current_resource
@@ -51,9 +51,7 @@ action :destroy do
 end
 
 def check_for_record
-  zone = dnsimple.zones.get( new_resource.domain )
-
-  zone.records.all.each do |r|
+  all_records_in_zone do |r|
     if ((r.name == new_resource.name) && (r.type == new_resource.type))
       if ((r.value == new_resource.content) && (r.ttl == new_resource.ttl))
         return :same
@@ -79,14 +77,20 @@ rescue Excon::Errors::UnprocessableEntity
 end
 
 def delete_record
-  zone = dnsimple.zones.get( new_resource.domain )
-
-  zone.records.all.each do |r|
+ all_records_in_zone do |r|
     if (( r.name == new_resource.name ) && ( r.type == new_resource.type ))
       r.destroy
       new_resource.updated_by_last_action(true)
       Chef::Log.info "DNSimple: destroyed #{new_resource.type} record " +
         "for #{new_resource.name}.#{new_resource.domain}"
     end
+  end
+end
+
+def all_records_in_zone
+  zone = dnsimple.zones.get( new_resource.domain )
+
+  zone.records.all.each do |r|
+     yield r if block_given?
   end
 end
