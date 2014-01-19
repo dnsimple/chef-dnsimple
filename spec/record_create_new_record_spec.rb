@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'fog/dnsimple'
 
-describe 'dnsimple_test::new_record' do
+describe 'dnsimple_test::create_record' do
   include_context 'dnsimple'
 
   context 'with a no existing record with the same name' do

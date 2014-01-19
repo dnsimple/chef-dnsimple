@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'fog/dnsimple'
 
-describe 'dnsimple_test::existing_record_same_type_and_content' do
+describe 'dnsimple_test::create_record_existing_record_same_type_and_content' do
   include_context 'dnsimple'
 
   context 'with an existing record with the same name, ttl, type and conent' do
