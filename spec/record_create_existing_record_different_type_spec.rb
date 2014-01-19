@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'fog/dnsimple'
 
-describe 'dnsimple_test::existing_record_different_type' do
+describe 'dnsimple_test::create_record_existing_record_different_type' do
   include_context 'dnsimple'
 
   context 'with an existing record with the same name and ttl different type' do
@@ -12,6 +12,9 @@ describe 'dnsimple_test::existing_record_different_type' do
         'NS' => '1.2.3.4',
         'A' => '1.1.1.1'
       }
+
+      dnsimple_resource = chef_run.find_resource('dnsimple_record', '')
+      expect(dnsimple_resource.updated_by_last_action?).to be_true
 
       records = dnsimple_zone.records.select { |r| r.name == '' }
       expect(records.size).to eq 2
