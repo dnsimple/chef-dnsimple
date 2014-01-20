@@ -1,27 +1,24 @@
-Description
-===========
+## Description
 
 A Light-weight Resource and Provider (LWRP) supporting
 automatic DNS configuration via DNSimple's API.
 
-Changes
-=======
+## Changes
 
 [![Build Status](https://travis-ci.org/aetrion/chef-dnsimple.png?branch=master)](https://travis-ci.org/aetrion/chef-dnsimple)
 
+* Add [Test Kitchen](http://kitchen.ci)
 * Change method of disabling Excon's peer verification.
 * Convert README to markdown so it is displayed nice on Community
   site.
 * Add default action `:create` for `dnsimple_record`.
 * Set values that `type` can be equal to in `dnsimple_record` resource.
 
-Requirements
-============
+## Requirements
 
 A DNSimple account at http://dnsimple.com
 
-Attributes
-==========
+## Attributes
 
 All attributes are `nil`, or `false` by default.
 
@@ -30,8 +27,7 @@ All attributes are `nil`, or `false` by default.
 - `node[:dnsimple][:domain]`: The domain that this node should use.
 - `node[:dnsimple][:test]`: Unused at this time.
 
-Resources/Providers
-===================
+## Resources/Providers
 
 dnsimple\_record
 ----------------
@@ -86,20 +82,18 @@ SPF, URL, TXT, NS, SRV, NAPTR, PTR, AAA, SSHFP, or HFINO.
       action   :create
     end
 
-Usage
-=====
+## Usage
 
 Add the the `dnsimple` recipe to a node's run list, or with
 `include_recipe` to install the [fog](http://rubygems.org/gems/fog)
 gem, which is used to interact with the DNSimple API. See
 examples of the LWRP usage above.
 
-License and Author
-==================
+## License and Author
 
-Author:: Darrin Eden (<darrin@dnsimple.com>)
-
-Author:: Joshua Timberman (<opensource@housepub.org>)
+* Author:: [Darrin Eden](https://github.com/dje)
+* Author:: [Joshua Timberman](https://github.com/jtimberman)
+* Author:: [Jose Luis Salas](https://github.com/josacar)
 
 Copyright:: 2014 Aetrion LLC
 
