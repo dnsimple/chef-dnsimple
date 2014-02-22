@@ -5,6 +5,6 @@ group :test do
   gem 'kitchen-vagrant'
   gem 'chefspec', '~> 3.0'
   gem 'serverspec'
-  gem 'fog', :git => 'https://github.com/fog/fog'
+  gem 'fog', '~> 1.20'
   gem 'berkshelf'
 end
