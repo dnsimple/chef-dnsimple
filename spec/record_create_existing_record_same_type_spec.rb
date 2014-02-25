@@ -9,7 +9,8 @@ describe 'dnsimple_test::create_record_existing_record_same_type' do
       create_record_to_update
       chef_run
 
-      dnsimple_resource = chef_run.find_resource('dnsimple_record', 'existing')
+      dnsimple_resource = chef_run
+        .find_resource('dnsimple_record', 'custom record name')
       expect(dnsimple_resource.updated_by_last_action?).to be_true
 
       record = dnsimple_zone.records.detect { |r| r.name == 'existing' }
