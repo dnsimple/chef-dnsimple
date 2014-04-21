@@ -48,38 +48,38 @@ use the API.
 The type of record can be one of the following: A, CNAME, ALIAS, MX,
 SPF, URL, TXT, NS, SRV, NAPTR, PTR, AAA, SSHFP, or HFINO.
 
-    | Parameter  | Description                | Default |
-    |------------|----------------------------|---------|
-    | *domain*   | Domain to manage           |         |
-    | *name*     | _Name_: Name of the record |         |
-    | *type*     | Type of DNS record         |         |
-    | *content*  | String content of record   |         |
-    | *ttl*      | Time to live.              | 3600    |
-    | *priority* | Priorty of update          |         |
-    | *username* | DNSimple username          |         |
-    | *password* | DNSimple password          |         |
-    | *test*     | Unused at this time        | false   |
+    | Parameter     | Description                | Default |
+    |---------------|----------------------------|---------|
+    | *domain*      | Domain to manage           |         |
+    | *record_name* | _Name_: Name of the record |         |
+    | *type*        | Type of DNS record         |         |
+    | *content*     | String content of record   |         |
+    | *ttl*         | Time to live.              | 3600    |
+    | *priority*    | Priority of update         |         |
+    | *username*    | DNSimple username          |         |
+    | *password*    | DNSimple password          |         |
+    | *test*        | Unused at this time        | false   |
 
 ### Examples
 
     dnsimple_record "create an A record" do
-      name     "test"
-      content  "16.8.4.2"
-      type     "A"
-      domain   node[:dnsimple][:domain]
-      username node[:dnsimple][:username]
-      password node[:dnsimple][:password]
-      action   :create
+      record_name "test"
+      content     "16.8.4.2"
+      type        "A"
+      domain      node[:dnsimple][:domain]
+      username    node[:dnsimple][:username]
+      password    node[:dnsimple][:password]
+      action      :create
     end
 
     dnsimple_record "create a CNAME record for a Google Apps site calendar" do
-      name     "calendar"
-      content  "ghs.google.com"
-      type     "CNAME"
-      domain   node[:dnsimple][:domain]
-      username node[:dnsimple][:username]
-      password node[:dnsimple][:password]
-      action   :create
+      record_name "calendar"
+      content     "ghs.google.com"
+      type        "CNAME"
+      domain      node[:dnsimple][:domain]
+      username    node[:dnsimple][:username]
+      password    node[:dnsimple][:password]
+      action      :create
     end
 
 ## Usage
