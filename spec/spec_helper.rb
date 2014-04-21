@@ -6,17 +6,9 @@ require 'chefspec/berkshelf'
 require_relative 'support/shared_context'
 
 RSpec.configure do |config|
-  # Specify the path for Chef Solo to find cookbooks
-  # config.cookbook_path = '/var/cookbooks'
-
-  # Specify the path for Chef Solo to find roles
-  # config.role_path = '/var/roles'
-
-  # Specify the Chef log_level (default: :warn)
-  # config.log_level = :debug
-
-  # Specify the path to a local JSON file with Ohai data
-  # config.path = 'ohai.json'
+  config.expect_with :rspec do |spec|
+    spec.syntax = :expect
+  end
 
   # Specify the operating platform to mock Ohai data from
   config.platform = 'ubuntu'

@@ -4,7 +4,7 @@ require 'fog/dnsimple'
 describe 'dnsimple_test::create_record_existing_record_different_type' do
   include_context 'dnsimple'
 
-  context 'with an existing record with the same name and ttl different type' do
+  context 'with an existing record with same name and ttl, different type' do
     it 'does not delete existing record and creates new record' do
       create_record_to_do_not_delete
       chef_run

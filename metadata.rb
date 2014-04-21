@@ -6,7 +6,7 @@ description      'Installs/Configures dnsimple'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '1.0.0'
 
-recipe   'dnsimple', 'Installs fog gem to use w/ the dnsimple_record'
+recipe 'dnsimple', 'Installs fog gem to use w/ the dnsimple_record'
 
 supports 'amazon'
 supports 'centos'

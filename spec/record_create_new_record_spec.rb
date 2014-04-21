@@ -11,7 +11,7 @@ describe 'dnsimple_test::create_record' do
       dnsimple_resource = chef_run.find_resource('dnsimple_record', 'name')
       expect(dnsimple_resource.updated_by_last_action?).to be_true
 
-      record = dnsimple_zone.records.detect { |r| r.name == 'name' }
+      record = dnsimple_zone.records.find { |r| r.name == 'name' }
       expect(record.name).to eq 'name'
       expect(record.type).to eq 'A'
       expect(record.value).to eq '1.1.1.1'
