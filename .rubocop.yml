@@ -1,0 +1,8 @@
+Documentation:
+  Enabled: false
+
+MethodLength:
+  Max: 16
+
+SingleSpaceBeforeFirstArg:
+  Enabled: false

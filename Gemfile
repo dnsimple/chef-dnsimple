@@ -7,4 +7,6 @@ group :test do
   gem 'serverspec'
   gem 'fog', :git => 'https://github.com/fog/fog'
   gem 'berkshelf'
+  gem 'rubocop'
+  gem 'foodcritic'
 end
