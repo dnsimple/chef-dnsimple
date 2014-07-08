@@ -4,7 +4,8 @@ group :test do
   gem 'test-kitchen'
   gem 'kitchen-vagrant'
   gem 'chefspec', '~> 3.0'
+  gem 'rspec', '~> 2.14.0'
   gem 'serverspec'
-  gem 'fog', :git => 'https://github.com/fog/fog'
-  gem 'berkshelf'
+  gem 'fog'
+  gem 'berkshelf', '~> 2.0'
 end
