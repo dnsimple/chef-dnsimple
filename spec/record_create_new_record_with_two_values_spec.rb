@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'fog/dnsimple'
 
-describe 'dnsimple_test::new_record_two_values' do
+describe 'dnsimple_test::create_record_with_two_values' do
   include_context 'dnsimple'
 
   context 'with no record with the same name' do
