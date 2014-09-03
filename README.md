@@ -7,7 +7,8 @@ automatic DNS configuration via DNSimple's API.
 
 ## Requirements
 
-A DNSimple account at http://dnsimple.com
+* A DNSimple account at https://dnsimple.com
+* Chef 11 or newer (Feel free to send a pull request for Chef 10.x support)
 
 ## Attributes
 

@@ -14,7 +14,7 @@ describe 'dnsimple_test::create_record_existing_record_different_type' do
       }
 
       dnsimple_resource = chef_run.find_resource('dnsimple_record', '')
-      expect(dnsimple_resource.updated_by_last_action?).to be_true
+      expect(dnsimple_resource.updated_by_last_action?).to be_truthy
 
       records = dnsimple_zone.records.select { |r| r.name == '' }
       expect(records.size).to eq 2
