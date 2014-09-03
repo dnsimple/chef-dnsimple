@@ -86,7 +86,7 @@ examples of the LWRP usage above.
 * Author:: [Joshua Timberman](https://github.com/jtimberman)
 * Author:: [Jose Luis Salas](https://github.com/josacar)
 
-Copyright:: 2014 Aetrion LLC
+Copyright:: 2014 Aetrion, LLC
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

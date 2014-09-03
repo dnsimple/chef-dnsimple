@@ -1,6 +1,6 @@
 # 1.0.1 / Unreleased
 
-## Enhancements
+## Legal
 
-* None yet
+* Cleaned up and updated copyrights in the licensing notices
 
