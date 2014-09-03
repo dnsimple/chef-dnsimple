@@ -1,5 +1,9 @@
 # 1.0.1 / Unreleased
 
+## Bug Fixes
+
+* Use latest Fog gem release, not the master git branch.
+
 ## Testing
 
 * Updated and cleaned up test suite to be RSpec 3.0 compatible (truthy and falsy)
