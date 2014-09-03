@@ -18,7 +18,7 @@ describe 'dnsimple_test::create_same_record_with_two_values' do
       end
       expect(final_records).to be_empty
       dnsimple_resource = chef_run.find_resource('dnsimple_record', 'multiple')
-      expect(dnsimple_resource.updated_by_last_action?).to be_false
+      expect(dnsimple_resource.updated_by_last_action?).to eq(false)
     end
   end
 end
