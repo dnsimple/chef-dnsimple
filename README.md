@@ -3,16 +3,7 @@
 A Light-weight Resource and Provider (LWRP) supporting
 automatic DNS configuration via DNSimple's API.
 
-## Changes
-
 [![Build Status](https://travis-ci.org/aetrion/chef-dnsimple.png?branch=master)](https://travis-ci.org/aetrion/chef-dnsimple)
-
-* Add [Test Kitchen](http://kitchen.ci)
-* Change method of disabling Excon's peer verification.
-* Convert README to markdown so it is displayed nice on Community
-  site.
-* Add default action `:create` for `dnsimple_record`.
-* Set values that `type` can be equal to in `dnsimple_record` resource.
 
 ## Requirements
 
