@@ -40,17 +40,17 @@ use the API.
 The type of record can be one of the following: A, CNAME, ALIAS, MX,
 SPF, URL, TXT, NS, SRV, NAPTR, PTR, AAA, SSHFP, or HFINO.
 
-    | Parameter  | Description                | Default |
-    |------------|----------------------------|---------|
-    | *domain*   | Domain to manage           |         |
-    | *name*     | _Name_: Name of the record |         |
-    | *type*     | Type of DNS record         |         |
-    | *content*  | String content of record   |         |
-    | *ttl*      | Time to live.              | 3600    |
-    | *priority* | Priorty of update          |         |
-    | *username* | DNSimple username          |         |
-    | *password* | DNSimple password          |         |
-    | *test*     | Unused at this time        | false   |
+    | Parameter  | Description                     | Default |
+    |------------|---------------------------------|---------|
+    | *domain*   | Domain to manage                |         |
+    | *name*     | _Name_: Name of the record      |         |
+    | *type*     | Type of DNS record              |         |
+    | *content*  | String/Array content of records |         |
+    | *ttl*      | Time to live.                   | 3600    |
+    | *priority* | Priorty of update               |         |
+    | *username* | DNSimple username               |         |
+    | *password* | DNSimple password               |         |
+    | *test*     | Unused at this time             | false   |
 
 ### Examples
 
@@ -68,6 +68,16 @@ SPF, URL, TXT, NS, SRV, NAPTR, PTR, AAA, SSHFP, or HFINO.
       name     "calendar"
       content  "ghs.google.com"
       type     "CNAME"
+      domain   node[:dnsimple][:domain]
+      username node[:dnsimple][:username]
+      password node[:dnsimple][:password]
+      action   :create
+    end
+
+    dnsimple_record "create a A record with multiple content values" do
+      name     "multiple"
+      content  ["1.1.1.1", "2.2.2.2"]
+      type     "A"
       domain   node[:dnsimple][:domain]
       username node[:dnsimple][:username]
       password node[:dnsimple][:password]
