@@ -25,6 +25,11 @@ shared_context 'dnsimple' do
     dnsimple_zone.records.create({name: 'existing', type: 'A', value: '2.2.2.2', ttl: 3600})
   end
 
+  def create_record_with_multiple_values
+    dnsimple_zone.records.create({name: 'multiple', type: 'A', value: '3.3.3.3', ttl: 3600})
+    dnsimple_zone.records.create({name: 'multiple', type: 'A', value: '2.2.2.2', ttl: 3600})
+  end
+
   def create_record_to_do_not_delete
     dnsimple_zone.records.create({name: '', type: 'NS', value: '1.2.3.4', ttl: 3600})
   end
