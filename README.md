@@ -10,6 +10,12 @@ automatic DNS configuration via DNSimple's API.
 * A DNSimple account at https://dnsimple.com
 * Chef 11 or newer (Feel free to send a pull request for Chef 10.x support)
 
+## Known issues
+
+* This cookbook currently cannot work with Chef 12.1.0 due to a dependency
+  conflict with the 'net-scp' and 'net-ssh' dependnecies of the fog gem.
+  If you have a solution for this, please send a Pull Request.
+
 ## Attributes
 
 All attributes are `nil`, or `false` by default.
