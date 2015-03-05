@@ -20,4 +20,4 @@
 default[:dnsimple][:username] = nil # DNSimple username
 default[:dnsimple][:password] = nil # DNSimple password
 default[:dnsimple][:domain] = nil   # Default domain to use
-default[:dnsimple][:fog_version] = "1.6.0" # Default version of fog to install
+default[:dnsimple][:fog_version] = nil # Default version of fog to install
