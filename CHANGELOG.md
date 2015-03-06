@@ -3,9 +3,9 @@
 ## Breaking Changes
 
 * Changed fog version number to nil, which causes it to install the latest
-  version for now. This will cause a conflict with Chef 12.1.0 and is currently
-  a known issue. However, as of fog version 1.20.0, the updated api endpoint
-  has restored connectivity for those using the cookbook.
+  version. This _will_ cause a conflict with Chef 12.1.0 and is currently
+  a known issue. If you are going to set a version, then it is suggested
+  to use _at least_ 1.20.0, which contains the updated api endpoint.
 
 ## Enhancements
 
