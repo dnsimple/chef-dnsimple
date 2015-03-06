@@ -1,7 +1,6 @@
 language: ruby
 bundler_args: --without development integration
 rvm:
-  - 1.9.3
   - 2.0.0
 before_install:
   - "echo 'gem: --no-ri --no-rdoc' > ~/.gemrc"
