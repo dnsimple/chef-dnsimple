@@ -1,4 +1,4 @@
-# 1.1.0 / Unreleased
+# 1.1.0 / 2015-03-06
 
 ## Breaking Changes
 
