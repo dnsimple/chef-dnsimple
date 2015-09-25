@@ -1,6 +1,6 @@
 shared_context 'dnsimple' do
   let(:chef_run) do
-    runner = ChefSpec::Runner.new(:step_into => ['dnsimple_record'])
+    runner = ChefSpec::ServerRunner.new(:step_into => ['dnsimple_record'])
     runner.converge(described_recipe)
   end
   before(:all) do
