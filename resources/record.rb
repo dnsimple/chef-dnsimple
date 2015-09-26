@@ -27,6 +27,7 @@ attribute :content,  :kind_of => [String, Array]
 attribute :ttl,      :kind_of => Integer, :default => 3600
 attribute :priority, :kind_of => Integer
 attribute :username, :kind_of => String
-attribute :password, :kind_of => String
+attribute :token,    :kind_of => String
+attribute :password, :kind_of => String # DEPRECATED
 
 attr_accessor :exists
