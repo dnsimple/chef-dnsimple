@@ -27,9 +27,18 @@ end
 module DNSimple
   module Connection
     def dnsimple
-      @@dnsimple ||= Fog::DNS.new( :provider => "DNSimple",
-                                   :dnsimple_email => new_resource.username,
-                                   :dnsimple_password => new_resource.password )
+      # Warn API Token should be used over password
+      if new_resource.password
+        Chef::Log.warn('[DEPRECATED] Using password for Connection. An API Token will be required in the future.')
+      end
+
+      # Fog will use API Auth instead of password if API Token param is present.
+      @@dnsimple ||= Fog::DNS.new(
+        :provider          => "DNSimple",
+        :dnsimple_email    => new_resource.username,
+        :dnsimple_token    => new_resource.token,
+        :dnsimple_password => new_resource.password
+      )
     end
   end
 end

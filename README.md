@@ -65,11 +65,11 @@ SPF, URL, TXT, NS, SRV, NAPTR, PTR, AAA, SSHFP, or HFINO.
       content  "16.8.4.2"
       type     "A"
       domain   node[:dnsimple][:domain]
-      username node[:dnsimple][:username]
-      password node[:dnsimple][:password]
+      token    node[:dnsimple][:api_token]
       action   :create
     end
 
+    ** USING A PASSWORD IS DEPRECATED **
     dnsimple_record "create a CNAME record for a Google Apps site calendar" do
       name     "calendar"
       content  "ghs.google.com"

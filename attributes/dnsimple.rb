@@ -17,7 +17,9 @@
 # limitations under the License.
 #
 
-default[:dnsimple][:username] = nil # DNSimple username
-default[:dnsimple][:password] = nil # DNSimple password
-default[:dnsimple][:domain] = nil   # Default domain to use
+default[:dnsimple][:username]  = nil # DNSimple username
+default[:dnsimple][:domain]    = nil # Default domain to use
+default[:dnsimple][:api_token] = nil # DNSimple API Token
+default[:dnsimple][:password]  = nil # DNSimple password (DEPRECATED Set API Token)
+
 default[:dnsimple][:fog_version] = nil # Default version of fog to install
