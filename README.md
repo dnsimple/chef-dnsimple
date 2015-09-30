@@ -60,6 +60,7 @@ SPF, URL, TXT, NS, SRV, NAPTR, PTR, AAA, SSHFP, or HFINO.
 
 ### Examples
 
+    # HTTP Basic auth
     dnsimple_record "create an A record" do
       name     "test"
       content  "16.8.4.2"
@@ -70,23 +71,24 @@ SPF, URL, TXT, NS, SRV, NAPTR, PTR, AAA, SSHFP, or HFINO.
       action   :create
     end
 
+    # User API token auth
     dnsimple_record "create a CNAME record for a Google Apps site calendar" do
       name     "calendar"
       content  "ghs.google.com"
       type     "CNAME"
       domain   node[:dnsimple][:domain]
       username node[:dnsimple][:username]
-      password node[:dnsimple][:password]
+      api_token node[:dnsimple][:api_token]
       action   :create
     end
 
+    # Single-Domain token auth
     dnsimple_record "create a A record with multiple content values" do
       name     "multiple"
       content  ["1.1.1.1", "2.2.2.2"]
       type     "A"
       domain   node[:dnsimple][:domain]
-      username node[:dnsimple][:username]
-      password node[:dnsimple][:password]
+      api_token node[:dnsimple][:api_token]
       action   :create
     end
 
