@@ -19,5 +19,6 @@
 
 default[:dnsimple][:username] = nil # DNSimple username
 default[:dnsimple][:password] = nil # DNSimple password
+default[:dnsimple][:api_token] = nil   # DNSimple API token (user or domain)
 default[:dnsimple][:domain] = nil   # Default domain to use
-default[:dnsimple][:fog_version] = nil # Default version of fog to install
+default[:dnsimple][:fog_version] = '>= 1.21.0' # Default version of fog to install

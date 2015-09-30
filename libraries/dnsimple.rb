@@ -27,9 +27,17 @@ end
 module DNSimple
   module Connection
     def dnsimple
-      @@dnsimple ||= Fog::DNS.new( :provider => "DNSimple",
-                                   :dnsimple_email => new_resource.username,
-                                   :dnsimple_password => new_resource.password )
+      config = {
+        :provider => "DNSimple",
+        :dnsimple_email => new_resource.username,
+        :dnsimple_password => new_resource.password,
+        :dnsimple_token => new_resource.api_token,
+      }
+
+      # Fog assumes token is a domain token if dnsimple_domain is set, so guard its setting.
+      config.merge!({ :dnsimple_domain => new_resource.domain }) unless new_resource.username
+
+      @@dnsimple ||= Fog::DNS.new(config)
     end
   end
 end
