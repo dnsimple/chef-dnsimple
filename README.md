@@ -97,6 +97,13 @@ Add the the `dnsimple` recipe to a node's run list, or with
 gem, which is used to interact with the DNSimple API. See
 examples of the LWRP usage above.
 
+## Testing
+
+To run the tests across all platforms, you want to grab the latest [ChefDK][]
+install [VirtualBox][], and [Vagrant][] then run `kitchen test`. If you want to
+get a cache speed boost, run `vagrant plugin install vagrant-cachier` and your
+chef runs will speed up _dramatically_ thanks to local caching.
+
 ## License and Author
 
 * Author:: [Darrin Eden](https://github.com/dje)
@@ -116,3 +123,7 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
+[ChefDK]: https://downloads.chef.io/chef-dk/
+[VirtualBox]: https://www.virtualbox.org/wiki/Downloads
+[Vagrant]: https://www.vagrantup.com/downloads.html
