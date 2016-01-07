@@ -18,6 +18,8 @@
 
 include DNSimple::Connection
 
+use_inline_resources
+
 def whyrun_supported?
   true
 end
