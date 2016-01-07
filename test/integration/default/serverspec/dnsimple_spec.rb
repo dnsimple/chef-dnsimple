@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-case backend.check_os[:family]
+case os[:family]
 when 'RedHat'
   packages = %w(libxml2-devel libxslt-devel)
 else
