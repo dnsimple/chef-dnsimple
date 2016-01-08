@@ -19,13 +19,13 @@
 
 include_recipe 'build-essential'
 
-value_for_platform_family(
-  'debian' => ['libxml2-dev', 'libxslt1-dev'],
-  'rhel' => ['libxml2-devel', 'libxslt-devel'],
-).each do |pkg|
-  r = package( pkg ) { action :nothing }
-  r.run_action( :install )
+case node['platform_family']
+when 'debian'
+  package 'zlib1g-dev' do
+    action :install
+  end.run_action(:install)
 end
+
 
 chef_gem 'fog' do
   version node['dnsimple']['fog_version']
