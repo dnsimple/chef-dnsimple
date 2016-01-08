@@ -1,3 +1,19 @@
+# Next Release
+
+## Bug Fixes
+
+* Nokogiri now bundles libxml2 and libxslt making life somewhat easier for us
+  and simplifying the default recipe, which was broken at the time. We've
+  removed the dependency package installs with exception of zlibg1 for debian
+  family platforms.
+
+## Test suite
+
+* Resolved all foodcritic warnings with the newest foodcritic
+* Resolved the chefspec and compile\_time warnings
+* Not only is the test suite working again, but you can speed it up with
+  vagrant-cachier! See your friendly neighborhood README for details.
+
 # 1.1.0 / 2015-03-06
 
 ## Breaking Changes
