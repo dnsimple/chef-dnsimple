@@ -29,6 +29,7 @@ end
 
 chef_gem 'fog' do
   version node['dnsimple']['fog_version']
+  compile_time false if Chef::Resource::ChefGem.method_defined?(:compile_time)
   action :install
 end
 
