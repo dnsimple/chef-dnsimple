@@ -3,7 +3,7 @@
 A Light-weight Resource and Provider (LWRP) supporting
 automatic DNS configuration via DNSimple's API.
 
-[![Build Status](https://travis-ci.org/aetrion/chef-dnsimple.png?branch=master)](https://travis-ci.org/aetrion/chef-dnsimple)
+[![Build Status](https://travis-ci.org/dnsimple/chef-dnsimple.png?branch=master)](https://travis-ci.org/dnsimple/chef-dnsimple)
 
 ## Requirements
 
