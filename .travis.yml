@@ -8,13 +8,13 @@ addons:
     packages:
       - chefdk
 
+env:
+  global:
+  - KITCHEN_LOCAL_YAML=.kitchen.docker.yml
+
 install: echo "skip bundle install"
 
 before_script:
-- sudo apt-get update -qq
-- sudo apt-get install -qq virtualbox --fix-missing
-- sudo wget -nv https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1_x86_64.deb
-- sudo dpkg -i vagrant_1.8.1_x86_64.deb
 - eval "$(/opt/chefdk/bin/chef shell-init bash)"
 - chef gem install chefstyle
 

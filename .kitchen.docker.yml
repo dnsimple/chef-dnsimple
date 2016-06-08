@@ -1,0 +1,6 @@
+---
+driver:
+  name: docker
+
+platforms:
+- name: ubuntu-14.04
