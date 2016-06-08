@@ -17,6 +17,7 @@ install: echo "skip bundle install"
 before_script:
 - eval "$(/opt/chefdk/bin/chef shell-init bash)"
 - chef gem install test-kitchen
+- chef gem install kitchen-docker
 - chef gem install chefstyle
 
 script: chef exec rake quick
