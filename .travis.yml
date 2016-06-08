@@ -1,12 +1,28 @@
-language: ruby
-bundler_args: --without development integration
-rvm:
-  - 2.2
-before_install:
-  - "echo 'gem: --no-ri --no-rdoc' > ~/.gemrc"
+sudo: required
+dist: trusty
+
+addons:
+  apt:
+    sources:
+      - chef-stable-precise
+    packages:
+      - chefdk
+
+env:
+  global:
+  - KITCHEN_LOCAL_YAML=.kitchen.docker.yml
+
+install: echo "skip bundle install"
+
 before_script:
-  - bundle exec berks install
-script: bundle exec rspec spec
+- eval "$(/opt/chefdk/bin/chef shell-init bash)"
+- chef gem install test-kitchen
+- chef gem install kitchen-docker
+- chef gem install chefstyle
+
+script: chef exec rake quick
+
 notifications:
   slack:
+    email: false
     secure: lVBlbzgrccMTu6dEeTjfZd9s4Idg9A1S3IKKUpTMuwYXrfz76bU8t0AOCZUMHjZwEfVGW+YFwgIUgjpnJAxPz8Qp36pnKEbzXtX5lgqFmefUQEFmTXfQCT6M5Y0NXV0YLIFo6a1py0Jr4btCm6imV0UylPQpqolpNO7JOVFkMjk=

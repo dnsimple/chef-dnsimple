@@ -60,6 +60,7 @@ SPF, URL, TXT, NS, SRV, NAPTR, PTR, AAA, SSHFP, or HFINO.
 
 ### Examples
 
+```ruby
     dnsimple_record "create an A record" do
       name     "test"
       content  "16.8.4.2"
@@ -89,6 +90,7 @@ SPF, URL, TXT, NS, SRV, NAPTR, PTR, AAA, SSHFP, or HFINO.
       password node[:dnsimple][:password]
       action   :create
     end
+```
 
 ## Usage
 
@@ -100,9 +102,10 @@ examples of the LWRP usage above.
 ## Testing
 
 To run the tests across all platforms, you want to grab the latest [ChefDK][]
-install [VirtualBox][], and [Vagrant][] then run `kitchen test`. If you want to
-get a cache speed boost, run `vagrant plugin install vagrant-cachier` and your
-chef runs will speed up _dramatically_ thanks to local caching.
+install [VirtualBox][], [Vagrant][], and the [Chefstyle][] gem into your ChefDK
+then run `chef exec kitchen test`. If you want to get a cache speed boost, run
+`vagrant plugin install vagrant-cachier` and your chef runs will speed up
+_dramatically_ thanks to local caching.
 
 ## License and Author
 
@@ -127,3 +130,4 @@ limitations under the License.
 [ChefDK]: https://downloads.chef.io/chef-dk/
 [VirtualBox]: https://www.virtualbox.org/wiki/Downloads
 [Vagrant]: https://www.vagrantup.com/downloads.html
+[Chefstyle]: https://github.com/chef/chefstyle
