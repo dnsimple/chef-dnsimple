@@ -1,5 +1,5 @@
-require 'spec_helper'
-require 'fog/dnsimple'
+require "spec_helper"
+require "dnsimple"
 
 describe 'dnsimple_test::create_record_existing_record_different_type' do
   include_context 'dnsimple'
