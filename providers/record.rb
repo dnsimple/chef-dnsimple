@@ -76,25 +76,26 @@ end
 
 def create_record
   Chef::Log.debug "Attempting to create record type #{new_resource.type} for #{new_resource.name} as #{new_resource.content} with type #{new_resource.type}"
-  zone = dnsimple.zones.get(new_resource.domain)
   values = Array(new_resource.content)
   values.each do |value|
-    zone.records.create(name: new_resource.name,
-                        value: value,
-                        type: new_resource.type,
-                        ttl: new_resource.ttl)
+    record = zone.records.create_record( new_resource.domain,
+                                  record_type: new_resource.type,
+                                  name: new_resource.name,
+                                  content: value,
+                                  ttl: new_resource.ttl )
+    Chef::Log.debug "DNSimple: created #{new_resource.type} record for #{new_resource.name}.#{new_resource.domain} with content: #{value}"
   end
   new_resource.updated_by_last_action(true)
   Chef::Log.info "DNSimple: created #{new_resource.type} record for #{new_resource.name}.#{new_resource.domain}"
-rescue Excon::Errors::UnprocessableEntity
-  Chef::Log.debug "DNSimple: #{new_resource.name}.#{new_resource.domain} already exists, moving on"
+rescue Dnsimple::NotFoundError
+  Chef::Log.debug "DNSimple: #{new_resource.name}.#{new_resource.domain} not found, moving on"
 end
 
 def delete_record
   if [:same, :different].include?(@current_resource.exists)
     all_records_in_zone do |r|
-      if (r.name == new_resource.name) && (r.type == new_resource.type)
-        r.destroy
+      if ( r.name == new_resource.name ) && ( r.type == new_resource.type )
+        dnsimple.delete_record(new_resource.domain, r.id)
         new_resource.updated_by_last_action(true)
         Chef::Log.info "DNSimple: destroyed #{new_resource.type} record " \
                        "for #{new_resource.name}.#{new_resource.domain}"
@@ -107,9 +108,9 @@ def delete_record
 end
 
 def all_records_in_zone
-  zone = dnsimple.zones.get(new_resource.domain)
+  records = dnsimple.records(new_resource.domain)
 
-  zone.records.all.each do |r|
+  records.each do |r|
     yield r if block_given?
   end
 end

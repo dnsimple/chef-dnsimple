@@ -17,25 +17,29 @@
 # limitations under the License.
 #
 
-begin
-  require 'fog/dnsimple'
-  Excon.defaults[:ssl_verify_peer] = true
-rescue LoadError
-  Chef::Log.warn("Missing gem 'fog'")
-end
-
 module DNSimple
   module Connection
-    def dnsimple
-      if new_resource.password
-        Chef::Log.warn('[DEPRECATED] Using username and password authentication will be removed in a future release.
-                       See the README for examples of using the token based API.')
+    def require_dnsimple_library
+      gem "dnsimple", node["dnsimple"]["version"]
+      require "dnsimple"
+      Chef::Log.debug("Node had dnsimple #{node['dnsimple']['version']} installed. No need to install the gem.")
+    rescue LoadError
+      Chef::Log.debug("Did not find dnsimple version #{node['dnsimple']['version']} installed. Installing now.")
+
+      chef_gem "dnsimple" do
+        version node["dnsimple"]["version"]
+        compile_time true if Chef::Resource::ChefGem.method_defined?(:compile_time)
+        action :install
       end
 
-      @dnsimple ||= Fog::DNS.new(provider: 'DNSimple',
-                                 dnsimple_email: new_resource.username,
-                                 dnsimple_password: new_resource.password,
-                                 dnsimple_token: new_resource.token)
+      require "dnsimple"
+    end
+
+    def dnsimple
+      require_dnsimple_library
+
+      @@dnsimple ||= Dnsimple::Client.new( username: new_resource.username,
+                                           api_token: new_resource.token )
     end
   end
 end

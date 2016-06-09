@@ -17,21 +17,7 @@
 # limitations under the License.
 #
 
-case node['platform_family']
-when 'debian'
-  include_recipe 'apt::default'
-
-  package 'zlib1g-dev' do
-    action :install
-  end.run_action(:install)
-end
-
-include_recipe 'build-essential'
-
-chef_gem 'fog-dnsimple' do
-  version node['dnsimple']['fog_version']
-  compile_time true if Chef::Resource::ChefGem.instance_methods(false).include?(:compile_time)
-  action :install
-end
-
-require 'fog/dnsimple'
+# This recipe intentionally left blank.
+#
+# Requiring this cookbook will automatically install and include the DNSimple
+# resource.
