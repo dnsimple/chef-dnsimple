@@ -25,4 +25,4 @@ script: chef exec rake quick
 notifications:
   slack:
     email: false
-    secure: lVBlbzgrccMTu6dEeTjfZd9s4Idg9A1S3IKKUpTMuwYXrfz76bU8t0AOCZUMHjZwEfVGW+YFwgIUgjpnJAxPz8Qp36pnKEbzXtX5lgqFmefUQEFmTXfQCT6M5Y0NXV0YLIFo6a1py0Jr4btCm6imV0UylPQpqolpNO7JOVFkMjk=
+    secure: S/tClOuaGnhxdCkyc3WT0kWy9fP4a9dI7Ha0Pk0sjC0Fy1+0V/AShxwfgzJdGlzvbsRlCXmkE8W4BEQmZ0HjiPZgrvOx9mxv1krbBaO+eZDiSJIv2NgkgbwcxfraD+V3s4Mo8q3/FtS27diBOOUip4xqETsAIx0X86ZjHcb21ew=
