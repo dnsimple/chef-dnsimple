@@ -3,19 +3,13 @@ shared_context 'dnsimple' do
     runner = ChefSpec::SoloRunner.new(step_into: ['dnsimple_record'])
     runner.converge(described_recipe)
   end
-  before(:all) do
-    Fog.mock!
-  end
+
   before do
     create_domain_data
   end
-  after do
-    Fog::Mock.reset
-  end
 
   def dnsimple_client
-    Fog::DNS.new(provider: 'DNSimple', dnsimple_email: 'user@email.com',
-                 dnsimple_password: 'my123password', dnsimple_token: 'abc1234')
+    Dnsimple::Client.new(username: "user", api_token: "token")
   end
 
   def dnsimple_zone
