@@ -27,7 +27,7 @@ end
 def load_current_resource
   @current_resource = Chef::Resource::DnsimpleRecord.new(@new_resource.name)
   @current_resource.name(@new_resource.name)
-  @current_resource.domain(@new_resource.domain)
+  @current_resource.domain(@new_resource.domain || node["dnsimple"]["domain"])
 
   @current_resource.exists = check_for_record
 end
