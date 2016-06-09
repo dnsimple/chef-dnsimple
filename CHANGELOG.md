@@ -1,4 +1,6 @@
-# Next Release
+# 1.2.0 / 2016-06-09
+
+This will be the last non-bugfix version to use the fog gem and the v1 API.
 
 ## Bug Fixes
 

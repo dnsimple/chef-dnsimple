@@ -13,7 +13,6 @@ platforms:
       apt:
         compile_time_update: true
   - name: centos-6.7
-  - name: freebsd-10.3
 
 suites:
   - name: chef12

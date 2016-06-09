@@ -18,5 +18,5 @@ supports "redhat"
 supports "rhel"
 supports "ubuntu"
 
-depends "build-essential", ">= 2.0.0"
+depends "build-essential"
 depends "apt"
