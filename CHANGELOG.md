@@ -1,4 +1,6 @@
-# Next Release
+# 1.2.0 / 2016-06-09
+
+This will be the last non-bugfix version to use the fog gem and the v1 API.
 
 ## Bug Fixes
 
@@ -6,13 +8,15 @@
   and simplifying the default recipe, which was broken at the time. We've
   removed the dependency package installs with exception of zlibg1 for debian
   family platforms.
+* Change chef_gem resource usage to not break in chef 12 or chef 11
 
 ## Test suite
 
 * Resolved all foodcritic warnings with the newest foodcritic
 * Resolved the chefspec and compile\_time warnings
-* Not only is the test suite working again, but you can speed it up with
-  vagrant-cachier! See your friendly neighborhood README for details.
+* change to chefstyle
+* Clean up and simplify tests with rake
+* fix up travis tests
 
 # 1.1.0 / 2015-03-06
 

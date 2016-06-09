@@ -103,9 +103,7 @@ examples of the LWRP usage above.
 
 To run the tests across all platforms, you want to grab the latest [ChefDK][]
 install [VirtualBox][], [Vagrant][], and the [Chefstyle][] gem into your ChefDK
-then run `chef exec kitchen test`. If you want to get a cache speed boost, run
-`vagrant plugin install vagrant-cachier` and your chef runs will speed up
-_dramatically_ thanks to local caching.
+then run `chef exec kitchen test`.
 
 ## License and Author
 

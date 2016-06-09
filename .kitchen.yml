@@ -1,23 +1,30 @@
 ---
 driver:
   name: vagrant
-  vagrantfile_erb: Vagrantfile.erb
 
 provisioner:
-  name: chef_solo
+  name: chef_zero
 
 platforms:
+  - name: ubuntu-16.04
   - name: ubuntu-14.04
-    run_list: apt::default
   - name: ubuntu-12.04
-    run_list: apt::default
     attributes:
       apt:
         compile_time_update: true
-  - name: centos-6.4
+  - name: centos-6.7
 
 suites:
-  - name: default
+  - name: chef12
+    provisioner:
+      require_chef_omnibus: 12
+    run_list:
+      - recipe[dnsimple::default]
+    attributes:
+
+  - name: chef11
+    provisioner:
+      require_chef_omnibus: '11.18.12'
     run_list:
       - recipe[dnsimple::default]
     attributes:
