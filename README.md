@@ -51,8 +51,9 @@ SPF, URL, TXT, NS, SRV, NAPTR, PTR, AAA, SSHFP, or HFINO.
     | *token*      | DNSimple API token                 |           |
     | *test*       | Unused at this time                | false     |
 
-**Note**: For token based authentication you must provide a [domain token][]
-for the domain you are providing in the resource. Account tokens will be
+**Note**: For token based authentication you must provide an [api token][] for
+the account with access to the domain you are providing in the resource. User
+access tokens are also not supported at this time.  Domain based tokens will be
 supported in a future release.
 
 ### Examples
@@ -138,4 +139,4 @@ limitations under the License.
 [VirtualBox]: https://www.virtualbox.org/wiki/Downloads
 [Vagrant]: https://www.vagrantup.com/downloads.html
 [Chefstyle]: https://github.com/chef/chefstyle
-[domain token]: https://developer.dnsimple.com/v1/authentication/#domain-token
+[api token]: https://developer.dnsimple.com/v1/authentication/#api-token
