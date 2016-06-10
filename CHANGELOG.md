@@ -1,3 +1,10 @@
+# 1.3.1 / 2016-06-10
+
+## Bug Fixes
+
+* Clarified the API Token portion of the README because of the upcoming API v2
+  changes which have created both User and API tokens.
+
 # 1.3.0 / 2016-06-10
 
 ## Enhancement
