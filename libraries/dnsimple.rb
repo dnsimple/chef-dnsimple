@@ -38,8 +38,8 @@ module DNSimple
     def dnsimple
       require_dnsimple_library
 
-      @@dnsimple ||= Dnsimple::Client.new( username: new_resource.username,
-                                           api_token: new_resource.token )
+      @@dnsimple ||= Dnsimple::Client.new( username: new_resource.username || node['dnsimple']['username'],
+                                           api_token: new_resource.token || node['dnsimple']['token'])
     end
   end
 end
