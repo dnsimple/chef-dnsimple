@@ -6,7 +6,7 @@ description      "Provides Chef LWRP for automating DNS configuration with DNSim
 long_description IO.read(File.join(File.dirname(__FILE__), "README.md"))
 issues_url       "https://github.com/dnsimple/chef-dnsimple/issues"
 source_url       "https://github.com/dnsimple/chef-dnsimple"
-version          "1.2.0"
+version          "1.3.0"
 
 recipe   "dnsimple", "Installs fog gem to use w/ the dnsimple_record"
 

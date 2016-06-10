@@ -1,3 +1,18 @@
+# 1.3.0 / 2016-06-10
+
+## Enhancement
+
+* Add support for API tokens which are the preferred API authentication method
+  per the developer documentation. You must use domain tokens and not account
+  based tokens. Support for both will be in the 2.x series of this cookbook.
+
+## Deprecations
+
+* You will get a warning now when using the username/password authentcation
+  method with the LWRP as it will no longer be supported in the future release.
+  If you have two-factor authentication enabled on your account, this method
+  will not work either (which is also why it's going away).
+
 # 1.2.0 / 2016-06-09
 
 This will be the last non-bugfix version to use the fog gem and the v1 API.
