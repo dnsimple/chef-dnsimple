@@ -19,6 +19,7 @@ before_script:
 - chef gem install test-kitchen
 - chef gem install kitchen-docker
 - chef gem install chefstyle
+- chef gem install stove
 
 script: chef exec rake quick
 
