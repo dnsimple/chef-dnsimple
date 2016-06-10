@@ -10,20 +10,12 @@ automatic DNS configuration via DNSimple's API.
 * A DNSimple account at https://dnsimple.com
 * Chef 11 or newer (Feel free to send a pull request for Chef 10.x support)
 
-## Known issues
+## Deprecation Warning
 
-* This cookbook currently cannot work with Chef 12.1.0 due to a dependency
-  conflict with the 'net-scp' and 'net-ssh' dependnecies of the fog gem.
-  If you have a solution for this, please send a Pull Request.
-
-## Attributes
-
-All attributes are `nil`, or `false` by default.
-
-- `node[:dnsimple][:username]`: Your DNSimple login username.
-- `node[:dnsimple][:password]`: Your DNSimple login password.
-- `node[:dnsimple][:domain]`: The domain that this node should use.
-- `node[:dnsimple][:test]`: Unused at this time.
+* The 2.x series of this cookbook will drop support for the Fog gem
+  and username/password authentication along with Chef 11 support. Please
+  version pin in your metadata or Berksfile to the nearest 1.x minor version
+  to maintain backward compatibility like so: `cookbook "dnsimple", "~> 1.2.0"`
 
 ## Resources/Providers
 
@@ -46,28 +38,39 @@ use the API.
 The type of record can be one of the following: A, CNAME, ALIAS, MX,
 SPF, URL, TXT, NS, SRV, NAPTR, PTR, AAA, SSHFP, or HFINO.
 
-    | Parameter  | Description                     | Default |
-    |------------|---------------------------------|---------|
-    | *domain*   | Domain to manage                |         |
-    | *name*     | _Name_: Name of the record      |         |
-    | *type*     | Type of DNS record              |         |
-    | *content*  | String/Array content of records |         |
-    | *ttl*      | Time to live.                   | 3600    |
-    | *priority* | Priorty of update               |         |
-    | *username* | DNSimple username               |         |
-    | *password* | DNSimple password               |         |
-    | *test*     | Unused at this time             | false   |
+    | Parameter    | Description                        | Default   |
+    | ------------ | ---------------------------------  | --------- |
+    | *domain*     | Domain to manage                   |           |
+    | *name*       | _Name_: Name of the record         |           |
+    | *type*       | Type of DNS record                 |           |
+    | *content*    | String/Array content of records    |           |
+    | *ttl*        | Time to live.                      | 3600      |
+    | *priority*   | Priorty of update                  |           |
+    | *username*   | DNSimple username                  |           |
+    | *password*   | DNSimple password (**DEPRECATED**) |           |
+    | *token*      | DNSimple API token                 |           |
+    | *test*       | Unused at this time                | false     |
 
 ### Examples
 
 ```ruby
+    dnsimple_record "create an A record using the DEPRECATED username/password authentication" do
+      name     "test"
+      content  "16.8.4.2"
+      type     "A"
+      domain   "example.com"
+      username chef_vault_item("secrets", "dnsimple_username")
+      password chef_vault_item("secrets", "dnsimple_password")
+      action   :create
+    end
+
     dnsimple_record "create an A record" do
       name     "test"
       content  "16.8.4.2"
       type     "A"
-      domain   node[:dnsimple][:domain]
-      username node[:dnsimple][:username]
-      password node[:dnsimple][:password]
+      domain   "example.com"
+      username chef_vault_item("secrets", "dnsimple_username")
+      token    chef_vault_item("secrets", "dnsimple_token")
       action   :create
     end
 
@@ -75,9 +78,9 @@ SPF, URL, TXT, NS, SRV, NAPTR, PTR, AAA, SSHFP, or HFINO.
       name     "calendar"
       content  "ghs.google.com"
       type     "CNAME"
-      domain   node[:dnsimple][:domain]
-      username node[:dnsimple][:username]
-      password node[:dnsimple][:password]
+      domain   "example.com"
+      username chef_vault_item("secrets", "dnsimple_username")
+      token    chef_vault_item("secrets", "dnsimple_token")
       action   :create
     end
 
@@ -85,9 +88,9 @@ SPF, URL, TXT, NS, SRV, NAPTR, PTR, AAA, SSHFP, or HFINO.
       name     "multiple"
       content  ["1.1.1.1", "2.2.2.2"]
       type     "A"
-      domain   node[:dnsimple][:domain]
-      username node[:dnsimple][:username]
-      password node[:dnsimple][:password]
+      domain   "example.com"
+      username chef_vault_item("secrets", "dnsimple_username")
+      token    chef_vault_item("secrets", "dnsimple_token")
       action   :create
     end
 ```
@@ -105,8 +108,10 @@ To run the tests across all platforms, you want to grab the latest [ChefDK][]
 install [VirtualBox][], [Vagrant][], and the [Chefstyle][] gem into your ChefDK
 then run `chef exec kitchen test`.
 
-## License and Author
+## License and Authors
 
+* Author:: [Aaron Kalin](https://github.com/martinisoft)
+* Author:: [David Aronsohn](https://github.com/tbunnyman)
 * Author:: [Darrin Eden](https://github.com/dje)
 * Author:: [Joshua Timberman](https://github.com/jtimberman)
 * Author:: [Jose Luis Salas](https://github.com/josacar)

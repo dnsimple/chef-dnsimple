@@ -14,7 +14,8 @@ shared_context "dnsimple" do
   end
 
   def dnsimple_client
-    Fog::DNS.new(provider: "DNSimple", dnsimple_email: "user@email.com", dnsimple_password: "my123password")
+    Fog::DNS.new(provider: "DNSimple", dnsimple_email: "user@email.com",
+                 dnsimple_password: "my123password", dnsimple_token: "abc1234")
   end
 
   def dnsimple_zone

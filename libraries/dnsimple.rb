@@ -27,9 +27,15 @@ end
 module DNSimple
   module Connection
     def dnsimple
+      if new_resource.password
+        Chef::Log.warn('[DEPRECATED] Using username and password authentication will be removed in a future release.
+                       See the README for examples of using the token based API.')
+      end
+
       @@dnsimple ||= Fog::DNS.new( :provider => "DNSimple",
                                    :dnsimple_email => new_resource.username,
-                                   :dnsimple_password => new_resource.password )
+                                   :dnsimple_password => new_resource.password,
+                                   :dnsimple_token => new_resource.token )
     end
   end
 end
