@@ -3,6 +3,7 @@ require "kitchen"
 require "rspec/core/rake_task"
 require "rubocop/rake_task"
 require "chefstyle"
+require 'stove/rake_task'
 
 # Style tests. Rubocop and Foodcritic
 namespace :style do
@@ -46,6 +47,9 @@ namespace :cloud do
     end
   end
 end
+
+# For releasing into the Supermarket. See RELEASE.md for details
+Stove::RakeTask.new
 
 task style: %w{ style:rubocop style:foodcritic }
 task unit: %w{ unit:chefspec }
