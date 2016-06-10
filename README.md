@@ -52,8 +52,9 @@ SPF, URL, TXT, NS, SRV, NAPTR, PTR, AAA, SSHFP, or HFINO.
     | *test*       | Unused at this time                | false     |
 
 **Note**: For token based authentication you must provide an [api token][] for
-the account with access to the domain you are providing in the resource.
-Domain based tokens will be supported in a future release.
+the account with access to the domain you are providing in the resource. User
+access tokens are also not supported at this time.  Domain based tokens will be
+supported in a future release.
 
 ### Examples
 
