@@ -3,7 +3,7 @@ require "kitchen"
 require "rspec/core/rake_task"
 require "rubocop/rake_task"
 require "chefstyle"
-require 'stove/rake_task'
+require "stove/rake_task"
 
 # Style tests. Rubocop and Foodcritic
 namespace :style do
