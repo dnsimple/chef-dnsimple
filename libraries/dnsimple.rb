@@ -33,6 +33,7 @@ module DNSimple
       end
 
       @@dnsimple ||= Fog::DNS.new( :provider => "DNSimple",
+                                   :dnsimple_domain => new_resource.domain,
                                    :dnsimple_email => new_resource.username,
                                    :dnsimple_password => new_resource.password,
                                    :dnsimple_token => new_resource.token )
