@@ -110,8 +110,11 @@ install the dnsimple gem and make the dnsimple\_record resource available.
 ## Testing
 
 To run the tests across all platforms, you want to grab the latest [ChefDK][]
+<<<<<<< HEAD
 install [VirtualBox][], [Vagrant][], and the [Chefstyle][] gem into your ChefDK
 then run `chef exec kitchen test`.
+=======
+>>>>>>> Cleanup merge conflict artifacts
 install [VirtualBox][], [Vagrant][], and the following gems into your ChefDK:
 
 * [Chefstyle][]
@@ -145,13 +148,7 @@ limitations under the License.
 [ChefDK]: https://downloads.chef.io/chef-dk/
 [VirtualBox]: https://www.virtualbox.org/wiki/Downloads
 [Vagrant]: https://www.vagrantup.com/downloads.html
-<<<<<<< HEAD
-=======
 [Chefstyle]: https://github.com/chef/chefstyle
-<<<<<<< 54643d8b9c01c94a6dd0864a6c94969cc820c8ea
->>>>>>> Cleanup and update README
 [api token]: https://developer.dnsimple.com/v1/authentication/#api-token
-=======
 [dnsimple-gem]: https://rubygems.org/gems/dnsimple
 [webmock]: https://rubygems.org/gems/webmock
->>>>>>> Cleanup and update README
