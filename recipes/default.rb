@@ -17,21 +17,21 @@
 # limitations under the License.
 #
 
-case node["platform_family"]
-when "debian"
-  include_recipe "apt::default"
+case node['platform_family']
+when 'debian'
+  include_recipe 'apt::default'
 
-  package "zlib1g-dev" do
+  package 'zlib1g-dev' do
     action :install
   end.run_action(:install)
 end
 
-include_recipe "build-essential"
+include_recipe 'build-essential'
 
-chef_gem "fog" do
-  version node["dnsimple"]["fog_version"]
+chef_gem 'fog' do
+  version node['dnsimple']['fog_version']
   compile_time true if Chef::Resource::ChefGem.instance_methods(false).include?(:compile_time)
   action :install
 end
 
-require "fog"
+require 'fog'

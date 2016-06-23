@@ -35,14 +35,14 @@ end
 action :create do
   case @current_resource.exists
   when :same
-    Chef::Log.info "#{ @new_resource } already exists - nothing to do."
+    Chef::Log.info "#{@new_resource} already exists - nothing to do."
   when :different
-    converge_by("Updating #{ @new_resource }") do
+    converge_by("Updating #{@new_resource}") do
       delete_record
       create_record
     end
   when :none
-    converge_by("Creating #{ @new_resource }") do
+    converge_by("Creating #{@new_resource}") do
       create_record
     end
   end
@@ -76,13 +76,13 @@ end
 
 def create_record
   Chef::Log.debug "Attempting to create record type #{new_resource.type} for #{new_resource.name} as #{new_resource.content} with type #{new_resource.type}"
-  zone = dnsimple.zones.get( new_resource.domain )
+  zone = dnsimple.zones.get(new_resource.domain)
   values = Array(new_resource.content)
   values.each do |value|
-    record = zone.records.create( :name => new_resource.name,
-                                  :value => value,
-                                  :type  => new_resource.type,
-                                  :ttl   => new_resource.ttl )
+    zone.records.create(name: new_resource.name,
+                        value: value,
+                        type: new_resource.type,
+                        ttl: new_resource.ttl)
   end
   new_resource.updated_by_last_action(true)
   Chef::Log.info "DNSimple: created #{new_resource.type} record for #{new_resource.name}.#{new_resource.domain}"
@@ -93,21 +93,21 @@ end
 def delete_record
   if [:same, :different].include?(@current_resource.exists)
     all_records_in_zone do |r|
-      if ( r.name == new_resource.name ) && ( r.type == new_resource.type )
+      if (r.name == new_resource.name) && (r.type == new_resource.type)
         r.destroy
         new_resource.updated_by_last_action(true)
-        Chef::Log.info "DNSimple: destroyed #{new_resource.type} record " +
-          "for #{new_resource.name}.#{new_resource.domain}"
+        Chef::Log.info "DNSimple: destroyed #{new_resource.type} record " \
+                       "for #{new_resource.name}.#{new_resource.domain}"
       end
     end
   else
-    Chef::Log.info "DNSimple: no record found #{new_resource.name}.#{new_resource.domain}" +
-      " with type #{new_resource.type}"
+    Chef::Log.info "DNSimple: no record found #{new_resource.name}.#{new_resource.domain}" \
+                   " with type #{new_resource.type}"
   end
 end
 
 def all_records_in_zone
-  zone = dnsimple.zones.get( new_resource.domain )
+  zone = dnsimple.zones.get(new_resource.domain)
 
   zone.records.all.each do |r|
     yield r if block_given?

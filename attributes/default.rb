@@ -17,4 +17,4 @@
 # limitations under the License.
 #
 
-override["build-essential"]["compile_time"] = true
+override['build-essential']['compile_time'] = true
