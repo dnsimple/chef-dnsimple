@@ -110,8 +110,7 @@ examples of the LWRP usage above.
 ## Testing
 
 To run the tests across all platforms, you want to grab the latest [ChefDK][]
-install [VirtualBox][], [Vagrant][], and the [Chefstyle][] gem into your ChefDK
-then run `chef exec kitchen test`.
+install [VirtualBox][], [Vagrant][], and then run `chef exec kitchen test`.
 
 ## License and Authors
 
@@ -138,5 +137,4 @@ limitations under the License.
 [ChefDK]: https://downloads.chef.io/chef-dk/
 [VirtualBox]: https://www.virtualbox.org/wiki/Downloads
 [Vagrant]: https://www.vagrantup.com/downloads.html
-[Chefstyle]: https://github.com/chef/chefstyle
 [api token]: https://developer.dnsimple.com/v1/authentication/#api-token
