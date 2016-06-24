@@ -18,7 +18,7 @@
 #
 
 begin
-  require "fog/dnsimple"
+  require 'fog/dnsimple'
   Excon.defaults[:ssl_verify_peer] = true
 rescue LoadError
   Chef::Log.warn("Missing gem 'fog'")
@@ -32,10 +32,10 @@ module DNSimple
                        See the README for examples of using the token based API.')
       end
 
-      @@dnsimple ||= Fog::DNS.new( :provider => "DNSimple",
-                                   :dnsimple_email => new_resource.username,
-                                   :dnsimple_password => new_resource.password,
-                                   :dnsimple_token => new_resource.token )
+      @dnsimple ||= Fog::DNS.new(provider: 'DNSimple',
+                                 dnsimple_email: new_resource.username,
+                                 dnsimple_password: new_resource.password,
+                                 dnsimple_token: new_resource.token)
     end
   end
 end

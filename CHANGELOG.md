@@ -1,3 +1,9 @@
+# unreleased
+
+## Enhancement
+* use cookstyle instead of chefstyle
+* change library to use a class instance var instead of a class var
+
 # 1.3.1 / 2016-06-10
 
 ## Bug Fixes
