@@ -1,4 +1,4 @@
-# unreleased
+# 1.3.2 / 2016-06-24
 
 ## Enhancement
 * use cookstyle instead of chefstyle
