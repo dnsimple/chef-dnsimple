@@ -110,7 +110,11 @@ examples of the LWRP usage above.
 ## Testing
 
 To run the tests across all platforms, you want to grab the latest [ChefDK][]
-install [VirtualBox][], [Vagrant][], and then run `chef exec kitchen test`.
+install [VirtualBox][], [Vagrant][], then run the following after checking out
+the code;
+
+* `chef exec berks install`
+* `chef exec rake all`
 
 ## License and Authors
 
