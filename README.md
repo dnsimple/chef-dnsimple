@@ -8,7 +8,7 @@ automatic DNS configuration via DNSimple's API.
 ## Requirements
 
 * A DNSimple account at https://dnsimple.com
-* Chef 11 or newer (Feel free to send a pull request for Chef 10.x support)
+* Chef 11 or newer
 
 ## Deprecation Warning
 
@@ -109,12 +109,15 @@ examples of the LWRP usage above.
 
 ## Testing
 
-To run the tests across all platforms, you want to grab the latest [ChefDK][]
-install [VirtualBox][], [Vagrant][], then run the following after checking out
-the code;
+To run the tests across all platforms you want to grab the latest [ChefDK][]
+install [VirtualBox][], [Vagrant][],  and then run the following;
 
 * `chef exec berks install`
 * `chef exec rake all`
+
+While this should work on ubuntu-16.04 we removed it from kitchen because of
+issues with the bento. If you have a resolution for this or would like more
+OSes added Pull Requests are appreciated.
 
 ## License and Authors
 
