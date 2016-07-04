@@ -1,6 +1,6 @@
 ## Description
 
-A Light-weight Resource and Provider (LWRP) supporting
+A Light-weight Resource Provider (LWRP) supporting
 automatic DNS configuration via DNSimple's API.
 
 [![Build Status](https://travis-ci.org/dnsimple/chef-dnsimple.png?branch=master)](https://travis-ci.org/dnsimple/chef-dnsimple)
@@ -15,7 +15,7 @@ automatic DNS configuration via DNSimple's API.
 * The 2.x series of this cookbook will drop support for the Fog gem
   and username/password authentication along with Chef 11 support. Please
   version pin in your metadata or Berksfile to the nearest 1.x minor version
-  to maintain backward compatibility like so: `cookbook "dnsimple", "~> 1.2.0"`
+  to maintain backward compatibility like so: `cookbook "dnsimple", "~> 1.3.0"`
 
 ## Resources/Providers
 
