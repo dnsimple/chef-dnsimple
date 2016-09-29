@@ -34,4 +34,4 @@ chef_gem 'fog-dnsimple' do
   action :install
 end
 
-require 'fog'
+require 'fog/dnsimple'
