@@ -28,7 +28,7 @@ end
 
 include_recipe 'build-essential'
 
-chef_gem 'fog' do
+chef_gem 'fog-dnsimple' do
   version node['dnsimple']['fog_version']
   compile_time true if Chef::Resource::ChefGem.instance_methods(false).include?(:compile_time)
   action :install
