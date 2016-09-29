@@ -4,7 +4,7 @@ describe 'dnsimple::default' do
   let(:chef_run) { ChefSpec::SoloRunner.new.converge(described_recipe) }
 
   it 'installs fog chef_gem' do
-    expect(chef_run).to install_chef_gem 'fog'
+    expect(chef_run).to install_chef_gem 'fog-dnsimple'
   end
 
   context 'when on the debian platform family' do
