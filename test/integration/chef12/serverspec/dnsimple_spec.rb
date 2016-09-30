@@ -1,9 +1,14 @@
 require 'spec_helper'
 
-describe package('zlib1g-dev'), if: os[:family] == 'debian' do
-  it { should be_installed }
+describe 'dnsimple fog gem dependencies', if: %w(debian ubuntu).include?(os[:family]) do
+  it 'must be present' do
+    expect(package('zlib1g-dev')).to be_installed
+  end
 end
 
-describe file('/opt/chef/embedded/bin/fog') do
-  it { should be_file }
+describe 'dnsimple fog gem' do
+  it 'must be installed in the embedded chef rubygems' do
+    expect(command('/opt/chef/embedded/bin/gem list | grep dnsimple').stdout).to \
+      match(/^fog-dnsimple/)
+  end
 end
