@@ -1,3 +1,13 @@
+# 1.3.4 / 2016-09-30
+
+## Bug Fixes
+
+* Replaced fog gem with a more specific fog-dnsimple gem. The API was extracted
+  from the fog-core to simplify the base fog gem. What does this mean for you?
+  There is no fog binary to use and the install is much smaller and faster than
+  before, but with the same API signatures so this is a simple patch versus a
+  breaking change release.
+
 # 1.3.3 / 2016-06-27
 
 ## Bug fixes
