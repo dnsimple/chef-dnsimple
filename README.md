@@ -4,6 +4,7 @@ A Light-weight Resource Provider (LWRP) supporting
 automatic DNS configuration via DNSimple's API.
 
 [![Build Status](https://travis-ci.org/dnsimple/chef-dnsimple.png?branch=master)](https://travis-ci.org/dnsimple/chef-dnsimple)
+[![Build Status](https://jenkins-01.eastus.cloudapp.azure.com/job/dnsimple-cookbook/badge/icon)](https://jenkins-01.eastus.cloudapp.azure.com/job/dnsimple-cookbook/)
 
 ## Requirements
 
