@@ -20,10 +20,3 @@ suites:
     run_list:
       - recipe[dnsimple::default]
     attributes:
-
-  - name: chef11
-    provisioner:
-      require_chef_omnibus: '11.18.12'
-    run_list:
-      - recipe[dnsimple::default]
-    attributes:
