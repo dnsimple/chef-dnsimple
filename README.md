@@ -9,7 +9,7 @@ automatic DNS configuration via DNSimple's API.
 ## Requirements
 
 * A DNSimple account at https://dnsimple.com
-* Chef 11 or newer
+* Chef 12 or newer
 
 ## Deprecation Warning
 
