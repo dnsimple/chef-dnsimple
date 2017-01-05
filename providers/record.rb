@@ -27,7 +27,7 @@ end
 def load_current_resource
   @current_resource = Chef::Resource::DnsimpleRecord.new(@new_resource.name)
   @current_resource.name(@new_resource.name)
-  @current_resource.domain(@new_resource.domain || node["dnsimple"]["domain"])
+  @current_resource.domain(@new_resource.domain || node['dnsimple']['domain'])
 
   @current_resource.exists = check_for_record
 end
@@ -78,11 +78,11 @@ def create_record
   Chef::Log.debug "Attempting to create record type #{new_resource.type} for #{new_resource.name} as #{new_resource.content} with type #{new_resource.type}"
   values = Array(new_resource.content)
   values.each do |value|
-    record = zone.records.create_record( new_resource.domain,
-                                  record_type: new_resource.type,
-                                  name: new_resource.name,
-                                  content: value,
-                                  ttl: new_resource.ttl )
+    zone.records.create_record(new_resource.domain,
+                               record_type: new_resource.type,
+                               name: new_resource.name,
+                               content: value,
+                               ttl: new_resource.ttl)
     Chef::Log.debug "DNSimple: created #{new_resource.type} record for #{new_resource.name}.#{new_resource.domain} with content: #{value}"
   end
   new_resource.updated_by_last_action(true)
@@ -94,7 +94,7 @@ end
 def delete_record
   if [:same, :different].include?(@current_resource.exists)
     all_records_in_zone do |r|
-      if ( r.name == new_resource.name ) && ( r.type == new_resource.type )
+      if (r.name == new_resource.name) && (r.type == new_resource.type)
         dnsimple.delete_record(new_resource.domain, r.id)
         new_resource.updated_by_last_action(true)
         Chef::Log.info "DNSimple: destroyed #{new_resource.type} record " \

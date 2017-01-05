@@ -1,5 +1,5 @@
-require "spec_helper"
-require "dnsimple"
+require 'spec_helper'
+require 'dnsimple'
 
 describe 'dnsimple_test::create_record_existing_record_different_type' do
   include_context 'dnsimple'
@@ -10,7 +10,7 @@ describe 'dnsimple_test::create_record_existing_record_different_type' do
       chef_run
       expected_records = {
         'NS' => '1.2.3.4',
-        'A' => '1.1.1.1'
+        'A' => '1.1.1.1',
       }
 
       dnsimple_resource = chef_run.find_resource('dnsimple_record', '')

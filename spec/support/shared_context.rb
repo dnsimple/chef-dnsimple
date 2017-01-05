@@ -9,7 +9,7 @@ shared_context 'dnsimple' do
   end
 
   def dnsimple_client
-    Dnsimple::Client.new(username: "user", api_token: "token")
+    Dnsimple::Client.new(username: 'user', api_token: 'token')
   end
 
   def dnsimple_zone
