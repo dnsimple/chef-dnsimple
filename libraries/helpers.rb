@@ -17,8 +17,8 @@
 # limitations under the License.
 #
 
-module DNSimple
-  module Connection
+module DNSimpleCookbook
+  module Helpers
     def require_dnsimple_library
       gem 'dnsimple', node['dnsimple']['version']
       require 'dnsimple'
