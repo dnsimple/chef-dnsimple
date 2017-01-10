@@ -6,9 +6,9 @@ RSpec.describe DNSimpleCookbook do
   end
   subject { DummyClass.new }
 
-  describe '#dnsimple_data_center' do
-    before do
-      allow(subject).to receive(:tags).and_return(tags)
+  describe '#dnsimple_api' do
+    it 'returns a client' do
+      expect(subject.dnsimple_api).to be_true
     end
   end
 end

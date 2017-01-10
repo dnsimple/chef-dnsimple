@@ -35,7 +35,7 @@ module DNSimpleCookbook
       require 'dnsimple'
     end
 
-    def dnsimple
+    def dnsimple_api
       require_dnsimple_library
 
       @dnsimple ||= Dnsimple::Client.new(username: new_resource.username || node['dnsimple']['username'],
