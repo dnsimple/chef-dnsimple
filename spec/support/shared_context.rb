@@ -9,27 +9,35 @@ shared_context 'dnsimple' do
   end
 
   def dnsimple_client
-    Dnsimple::Client.new(username: 'user', api_token: 'token')
+    Dnsimple::Client.new(access_token: 'token')
   end
 
-  def dnsimple_zone
-    dnsimple_client.zones.get('example.com')
+  def dnsimple_account_id
+    dnsimple_client.identity.whoami.data.account.id
   end
 
   def create_record_to_update
-    dnsimple_zone.records.create(name: 'existing', type: 'A', value: '2.2.2.2', ttl: 3600)
+    dnsimple_client.zones.create_record(
+      dnsimple_account_id, 'example.com',
+      name: 'existing', type: 'A', content: '2.2.2.2', ttl: 3600)
   end
 
   def create_record_with_multiple_values
-    dnsimple_zone.records.create(name: 'multiple', type: 'A', value: '3.3.3.3', ttl: 3600)
-    dnsimple_zone.records.create(name: 'multiple', type: 'A', value: '2.2.2.2', ttl: 3600)
+    dnsimple_client.zones.create_record(
+      dnsimple_account_id, 'example.com',
+      name: 'multiple', type: 'A', content: '3.3.3.3', ttl: 3600)
+    dnsimple_client.zones.create_record(
+      dnsimple_account_id, 'example.com',
+      name: 'multiple', type: 'A', content: '2.2.2.2', ttl: 3600)
   end
 
   def create_record_to_do_not_delete
-    dnsimple_zone.records.create(name: '', type: 'NS', value: '1.2.3.4', ttl: 3600)
+    dnsimple_client.zones.create_record(
+      dnsimple_account_id, 'example.com',
+      name: '', type: 'NS', content: '1.2.3.4', ttl: 3600)
   end
 
   def create_domain_data
-    dnsimple_client.zones.create(domain: 'example.com')
+    dnsimple_client.create_domain(dnsimple_account_id, 'example.com')
   end
 end
