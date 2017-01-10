@@ -2,7 +2,7 @@
 # Cookbook Name:: dnsimple
 # Recipe:: default
 #
-# Copyright 2014-2016 Aetrion, LLC
+# Copyright 2014-2017 Aetrion, LLC dba DNSimple
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,5 +19,6 @@
 
 # This recipe intentionally left blank.
 #
-# Requiring this cookbook will automatically install and include the DNSimple
-# resource.
+# Requiring this cookbook will make the dnsimple resource available. Once you
+# use the resource it will install the dnsimple gem and call it. See README
+# for documentation and details.
