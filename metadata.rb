@@ -17,6 +17,3 @@ supports 'fedora'
 supports 'redhat'
 supports 'rhel'
 supports 'ubuntu'
-
-depends 'build-essential'
-depends 'apt'
