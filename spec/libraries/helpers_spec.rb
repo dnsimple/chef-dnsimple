@@ -16,7 +16,7 @@ RSpec.describe DNSimpleCookbook do
     let(:access_token) { '' }
 
     it 'returns a client' do
-      expect(subject.dnsimple_client.identity.whoami).to_not raise_error
+      expect(subject.dnsimple_client).to be_instance_of(Dnsimple::Client)
     end
   end
 end
