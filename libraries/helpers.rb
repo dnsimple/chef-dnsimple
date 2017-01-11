@@ -19,13 +19,19 @@
 
 module DNSimpleCookbook
   module Helpers
-    def dnsimple_api
+    def dnsimple_client
+      dnsimple_gem_require
+      Dnsimple::Client.new(access_token: dnsimple_access_token)
+    rescue Dnsimple::AuthenticationFailed
+      Chef::Log.error("Could not authenticate, see the README for more details on authentication tokens.")
+    end
+
+    def dnsimple_gem_require
+      retried = false
       begin
-        retried = false
-        gem 'dnsimple', dnsimple_gem_version
+        gem 'dnsimple', version: dnsimple_gem_version
         require 'dnsimple'
         Chef::Log.debug("Node had dnsimple #{dnsimple_gem_version} installed. No need to install the gem.")
-        Dnsimple::Client.new(access_token: dnsimple_access_token)
       rescue LoadError
         Chef::Log.debug("Did not find dnsimple version #{dnsimple_gem_version} installed. Installing now.")
 
@@ -49,6 +55,7 @@ module DNSimpleCookbook
       #   access_token ''
       # end
     end
+
 
     def dnsimple_gem_version
       node['dnsimple']['version']
