@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: dnsimple
-# Library:: dnsimple
+# Library:: helpers
 #
 # Copyright 2014-2017 Aetrion, LLC dba DNSimple
 #
