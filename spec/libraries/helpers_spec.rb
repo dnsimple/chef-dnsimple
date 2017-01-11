@@ -6,21 +6,17 @@ RSpec.describe DNSimpleCookbook do
   end
   subject { DummyClass.new }
 
-  describe '#dnsimple_api' do
+  describe '#dnsimple_client' do
     before do
-      allow(subject).to receive(:node).and_return(node_data)
+      allow(subject).to receive(:dnsimple_gem_version).and_return(:version)
+      allow(subject).to receive(:dnsimple_access_token).and_return(:access_token)
     end
 
-    let(:node_data) do
-      {
-        'dnsimple' => {
-          'version' => nil
-        }
-      }
-    end
+    let(:version) { '' }
+    let(:access_token) { '' }
 
     it 'returns a client' do
-      expect(subject.dnsimple_api.identity.whoami).to_not raise_error
+      expect(subject.dnsimple_client.identity.whoami).to_not raise_error
     end
   end
 end
