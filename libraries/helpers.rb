@@ -19,27 +19,25 @@
 
 module DNSimpleCookbook
   module Helpers
-    def require_dnsimple_library
-      gem 'dnsimple', node['dnsimple']['version']
-      require 'dnsimple'
-      Chef::Log.debug("Node had dnsimple #{node['dnsimple']['version']} installed. No need to install the gem.")
-    rescue LoadError
-      Chef::Log.debug("Did not find dnsimple version #{node['dnsimple']['version']} installed. Installing now.")
-
-      chef_gem 'dnsimple' do
-        version node['dnsimple']['version']
-        compile_time true if Chef::Resource::ChefGem.method_defined?(:compile_time)
-        action :install
-      end
-
-      require 'dnsimple'
-    end
-
     def dnsimple_api
-      require_dnsimple_library
+      @dnsimple ||= begin
+                      gem 'dnsimple', node['dnsimple']['version']
+                      require 'dnsimple'
+                      Chef::Log.debug("Node had dnsimple #{node['dnsimple']['version']} installed. No need to install the gem.")
+                      Dnsimple::Client.new(access_token: new_resource.access_token)
+                    rescue LoadError
+                      Chef::Log.debug("Did not find dnsimple version #{node['dnsimple']['version']} installed. Installing now.")
 
-      @dnsimple ||= Dnsimple::Client.new(username: new_resource.username || node['dnsimple']['username'],
-                                         api_token: new_resource.token || node['dnsimple']['token'])
+                      chef_gem 'dnsimple' do
+                        version node['dnsimple']['version']
+                        compile_time true
+                        action :install
+                      end
+
+                      gem 'dnsimple', node['dnsimple']['version']
+
+                      require 'dnsimple'
+                    end
     end
   end
 end
