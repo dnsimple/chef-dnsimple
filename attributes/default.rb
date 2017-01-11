@@ -18,6 +18,3 @@
 #
 
 default['dnsimple']['version'] = '4.1.0' # Version of the DNSimple gem to use
-default['dnsimple']['username'] = nil    # DNSimple username
-default['dnsimple']['token'] = nil       # DNSimple api token
-default['dnsimple']['domain'] = nil      # Default domain to use
