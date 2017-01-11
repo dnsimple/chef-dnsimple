@@ -20,24 +20,50 @@
 module DNSimpleCookbook
   module Helpers
     def dnsimple_api
-      @dnsimple ||= begin
-                      gem 'dnsimple', node['dnsimple']['version']
-                      require 'dnsimple'
-                      Chef::Log.debug("Node had dnsimple #{node['dnsimple']['version']} installed. No need to install the gem.")
-                      Dnsimple::Client.new(access_token: new_resource.access_token)
-                    rescue LoadError
-                      Chef::Log.debug("Did not find dnsimple version #{node['dnsimple']['version']} installed. Installing now.")
+      begin
+        retried = false
+        gem 'dnsimple', dnsimple_gem_version
+        require 'dnsimple'
+        Chef::Log.debug("Node had dnsimple #{dnsimple_gem_version} installed. No need to install the gem.")
+        Dnsimple::Client.new(access_token: dnsimple_access_token)
+      rescue LoadError
+        Chef::Log.debug("Did not find dnsimple version #{dnsimple_gem_version} installed. Installing now.")
 
-                      chef_gem 'dnsimple' do
-                        version node['dnsimple']['version']
-                        compile_time true
-                        action :install
-                      end
+        install_dnsimple_gem(dnsimple_gem_version)
 
-                      gem 'dnsimple', node['dnsimple']['version']
+        raise if retried
+        retried = true
+        retry
+      end
 
-                      require 'dnsimple'
-                    end
+      # dnsimple_record 'fooserver' do
+      #   zone 'foo.com'
+      #   type 'a'
+      #   content '1.2.3.4'
+      #   ttl 3600
+      #   configuration 'foo'
+      #   action :create
+      # end
+
+      # dnsimple_configuration 'foocompany' do
+      #   access_token ''
+      # end
+    end
+
+    def dnsimple_gem_version
+      node['dnsimple']['version']
+    end
+
+    def install_dnsimple_gem(gem_version)
+      chef_gem 'dnsimple' do
+        version gem_version
+        compile_time true
+        action :install
+      end
+    end
+
+    def dnsimple_access_token
+      new_resource.access_token
     end
   end
 end
