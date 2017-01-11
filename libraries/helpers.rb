@@ -41,21 +41,7 @@ module DNSimpleCookbook
         retried = true
         retry
       end
-
-      # dnsimple_record 'fooserver' do
-      #   zone 'foo.com'
-      #   type 'a'
-      #   content '1.2.3.4'
-      #   ttl 3600
-      #   configuration 'foo'
-      #   action :create
-      # end
-
-      # dnsimple_configuration 'foocompany' do
-      #   access_token ''
-      # end
     end
-
 
     def dnsimple_gem_version
       node['dnsimple']['version']

@@ -61,6 +61,19 @@ attributes set as they are implied in these examples. You can always specify
 those attributes directly if you want to use other domains or access contexts.
 
 ```ruby
+    # dnsimple_record 'fooserver' do
+    #   zone 'foo.com'
+    #   type 'a'
+    #   content '1.2.3.4'
+    #   ttl 3600
+    #   configuration 'foo'
+    #   action :create
+    # end
+
+    # dnsimple_configuration 'foocompany' do
+    #   access_token ''
+    # end
+
     dnsimple_record "create an A record using the DEPRECATED username/password authentication" do
       name     "test"
       content  "16.8.4.2"
