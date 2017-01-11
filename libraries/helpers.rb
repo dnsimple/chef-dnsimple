@@ -22,8 +22,10 @@ module DNSimpleCookbook
     def dnsimple_client
       dnsimple_gem_require
       Dnsimple::Client.new(access_token: dnsimple_access_token)
-    rescue Dnsimple::AuthenticationFailed
-      Chef::Log.error("Could not authenticate, see the README for more details on authentication tokens.")
+    end
+
+    def dnsimple_client_account_id
+      dnsimple_client.identity.whoami.data.account.id
     end
 
     def dnsimple_gem_require

@@ -19,4 +19,16 @@ RSpec.describe DNSimpleCookbook do
       expect(subject.dnsimple_client).to be_instance_of(Dnsimple::Client)
     end
   end
+
+  describe '#dnsimple_client_account_id' do
+    before do
+      allow(subject).to receive(:dnsimple_gem_version).and_return(:version)
+      allow(subject).to receive(:dnsimple_access_token).and_return(:access_token)
+      allow(subject).to receive(:dnsimple_log_error)
+    end
+
+    it 'returns an account id' do
+      expect(subject.dnsimple_client_account_id).to be_a_kind_of(Integer)
+    end
+  end
 end
