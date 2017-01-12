@@ -16,3 +16,11 @@ RSpec.configure do |config|
   # Specify the operating version to mock Ohai data from
   config.version = '14.04'
 end
+
+def http_fixture(*names)
+  File.join(SPEC_ROOT, "fixtures.http", *names)
+end
+
+def read_http_fixture(*names)
+  File.read(http_fixture(*names))
+end
