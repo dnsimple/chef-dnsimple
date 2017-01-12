@@ -25,10 +25,11 @@ RSpec.describe DNSimpleCookbook do
       allow(subject).to receive(:dnsimple_gem_version).and_return(:version)
       allow(subject).to receive(:dnsimple_access_token).and_return(:access_token)
       allow(subject).to receive(:dnsimple_log_error)
+      stub_request(:any, 'https://api.dnsimple.com/v2/whoami').to_return(read_http_fixture('success-account.http'))
     end
 
     it 'returns an account id' do
-      expect(subject.dnsimple_client_account_id).to be_a_kind_of(Integer)
+      expect(subject.dnsimple_client_account.data).to be_a_kind_of(Fixnum)
     end
   end
 end
