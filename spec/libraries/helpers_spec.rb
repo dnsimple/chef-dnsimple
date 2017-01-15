@@ -31,7 +31,7 @@ RSpec.describe DNSimpleCookbook do
       stub_request(:any, 'https://api.dnsimple.com/v2/whoami').to_return(read_http_fixture('success-account.http'))
       expect(subject.dnsimple_client_account_id).to be_a_kind_of(Fixnum)
     end
-   
+
     it 'raises an error when the authentication fails' do
       stub_request(:any, 'https://api.dnsimple.com/v2/whoami').to_return(read_http_fixture('failed-authentication.http'))
       expect { subject.dnsimple_client_account_id }.to raise_error(StandardError, 'Authentication failed')
