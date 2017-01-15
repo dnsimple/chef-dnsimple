@@ -1,11 +1,8 @@
 require 'spec_helper'
 require './libraries/helpers.rb'
 
-RSpec.describe DNSimpleCookbook do
-  class DummyClass < Chef::Node
-    include DNSimpleCookbook::Helpers
-  end
-  subject { DummyClass.new }
+RSpec.describe DNSimpleCookbook::Helpers do
+  include described_class
 
   describe '#dnsimple_client' do
     before do
