@@ -12,9 +12,12 @@ RSpec.describe DNSimpleCookbook::Helpers do
 
     let(:version) { '' }
     let(:access_token) { '' }
+    let(:node) do
+      Fauxhai.mock(platform: 'ubuntu', version: '14.04')
+    end
 
     it 'returns a client' do
-      expect(subject.dnsimple_client).to be_instance_of(Dnsimple::Client)
+      expect(dnsimple_client).to be_instance_of(Dnsimple::Client)
     end
   end
 
