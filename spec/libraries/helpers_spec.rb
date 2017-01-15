@@ -1,4 +1,5 @@
 require 'spec_helper'
+require './libraries/helpers.rb'
 
 RSpec.describe DNSimpleCookbook do
   class DummyClass < Chef::Node
