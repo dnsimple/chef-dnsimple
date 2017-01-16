@@ -26,8 +26,8 @@ module DNSimpleCookbook
 
     def dnsimple_client_account_id
       data = dnsimple_client.identity.whoami.data
-      raise  "Authentication failed" if data.nil?
-      raise  "Account id is missing" if data.account.nil?
+      raise 'Authentication failed' if data.nil?
+      raise 'Account id is missing' if data.account.nil?
       data.account.id
     end
 
