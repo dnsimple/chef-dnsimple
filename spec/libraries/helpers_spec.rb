@@ -6,41 +6,65 @@ RSpec.describe DNSimpleCookbook::Helpers do
 
   describe '#dnsimple_client' do
     before do
-      allow(subject).to receive(:dnsimple_gem_version).and_return(:version)
-      allow(subject).to receive(:dnsimple_access_token).and_return(:access_token)
+      allow_any_instance_of(described_class).to receive(:dnsimple_gem_version).and_return(version)
+      allow_any_instance_of(described_class).to receive(:dnsimple_access_token).and_return(access_token)
     end
 
     let(:version) { '' }
     let(:access_token) { '' }
-    let(:node) do
-      Fauxhai.mock(platform: 'ubuntu', version: '14.04')
-    end
 
     it 'returns a client' do
       expect(dnsimple_client).to be_instance_of(Dnsimple::Client)
     end
   end
 
+  describe '#dnsimple_client_account' do
+    before do
+      allow_any_instance_of(described_class).to receive(:dnsimple_client).and_return(client)
+      allow(client).to receive(:identity).and_return(identity)
+      allow(identity).to receive(:whoami).and_raise(Dnsimple::AuthenticationFailed)
+    end
+
+    let(:client) { double('client') }
+    let(:identity) { double('identity') }
+
+    context 'when authentication fails' do
+      it 'raises a standard error to stop the chef run' do
+        expect { dnsimple_client_account }.to \
+          raise_error('Authentication failed. Please check your access token')
+      end
+    end
+  end
+
   describe '#dnsimple_client_account_id' do
     before do
-      allow(subject).to receive(:dnsimple_gem_version).and_return(:version)
-      allow(subject).to receive(:dnsimple_access_token).and_return(:access_token)
-      allow(subject).to receive(:dnsimple_log_error)
+      allow_any_instance_of(described_class).to receive(:dnsimple_client_account).and_return(client_account)
+      allow(client_account).to receive(:data).and_return(data)
+      allow(data).to receive(:account).and_return(account)
     end
 
-    it 'returns an account id' do
-      stub_request(:any, 'https://api.dnsimple.com/v2/whoami').to_return(read_http_fixture('success-account.http'))
-      expect(subject.dnsimple_client_account_id).to be_a_kind_of(Fixnum)
+    let(:client_account) { double('client_account') }
+    let(:data) { double('data') }
+
+    context 'when account id is present' do
+      before do
+        allow(account).to receive(:id).and_return(account_id)
+      end
+
+      let(:account_id) { 1234 }
+      let(:account) { double('account') }
+
+      it 'returns an account id' do
+        expect(dnsimple_client_account_id).to be_a_kind_of(Integer)
+      end
     end
 
-    it 'raises an error when the authentication fails' do
-      stub_request(:any, 'https://api.dnsimple.com/v2/whoami').to_return(read_http_fixture('failed-authentication.http'))
-      expect { subject.dnsimple_client_account_id }.to raise_error(StandardError, 'Authentication failed')
-    end
+    context 'when account id is not present' do
+      let(:account) { nil }
 
-    it 'raises an error when it authenticates with a user token' do
-      stub_request(:any, 'https://api.dnsimple.com/v2/whoami').to_return(read_http_fixture('failed-authentication-user-token.http'))
-      expect { subject.dnsimple_client_account_id }.to raise_error(StandardError, 'Account id is missing')
+      it 'raises an error for using a user token and not an account token' do
+        expect { dnsimple_client_account_id }.to raise_error('Cannot find account id, please make sure you provide an account token and not a user token. See README for more information.')
+      end
     end
   end
 end

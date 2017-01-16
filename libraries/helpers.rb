@@ -25,9 +25,10 @@ module DNSimpleCookbook
     end
 
     def dnsimple_client_account_id
-      data = dnsimple_client.identity.whoami.data
-      raise 'Authentication failed' if data.nil?
-      raise 'Account id is missing' if data.account.nil?
+      data = dnsimple_client_account.data
+      if data.account.nil?
+        raise 'Cannot find account id, please make sure you provide an account token and not a user token. See README for more information.'
+      end
       data.account.id
     end
 
@@ -62,6 +63,12 @@ module DNSimpleCookbook
 
     def dnsimple_access_token
       new_resource.access_token
+    end
+
+    def dnsimple_client_account
+      dnsimple_client.identity.whoami
+    rescue Dnsimple::AuthenticationFailed
+      raise 'Authentication failed. Please check your access token'
     end
   end
 end
