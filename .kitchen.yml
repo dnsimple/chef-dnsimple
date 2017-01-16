@@ -12,16 +12,8 @@ verifier:
     - test/smoke/default
 
 platforms:
-  - name: ubuntu-14.04
-    run_list: apt::default
-    attributes:
-      apt:
-        compile_time_update: true
   - name: ubuntu-12.04
-    run_list: apt::default
-    attributes:
-      apt:
-        compile_time_update: true
+  - name: ubuntu-14.04
   - name: centos-6.7
 
 suites:
