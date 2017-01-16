@@ -17,18 +17,12 @@
 # limitations under the License.
 #
 
-actions :create, :destroy
-
-default_action :create
-
-attribute :domain,   kind_of: String
-attribute :name,     kind_of: String
-attribute :type,     kind_of: String, equal_to: %w(A CNAME ALIAS MX SPF URL TXT NS SRV NAPTR PTR AAA SSHFP HFINO)
-attribute :content,  kind_of: [String, Array]
-attribute :ttl,      kind_of: Integer, default: 3600
-attribute :priority, kind_of: Integer
-attribute :username, kind_of: String
-attribute :password, kind_of: String
-attribute :token,    kind_of: String
-
-attr_accessor :exists
+property :record_name,   kind_of: String, name_property: true
+property :domain,        kind_of: String
+property :name,          kind_of: String, required: true
+property :type,          kind_of: String, equal_to: %w(A CNAME ALIAS MX SPF URL TXT NS SRV NAPTR PTR AAA SSHFP HFINO), required: true
+property :content,       kind_of: [String, Array]
+property :ttl,           kind_of: Integer, default: 3600
+property :priority,      kind_of: Integer
+property :access_token,  kind_of: String
+property :regions,       kind_of: Array, default: ['global']
