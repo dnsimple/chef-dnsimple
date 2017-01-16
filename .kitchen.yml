@@ -4,6 +4,12 @@ driver:
 
 provisioner:
   name: chef_zero
+  always_update_cookbooks: <%= !ENV['CI'] %>
+
+verifier:
+  name: inspec
+  inspec_tests:
+    - test/smoke/default
 
 platforms:
   - name: ubuntu-14.04
