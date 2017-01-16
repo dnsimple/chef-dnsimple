@@ -21,5 +21,5 @@ suites:
     provisioner:
       require_chef_omnibus: 12
     run_list:
-      - recipe[dnsimple::default]
+      - recipe[dnsimple_test::default]
     attributes:
