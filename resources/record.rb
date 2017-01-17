@@ -26,3 +26,24 @@ property :ttl,           kind_of: Integer, default: 3600
 property :priority,      kind_of: Integer
 property :access_token,  kind_of: String
 property :regions,       kind_of: Array, default: ['global']
+
+default_action :create
+
+action :create do
+  create_record
+end
+
+action_class do
+  include DNSimpleCookbook::Helpers
+
+  def create_record
+    client = dnsimple_client
+    account_id = dnsimple_client_account_id
+
+    values = Array(new_resource.content)
+    values.each do |value|
+      client.zones.create_record(account_id, new_resource.name,
+        type, value, ttl, priority, regions)
+    end
+  end
+end
