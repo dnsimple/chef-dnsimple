@@ -123,16 +123,9 @@ install the dnsimple gem and make the dnsimple\_record resource available.
 ## Testing
 
 To run the tests across all platforms, you want to grab the latest [ChefDK][]
-<<<<<<< HEAD
-install [VirtualBox][], [Vagrant][], and the [Chefstyle][] gem into your ChefDK
-then run `chef exec kitchen test`.
-=======
->>>>>>> Cleanup merge conflict artifacts
 install [VirtualBox][], [Vagrant][], and the following gems into your ChefDK:
 
-* [Chefstyle][]
 * [dnsimple][dnsimple-gem]
-* [webmock][]
 
 Then run `chef exec rake quick` for unit and style tests.
 
