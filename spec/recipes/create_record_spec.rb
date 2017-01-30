@@ -9,8 +9,8 @@ describe 'dnsimple_test::create_record' do
   before do
     stub_authentication
 
-    stub_request(:post, %r{/v2/1/zones/example.com/records$}).
-      to_return(read_http_fixture("createZoneRecord/created.http"))
+    stub_request(:post, %r{/v2/1/zones/example.com/records$})
+      .to_return(read_http_fixture('createZoneRecord/created.http'))
   end
 
   it 'converges successfully' do

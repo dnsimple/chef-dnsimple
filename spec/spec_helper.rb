@@ -11,8 +11,6 @@ RSpec.configure do |config|
   config.version = '14.04'
 end
 
-unless defined?(SPEC_ROOT)
-  SPEC_ROOT = File.expand_path("../", __FILE__)
-end
+SPEC_ROOT = File.expand_path('../', __FILE__) unless defined?(SPEC_ROOT)
 
-Dir[File.join(SPEC_ROOT, "support/**/*.rb")].each { |f| require f }
+Dir[File.join(SPEC_ROOT, 'support/**/*.rb')].each { |f| require f }
