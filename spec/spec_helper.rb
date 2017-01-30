@@ -10,3 +10,9 @@ RSpec.configure do |config|
   # Specify the operating version to mock Ohai data from
   config.version = '14.04'
 end
+
+unless defined?(SPEC_ROOT)
+  SPEC_ROOT = File.expand_path("../", __FILE__)
+end
+
+Dir[File.join(SPEC_ROOT, "support/**/*.rb")].each { |f| require f }
