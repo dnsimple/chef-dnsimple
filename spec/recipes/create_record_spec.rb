@@ -4,8 +4,6 @@ describe 'dnsimple_test::create_record' do
   let(:runner) { ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '14.04', step_into: ['dnsimple_record']) }
   let(:chef_run) { runner.converge(described_recipe) }
 
-  let(:dnsimple_record) { instance_double('dnsimple_record', name: name, content: '1.1.1.1', domain: 'example.com', access_token: 'ABC') }
-
   before do
     stub_authentication
 
