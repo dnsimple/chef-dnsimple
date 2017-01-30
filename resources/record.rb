@@ -37,13 +37,16 @@ action_class do
   include DNSimpleCookbook::Helpers
 
   def create_record
+    # TO-DO assuming that chef assings values to record_name
+    # when not using it as property
     client = dnsimple_client
     account_id = dnsimple_client_account_id
 
-    values = Array(new_resource.content)
-    values.each do |value|
-      client.zones.create_record(account_id, new_resource.name,
-        type, value, ttl, priority, regions)
-    end
+    # TO-DO we are using the underlying ruby library to
+    # handle multiple content as an Array
+    client.zones.create_record(
+      account_id, domain,
+      name: record_name, type: type, content: content,
+      ttl: ttl, priority: priority, regions: regions)
   end
 end
