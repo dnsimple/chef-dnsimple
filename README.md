@@ -36,23 +36,21 @@ use the DNSimple API.
 The type of record can be one of the following: A, CNAME, ALIAS, MX,
 SPF, URL, TXT, NS, SRV, NAPTR, PTR, AAA, SSHFP, or HFINO.
 
-    | Parameter    | Description                        | Default   |
-    | ------------ | ---------------------------------  | --------- |
-    | *domain*     | Domain to manage                   |           |
-    | *name*       | _Name_: Name of the record         |           |
-    | *type*       | Type of DNS record                 |           |
-    | *content*    | String/Array content of records    |           |
-    | *ttl*        | Time to live.                      | 3600      |
-    | *priority*   | Priorty of update                  |           |
-    | *username*   | DNSimple username                  |           |
-    | *password*   | DNSimple password (**DEPRECATED**) |           |
-    | *token*      | DNSimple API token                 |           |
-    | *test*       | Unused at this time                | false     |
+    | Parameter    | Description                        | Required | Default   |
+    | ------------ | ---------------------------------  | -------- | --------- |
+    | *domain*     | Domain to manage                   | true     |           |
+    | *name*       | Name of the record                 |          | Apex of the domain |
+    | *type*       | Type of DNS record                 | true     |           |
+    | *content*    | String/Array content of records    | true     |           |
+    | *ttl*        | Time to live                       |          | 3600      |
+    | *priority*   | Priorty of record                  |          |           |
+    | *token*      | DNSimple API token                 |          |           |
+    | *test*       | Unused at this time                | false    |           |
 
-**Note**: For token based authentication you must provide an [api token][] for
-the account with access to the domain you are providing in the resource. User
-access tokens are also not supported at this time.  Domain based tokens will be
-supported in a future release.
+**Note**: If you do not provide the name parameter, it will be assumed from the
+resource name, which cannot be blank. If you want to create multiple record
+types on the apex then you need to name each resource separately, but keep the
+name an empty string.
 
 ### Examples
 
@@ -154,6 +152,5 @@ limitations under the License.
 [VirtualBox]: https://www.virtualbox.org/wiki/Downloads
 [Vagrant]: https://www.vagrantup.com/downloads.html
 [Chefstyle]: https://github.com/chef/chefstyle
-[api token]: https://developer.dnsimple.com/v1/authentication/#api-token
 [dnsimple-gem]: https://rubygems.org/gems/dnsimple
 [webmock]: https://rubygems.org/gems/webmock
