@@ -21,7 +21,7 @@ dnsimple\_record
 ----------------
 
 Manage a DNS resource record through the DNSimple API. This resource uses
-the [dnsimple Ruby library](http://rubygems.org/gems/dnsimple) to connect and
+the [dnsimple Ruby library](https://rubygems.org/gems/dnsimple) to connect and
 use the DNSimple API.
 
 ### Actions:
@@ -126,6 +126,7 @@ To run the tests across all platforms, you want to grab the latest [ChefDK][]
 install [VirtualBox][], [Vagrant][], and the following gems into your ChefDK:
 
 * [dnsimple][dnsimple-gem]
+* [webmock][]
 
 Then run `chef exec rake quick` for unit and style tests.
 
