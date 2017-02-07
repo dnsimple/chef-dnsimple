@@ -12,6 +12,10 @@ RSpec.configure do |config|
   # Specify the operating version to mock Ohai data from
   config.version = '14.04'
 
+  config.mock_with :rspec do |mocks|
+    mocks.verify_partial_doubles = true
+  end
+
   # Many RSpec users commonly either run the entire suite or an individual
   # file, and it's useful to allow more verbose output when running an
   # individual spec file.
