@@ -19,6 +19,7 @@ describe Chef::Provider::DnsimpleRecord do
     before(:each) do
       @new_resource.access_token('this_is_a_token')
       @provider.dnsimple_client = client
+      allow(@provider).to receive(:dnsimple_gem_require).and_return(true)
     end
 
     let(:client) { double('client') }
