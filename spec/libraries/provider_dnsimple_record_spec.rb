@@ -20,8 +20,7 @@ describe Chef::Provider::DnsimpleRecord do
     end
 
     it 'returns record object if record name matches' do
-      @new_resource.name('example_record')
-      expect(@provider.record.name).to eq('example_record')
+      expect(@provider.create_record.name).to eq('example_record')
     end
   end
 end
