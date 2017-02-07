@@ -18,8 +18,10 @@ describe Chef::Provider::DnsimpleRecord do
   describe '#record' do
     before(:each) do
       @new_resource.access_token('this_is_a_token')
-      # allow(@provider.dnsimple_client).to receive(:
+      @provider.dnsimple_client(client: client)
     end
+
+    let(:client) { double('client') }
 
     it 'returns record object if record name matches' do
       expect(@provider.create_record.name).to eq('example_record')

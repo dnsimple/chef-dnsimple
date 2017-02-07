@@ -5,10 +5,10 @@ class Chef
 
       def dnsimple_client(**client)
         dnsimple_gem_require
-        if client.empty?
+        if client.empty? && @client.empty?
           @client = Dnsimple::Client.new(access_token: new_resource.access_token)
         else
-          @client = client
+          @client = client[:client]
         end
       end
 
