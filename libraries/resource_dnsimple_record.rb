@@ -21,9 +21,6 @@ require_relative 'dnsimple_resource'
 class Chef
   class Resource
     class DnsimpleRecord < DnsimpleResource
-      require_relative 'helpers'
-      include DNSimpleCookbook::Helpers
-
       resource_name :dnsimple_record
 
       default_action :create

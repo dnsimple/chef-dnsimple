@@ -2,8 +2,6 @@
 class Chef
   class Provider
     class DnsimpleProvider < Chef::Provider
-      require_relative 'helpers'
-      include DNSimpleCookbook::Helpers
 
       def dnsimple_client(**client)
         dnsimple_gem_require
