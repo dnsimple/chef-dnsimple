@@ -2,7 +2,6 @@
 class Chef
   class Provider
     class DnsimpleProvider < Chef::Provider
-
       attr_writer :dnsimple_client
 
       def dnsimple_client_account_id
@@ -16,8 +15,8 @@ class Chef
 
       def dnsimple_client_account
         dnsimple_client.identity.whoami
-      # rescue Dnsimple::AuthenticationFailed
-      #   raise 'Authentication failed. Please check your access token'
+      rescue Dnsimple::AuthenticationFailed
+        raise 'Authentication failed. Please check your access token'
       end
 
       def dnsimple_gem_require
