@@ -16,9 +16,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+require_relative 'dnsimple_resource'
+
 class Chef
   class Resource
-    class DnsimpleRecord < Chef::Resource
+    class DnsimpleRecord < DnsimpleResource
       require_relative 'helpers'
       include DNSimpleCookbook::Helpers
 
@@ -33,7 +35,6 @@ class Chef
       property :content,       kind_of: [String, Array]
       property :ttl,           kind_of: Integer, default: 3600
       property :priority,      kind_of: Integer
-      property :access_token,  kind_of: String, required: true
       property :regions,       kind_of: Array, default: ['global']
     end
   end
