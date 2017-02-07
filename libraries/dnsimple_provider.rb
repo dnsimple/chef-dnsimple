@@ -5,9 +5,27 @@ class Chef
       require_relative 'helpers'
       include DNSimpleCookbook::Helpers
 
-      def dnsimple_client(client:)
-        @client = client ||
-                  Dnsimple::Client.new(access_token: new_resource.access_token)
+      def dnsimple_client(**client)
+        dnsimple_gem_require
+        if client.empty?
+          @client = Dnsimple::Client.new(access_token: new_resource.access_token)
+        else
+          @client = client
+        end
+      end
+
+      def dnsimple_client_account_id
+        data = dnsimple_client_account.data
+        if data.account.nil?
+          raise 'Cannot find account id, please make sure you provide an account token and not a user token. See README for more information.'
+        end
+        data.account.id
+      end
+
+      def dnsimple_client_account
+        dnsimple_client.identity.whoami
+      rescue Dnsimple::AuthenticationFailed
+        raise 'Authentication failed. Please check your access token'
       end
 
       def dnsimple_gem_require
