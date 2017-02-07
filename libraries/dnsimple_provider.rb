@@ -3,14 +3,7 @@ class Chef
   class Provider
     class DnsimpleProvider < Chef::Provider
 
-      def dnsimple_client(**client)
-        if client.empty? && @client.empty?
-          dnsimple_gem_require
-          @client = Dnsimple::Client.new(access_token: new_resource.access_token)
-        else
-          @client = client[:client]
-        end
-      end
+      attr_writer :dnsimple_client
 
       def dnsimple_client_account_id
         data = dnsimple_client_account.data
@@ -54,6 +47,12 @@ class Chef
           compile_time true
           action :install
         end
+      end
+
+      def dnsimple_client
+        @dnsimple_client ||= Dnsimple::Client.new(
+          access_token: new_resource.access_token
+        )
       end
     end
   end

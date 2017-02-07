@@ -18,7 +18,7 @@ describe Chef::Provider::DnsimpleRecord do
   describe '#record' do
     before(:each) do
       @new_resource.access_token('this_is_a_token')
-      @provider.dnsimple_client(client: client)
+      @provider.dnsimple_client = client
     end
 
     let(:client) { double('client') }
