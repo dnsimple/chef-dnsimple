@@ -4,8 +4,8 @@ class Chef
     class DnsimpleProvider < Chef::Provider
 
       def dnsimple_client(**client)
-        dnsimple_gem_require
         if client.empty? && @client.empty?
+          dnsimple_gem_require
           @client = Dnsimple::Client.new(access_token: new_resource.access_token)
         else
           @client = client[:client]
