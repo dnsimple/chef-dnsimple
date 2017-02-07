@@ -15,7 +15,8 @@ class Chef
       def dnsimple_client_account_id
         data = dnsimple_client_account.data
         if data.account.nil?
-          raise 'Cannot find account id, please make sure you provide an account token and not a user token. See README for more information.'
+          raise 'Cannot find account id, please make sure you provide an account
+          token and not a user token. See README for more information.'
         end
         data.account.id
       end
