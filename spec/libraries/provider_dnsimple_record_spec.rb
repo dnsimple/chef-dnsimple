@@ -24,6 +24,7 @@ describe Chef::Provider::DnsimpleRecord do
       @new_resource.content = dns_record[:content]
       @new_resource.domain = dns_record[:domain]
       allow(@provider).to receive(:dnsimple_gem_require).and_return(true)
+      allow(zones).to receive(:create_record)
     end
 
     let(:client) { double('client', identity: identity, zones: zones) }
