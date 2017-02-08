@@ -65,8 +65,7 @@ describe Chef::Provider::DnsimpleRecord do
       it 'returns record object if record name matches' do
         expect { @provider.create_record }.to \
           raise_exception(RuntimeError,
-                          'Unable to complete create record request.
-                          Error: 405 Method Not Allowed')
+                          'Unable to complete create record request. Error: 405 Method Not Allowed')
       end
     end
   end
