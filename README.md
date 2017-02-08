@@ -59,56 +59,30 @@ attributes set as they are implied in these examples. You can always specify
 those attributes directly if you want to use other domains or access contexts.
 
 ```ruby
-    # dnsimple_record 'fooserver' do
-    #   zone 'foo.com'
-    #   type 'a'
-    #   content '1.2.3.4'
-    #   ttl 3600
-    #   configuration 'foo'
-    #   action :create
-    # end
-
-    # dnsimple_configuration 'foocompany' do
-    #   access_token ''
-    # end
-
-    dnsimple_record "create an A record using the DEPRECATED username/password authentication" do
-      name     "test"
-      content  "16.8.4.2"
-      type     "A"
-      domain   "example.com"
-      username chef_vault_item("secrets", "dnsimple_username")
-      password chef_vault_item("secrets", "dnsimple_password")
-      action   :create
+    dnsimple_record 'fooserver' do
+      zone 'foo.com'
+      type 'A'
+      content '1.2.3.4'
+      ttl 3600
+      access_token chef_vault_item('secrets', 'dnsimple_token')
+      action :create
     end
 
-    dnsimple_record "create an A record" do
-      name     "test"
-      content  "16.8.4.2"
-      type     "A"
-      domain   "example.com"
-      username chef_vault_item("secrets", "dnsimple_username")
-      token    chef_vault_item("secrets", "dnsimple_token")
-      action   :create
-    end
-
-    dnsimple_record "create a CNAME record for a Google Apps site calendar" do
-      name     "calendar"
-      content  "ghs.google.com"
-      type     "CNAME"
-      domain   "example.com"
-      username chef_vault_item("secrets", "dnsimple_username")
-      token    chef_vault_item("secrets", "dnsimple_token")
-      action   :create
+    dnsimple_record 'create a CNAME record for a Google Apps site calendar' do
+      name 'calendar'
+      content 'ghs.google.com'
+      type 'CNAME'
+      domain 'example.com'
+      access_token chef_vault_item('secrets', 'dnsimple_token')
+      action :create
     end
 
     dnsimple_record "create a A record with multiple content values" do
-      name     "multiple"
-      content  ["1.1.1.1", "2.2.2.2"]
-      type     "A"
-      domain   "example.com"
-      username chef_vault_item("secrets", "dnsimple_username")
-      token    chef_vault_item("secrets", "dnsimple_token")
+      name     'servers'
+      content  ['1.1.1.1', '2.2.2.2']
+      type     'A'
+      domain   'example.com'
+      access_token chef_vault_item('secrets', 'dnsimple_token')
       action   :create
     end
 ```
