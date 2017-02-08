@@ -40,7 +40,7 @@ describe Chef::Provider::DnsimpleRecord do
         domain: 'example.com',
         type: 'A',
         content: '1.2.3.4',
-        ttl: 60
+        ttl: 60,
       }
     end
 
