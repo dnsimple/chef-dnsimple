@@ -20,7 +20,6 @@ before_script:
 - chef gem install chefstyle
 - chef gem install stove
 - chef gem install dnsimple
-- chef gem install webmock
 
 script: chef exec rake
 

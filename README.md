@@ -124,7 +124,6 @@ To run the tests across all platforms, you want to grab the latest [ChefDK][]
 install [VirtualBox][], [Vagrant][], and the following gems into your ChefDK:
 
 * [dnsimple][dnsimple-gem]
-* [webmock][]
 
 Then run `chef exec rake quick` for unit and style tests.
 
@@ -153,4 +152,3 @@ limitations under the License.
 [Vagrant]: https://www.vagrantup.com/downloads.html
 [Chefstyle]: https://github.com/chef/chefstyle
 [dnsimple-gem]: https://rubygems.org/gems/dnsimple
-[webmock]: https://rubygems.org/gems/webmock
