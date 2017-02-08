@@ -19,6 +19,10 @@ describe Chef::Provider::DnsimpleRecord do
     before(:each) do
       @new_resource.access_token('this_is_a_token')
       @provider.dnsimple_client = client
+      @new_resource.record_name = dns_record[:name]
+      @new_resource.type = dns_record[:type]
+      @new_resource.content = dns_record[:content]
+      @new_resource.domain = dns_record[:domain]
       allow(@provider).to receive(:dnsimple_gem_require).and_return(true)
     end
 
@@ -28,6 +32,15 @@ describe Chef::Provider::DnsimpleRecord do
     let(:data) { double('data', account: account) }
     let(:account) { double('account', id: 1) }
     let(:zones) { double('zones') }
+    let(:dns_record) do
+      {
+        name: 'test_record',
+        domain: 'example.com',
+        type: 'A',
+        content: '1.2.3.4',
+        ttl: 60
+      }
+    end
 
     it 'returns record object if record name matches' do
       expect(@provider.create_record.name).to eq('example_record')
