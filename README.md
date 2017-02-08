@@ -150,5 +150,4 @@ limitations under the License.
 [ChefDK]: https://downloads.chef.io/chef-dk/
 [VirtualBox]: https://www.virtualbox.org/wiki/Downloads
 [Vagrant]: https://www.vagrantup.com/downloads.html
-[Chefstyle]: https://github.com/chef/chefstyle
 [dnsimple-gem]: https://rubygems.org/gems/dnsimple
