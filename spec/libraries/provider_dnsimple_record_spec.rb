@@ -15,7 +15,7 @@ describe Chef::Provider::DnsimpleRecord do
     @provider.current_resource = @current_resource
   end
 
-  describe '#record' do
+  describe '#create_record' do
     before(:each) do
       @new_resource.access_token('this_is_a_token')
       @provider.dnsimple_client = client
