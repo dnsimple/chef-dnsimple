@@ -47,5 +47,27 @@ describe Chef::Provider::DnsimpleRecord do
     it 'returns record object if record name matches' do
       expect(@provider.create_record.name).to eq('example_record')
     end
+
+    context 'when it fails validation' do
+      before do
+        allow(zones).to receive(:create_record)
+          .and_raise(Dnsimple::RequestError, request_error)
+      end
+
+      let(:zones) { instance_double(Dnsimple::Client::ZonesService) }
+      let(:request_error) do
+        double('request_error', headers: '', response: request_error_response)
+      end
+      let(:request_error_response) do
+        double('response', code: '405', message: 'Method Not Allowed')
+      end
+
+      it 'returns record object if record name matches' do
+        expect { @provider.create_record }.to \
+          raise_exception(RuntimeError,
+                          'Unable to complete create record request.
+                          Error: 405 Method Not Allowed')
+      end
+    end
   end
 end

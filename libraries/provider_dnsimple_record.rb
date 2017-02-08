@@ -34,6 +34,8 @@ class Chef
           content: new_resource.content, ttl: new_resource.ttl,
           priority: new_resource.priority, regions: new_resource.regions
         )
+      rescue Dnsimple::RequestError => e
+        raise "Unable to complete create record request. Error: #{e.message}"
       end
     end
   end
