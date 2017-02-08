@@ -130,7 +130,7 @@ Then run `chef exec rake quick` for unit and style tests.
 ## License and Authors
 
 * Author:: [Aaron Kalin](https://github.com/martinisoft)
-* Author:: [David Aronsohn](https://github.com/tbunnyman)
+* Author:: [David Aronsohn](https://github.com/onlyhavecans)
 * Author:: [Jacobo Garcia](https://github.com/therobot)
 
 Copyright:: 2014-2017 Aetrion, LLC dba DNSimple
