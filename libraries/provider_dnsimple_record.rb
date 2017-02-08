@@ -30,15 +30,14 @@ class Chef
       def create_record
         # TO-DO assuming that chef assings values to record_name
         # when not using it as property
-        client = dnsimple_client
         account_id = dnsimple_client_account_id
 
         # TO-DO we are using the underlying ruby library to
         # handle multiple content as an Array
-        client.zones.create_record(
-          account_id, domain,
-          name: record_name, type: type, content: content,
-          ttl: ttl, priority: priority, regions: regions
+        dnsimple_client.zones.create_record(
+          account_id, new_resource.domain,
+          name: new_resource.record_name, type: new_resource.type, content: new_resource.content,
+          ttl: new_resource.ttl, priority: new_resource.priority, regions: new_resource.regions
         )
       end
     end
