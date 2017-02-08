@@ -33,7 +33,7 @@ describe Chef::Provider::DnsimpleRecord do
     let(:data) { instance_double(Dnsimple::Struct::Whoami, account: account) }
     let(:account) { instance_double(Dnsimple::Struct::Account, id: 1) }
     let(:zones) { instance_double(Dnsimple::Client::ZonesService, create_record: zone_record) }
-    let(:zone_record) { instance_double(Dnsimple::Struct::ZoneRecord) }
+    let(:zone_record) { instance_double(Dnsimple::Struct::ZoneRecord, name: 'example_record') }
     let(:dns_record) do
       {
         name: 'test_record',
