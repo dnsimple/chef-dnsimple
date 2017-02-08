@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'dnsimple'
 require_relative '../../libraries/provider_dnsimple_record'
 require_relative '../../libraries/resource_dnsimple_record'
 
@@ -24,15 +25,15 @@ describe Chef::Provider::DnsimpleRecord do
       @new_resource.content = dns_record[:content]
       @new_resource.domain = dns_record[:domain]
       allow(@provider).to receive(:dnsimple_gem_require).and_return(true)
-      allow(zones).to receive(:create_record)
     end
 
-    let(:client) { double('client', identity: identity, zones: zones) }
-    let(:identity) { double('identity', whoami: response) }
-    let(:response) { double('response', data: data) }
-    let(:data) { double('data', account: account) }
-    let(:account) { double('account', id: 1) }
-    let(:zones) { double('zones') }
+    let(:client) { instance_double(Dnsimple::Client, identity: identity, zones: zones) }
+    let(:identity) { instance_double(Dnsimple::Client::Identity, whoami: response) }
+    let(:response) { instance_double(Dnsimple::Response, data: data) }
+    let(:data) { instance_double(Dnsimple::Struct::Whoami, account: account) }
+    let(:account) { instance_double(Dnsimple::Struct::Account, id: 1) }
+    let(:zones) { instance_double(Dnsimple::Client::ZonesService, create_record: zone_record) }
+    let(:zone_record) { instance_double(Dnsimple::Struct::ZoneRecord) }
     let(:dns_record) do
       {
         name: 'test_record',
