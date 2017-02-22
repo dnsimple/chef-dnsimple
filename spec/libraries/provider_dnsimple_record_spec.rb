@@ -62,7 +62,7 @@ describe Chef::Provider::DnsimpleRecord do
         double('response', code: '405', message: 'Method Not Allowed')
       end
 
-      it 'returns record object if record name matches' do
+      it 'raises exception which fails the chef run' do
         expect { @provider.create_record }.to \
           raise_exception(RuntimeError,
                           'Unable to complete create record request. Error: 405 Method Not Allowed')
