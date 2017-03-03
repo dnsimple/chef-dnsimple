@@ -1,6 +1,7 @@
-dnsimple_record 'name' do
+dnsimple_record 'arecord' do
   type 'A'
-  content '1.1.1.1'
-  domain 'example.com'
-  access_token 'ABC123'
+  content '1.2.3.4'
+  ttl 3600
+  domain 'dnsimple.net'
+  access_token node['dnsimple']['access_token']
 end
