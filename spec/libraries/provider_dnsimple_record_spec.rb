@@ -48,6 +48,10 @@ describe Chef::Provider::DnsimpleRecord do
       expect(@provider.create_record.name).to eq('example_record')
     end
 
+    it 'raises because it should' do
+      expect { @provider.action_create }.to_not raise_exception
+    end
+
     context 'when it fails validation' do
       before do
         allow(zones).to receive(:create_record)
