@@ -4,4 +4,5 @@ dnsimple_record 'arecord' do
   ttl 3600
   domain 'dnsimple.net'
   access_token node['dnsimple']['access_token']
+  base_url node['dnsimple']['base_url']
 end

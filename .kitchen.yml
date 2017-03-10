@@ -26,3 +26,4 @@ suites:
     attributes:
       dnsimple:
         access_token: <%= ENV['DNSIMPLE_ACCESS_TOKEN'] %>
+        base_url: https://api.sandbox.dnsimple.com
