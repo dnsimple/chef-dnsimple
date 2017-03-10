@@ -23,6 +23,16 @@ class Chef
     class DnsimpleRecord < DnsimpleProvider
       use_inline_resources
 
+      provides :dnsimple_record
+
+      def load_current_resource
+        @current_resource = Chef::Resource::DnsimpleRecord.new(@new_resource.name)
+        @current_resource.name(@new_resource.name)
+        @current_resource.domain(@new_resource.domain)
+
+        @current_resource.exists = check_for_record
+      end
+
       action :create do
         create_record
       end
@@ -34,8 +44,40 @@ class Chef
           content: new_resource.content, ttl: new_resource.ttl,
           priority: new_resource.priority, regions: new_resource.regions
         )
+        new_resource.updated_by_last_action(true)
+        Chef::Log.info "DNSimple: created #{new_resource.type} record for #{new_resource.name}.#{new_resource.domain}"
       rescue Dnsimple::RequestError => e
         raise "Unable to complete create record request. Error: #{e.message}"
+      end
+
+      def check_for_record
+        found_content = []
+        all_records_in_zone do |r|
+          if (r.name == new_resource.name) && (r.type == new_resource.type) && (r.ttl == new_resource.ttl)
+            found_content << r.value
+          end
+        end
+        new_content = Array(new_resource.content)
+        changes = found_content - new_content
+        existing_records(found_content, changes)
+      end
+
+      def existing_records(found_content, changes)
+        if found_content.empty?
+          :none
+        elsif changes.empty?
+          :same
+        else
+          :different
+        end
+      end
+
+      def all_records_in_zone
+        records = dnsimple_client.zones.all_records(dnsimple_client_account_id, new_resource.domain)
+
+        records.data.each do |r|
+          yield r if block_given?
+        end
       end
     end
   end

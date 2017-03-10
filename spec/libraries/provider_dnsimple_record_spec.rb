@@ -32,7 +32,8 @@ describe Chef::Provider::DnsimpleRecord do
     let(:response) { instance_double(Dnsimple::Response, data: data) }
     let(:data) { instance_double(Dnsimple::Struct::Whoami, account: account) }
     let(:account) { instance_double(Dnsimple::Struct::Account, id: 1) }
-    let(:zones) { instance_double(Dnsimple::Client::ZonesService, create_record: zone_record) }
+    let(:zones) { instance_double(Dnsimple::Client::ZonesService, all_records: zone_records, create_record: zone_record) }
+    let(:zone_records) { instance_double(Dnsimple::CollectionResponse, data: [zone_record]) }
     let(:zone_record) { instance_double(Dnsimple::Struct::ZoneRecord, name: 'example_record') }
     let(:dns_record) do
       {
@@ -44,12 +45,13 @@ describe Chef::Provider::DnsimpleRecord do
       }
     end
 
-    it 'returns record object if record name matches' do
-      expect(@provider.create_record.name).to eq('example_record')
+    it 'updates the resource if the record does not exist' do
+      @provider.run_action(:create)
+      expect(@provider).to be_updated
     end
 
-    it 'raises because it should' do
-      expect { @provider.action_create }.to_not raise_exception
+    it 'implements the load_current_resource interface' do
+      expect { @provider.load_current_resource }.to_not raise_exception
     end
 
     context 'when it fails validation' do
