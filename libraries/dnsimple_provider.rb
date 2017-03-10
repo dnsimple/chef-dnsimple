@@ -51,7 +51,8 @@ class Chef
       def dnsimple_client
         dnsimple_gem_require
         @dnsimple_client ||= Dnsimple::Client.new(
-          access_token: new_resource.access_token
+          access_token: new_resource.access_token,
+          base_uri: new_resource.base_uri
         )
       end
     end
