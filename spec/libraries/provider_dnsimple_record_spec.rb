@@ -47,7 +47,7 @@ describe Chef::Provider::DnsimpleRecord do
 
     it 'updates the resource if the record does not exist' do
       @provider.run_action(:create)
-      expect(@provider).to be_updated
+      expect(@new_resource).to be_updated
     end
 
     it 'implements the load_current_resource interface' do
