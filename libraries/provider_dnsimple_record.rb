@@ -34,7 +34,12 @@ class Chef
       end
 
       action :create do
-        create_record
+        case @current_resource.exists
+        when :same
+          Chef::Log.info "#{@new_resource} already exists - nothing to do."
+        when :none
+          create_record
+        end
       end
 
       def create_record
