@@ -11,6 +11,7 @@ addons:
 env:
   global:
   - KITCHEN_LOCAL_YAML=.kitchen.docker.yml
+  - secure: H7UrGDNY0qHGqbRJ3jv565ZQtk15i7sFi4p0Z0pUatDCGBA3oUyEudB+KtqqCffZM3IrL0NWQoQ6F7M24I2dMuqbByauJpjvmJ0JZizGuMpDHsnV+gXDPQGq0lbaiaxJLPPUHVPs/+/dogwTBtNSZyw0KzrhLr6CK8iuAUZY+n8=
 
 install: echo "skip bundle install"
 
