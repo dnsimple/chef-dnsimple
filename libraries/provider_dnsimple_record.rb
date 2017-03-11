@@ -41,7 +41,7 @@ class Chef
         record_options = {
           name: new_resource.record_name, type: new_resource.type,
           content: new_resource.content, ttl: new_resource.ttl,
-          priority: new_resource.priority,
+          priority: new_resource.priority
         }
         record_options.merge(regions: new_resource.regions) if new_resource.regions
         dnsimple_client.zones.create_record(
