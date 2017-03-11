@@ -41,11 +41,9 @@ class Chef
       end
 
       def install_dnsimple_gem(gem_version)
-        chef_gem 'dnsimple' do
+        declare_resource(:chef_gem, 'dnsimple') do
           version gem_version || dnsimple_gem_version
-          compile_time true
-          action :install
-        end
+        end.run_action(:install)
       end
 
       def dnsimple_client
