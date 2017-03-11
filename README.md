@@ -44,13 +44,17 @@ SPF, URL, TXT, NS, SRV, NAPTR, PTR, AAA, SSHFP, or HFINO.
     | *content*    | String/Array content of records    | true     |           |
     | *ttl*        | Time to live                       |          | 3600      |
     | *priority*   | Priorty of record                  |          |           |
+    | *regions*    | Specific regions for this record   |          |           |
     | *token*      | DNSimple API token                 |          |           |
-    | *test*       | Unused at this time                | false    |           |
 
 **Note**: If you do not provide the name parameter, it will be assumed from the
 resource name, which cannot be blank. If you want to create multiple record
 types on the apex then you need to name each resource separately, but keep the
 name an empty string.
+
+**Regional Records**: Only certain plan types have regional records so it is
+blank by default. If you do not have this feature available it will return
+an error.
 
 ### Examples
 
@@ -82,6 +86,16 @@ those attributes directly if you want to use other domains or access contexts.
       content  ['1.1.1.1', '2.2.2.2']
       type     'A'
       domain   'example.com'
+      access_token chef_vault_item('secrets', 'dnsimple_token')
+      action   :create
+    end
+
+    dnsimple_record "create a A record in Tokyo only" do
+      name     'myserverinjapan'
+      content  '2.2.2.2'
+      type     'A'
+      domain   'example.com'
+      regions  ['tko']
       access_token chef_vault_item('secrets', 'dnsimple_token')
       action   :create
     end

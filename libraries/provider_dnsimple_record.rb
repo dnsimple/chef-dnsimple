@@ -38,11 +38,14 @@ class Chef
       end
 
       def create_record
-        dnsimple_client.zones.create_record(
-          dnsimple_client_account_id, new_resource.domain,
+        record_options = {
           name: new_resource.record_name, type: new_resource.type,
           content: new_resource.content, ttl: new_resource.ttl,
-          priority: new_resource.priority, regions: new_resource.regions
+          priority: new_resource.priority,
+        }
+        record_options.merge(regions: new_resource.regions) if new_resource.regions
+        dnsimple_client.zones.create_record(
+          dnsimple_client_account_id, new_resource.domain, **record_options
         )
         new_resource.updated_by_last_action(true)
         Chef::Log.info "DNSimple: created #{new_resource.type} record for #{new_resource.name}.#{new_resource.domain}"

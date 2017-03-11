@@ -32,7 +32,7 @@ class Chef
       property :content,       kind_of: [String, Array]
       property :ttl,           kind_of: Integer, default: 3600
       property :priority,      kind_of: Integer
-      property :regions,       kind_of: Array, default: ['global']
+      property :regions,       kind_of: [NilClass, Array], default: nil
     end
   end
 end
