@@ -57,7 +57,7 @@ class Chef
         found_content = []
         all_records_in_zone do |r|
           if (r.name == new_resource.name) && (r.type == new_resource.type) && (r.ttl == new_resource.ttl)
-            found_content << r.value
+            found_content << r.content
           end
         end
         new_content = Array(new_resource.content)
