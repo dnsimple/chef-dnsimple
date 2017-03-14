@@ -22,9 +22,6 @@ suites:
   - name: create_record
     run_list:
       - recipe[dnsimple_test::create_record]
-    verifier:
-      inspec_tests:
-        - test/smoke/create_record
     attributes:
       dnsimple:
         access_token: <%= ENV['DNSIMPLE_ACCESS_TOKEN'] %>
