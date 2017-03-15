@@ -17,8 +17,8 @@ class DnsimpleZone < Inspec.resource(1)
     @type = type
   end
 
-  def value
-    response.value if response.respond_to?(:value)
+  def content
+    response.content if response.respond_to?(:content)
   end
 
   def ttl
