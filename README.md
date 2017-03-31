@@ -1,19 +1,19 @@
 ## Description
 
-A Light-weight Resource Provider (LWRP) supporting
-automatic DNS configuration via DNSimple's API.
+A chef resource for automated DNS configuration via the [dnsimple][] API.
 
 [![Build Status](https://travis-ci.org/dnsimple/chef-dnsimple.png?branch=master)](https://travis-ci.org/dnsimple/chef-dnsimple)
 [![Build Status](https://jenkins-01.eastus.cloudapp.azure.com/job/dnsimple-cookbook/badge/icon)](https://jenkins-01.eastus.cloudapp.azure.com/job/dnsimple-cookbook/)
 
 ## Requirements
 
-* A DNSimple account at https://dnsimple.com
-* Chef 12 or newer
+* A [dnsimple][] account
+* An [account access token][] from said dnsimple account
+* Chef 12.8 or newer
 
 ## Attributes
 
-- `default["dnsimple"]["version"]`: The version of the DNSimple gem to install
+- None
 
 ## Resources/Providers
 
@@ -108,25 +108,7 @@ install the dnsimple gem and make the dnsimple\_record resource available.
 
 ## Testing
 
-To run the tests across all platforms, you want to grab the latest [ChefDK][]
-install [VirtualBox][], [Vagrant][], and the following gems into your ChefDK:
-
-* [stove][]
-* [dnsimple][dnsimple-gem]
-
-Then run `chef exec rake quick` for unit and style tests.
-
-Use `chef exec rake` for all unit, style, and kitchen tests. Before doing so,
-you need to sign up for a [Sandbox API account][sandbox] and generate an account
-access token. You'll want to define it as an env var for test kitchen under
-`DNSIMPLE_ACCESS_TOKEN`. So you can execute the command like this:
-
-`DNSIMPLE_ACCESS_TOKEN=mytoken chef exec kitchen test`
-
-You will also want to edit the `.kitchen.yml` file to adjust the `test_domain`
-attributes to test a domain you create under your sandbox account. In order to
-test regional records, you will want to upgrade the account plan to one that
-supports the regional records feature.
+See TESTING.md
 
 ## License and Authors
 
@@ -148,9 +130,10 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
+[dnsimple]: https://dnsimple.com/
+[account access token]: https://developer.dnsimple.com/v2/#account-tokens-vs-user-tokens
 [ChefDK]: https://downloads.chef.io/chef-dk/
 [VirtualBox]: https://www.virtualbox.org/wiki/Downloads
 [Vagrant]: https://www.vagrantup.com/downloads.html
 [stove]: https://rubygems.org/gems/stove
 [dnsimple-gem]: https://rubygems.org/gems/dnsimple
-[sandbox]: https://developer.dnsimple.com/sandbox/#testing-subscriptions
