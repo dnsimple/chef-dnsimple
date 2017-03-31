@@ -19,35 +19,8 @@ class Chef
         raise 'Authentication failed. Please check your access token'
       end
 
-      def dnsimple_gem_require
-        retried = false
-        begin
-          gem 'dnsimple', version: dnsimple_gem_version
-          require 'dnsimple'
-          Chef::Log.debug("Node had dnsimple #{dnsimple_gem_version} installed. No need to install the gem.")
-        rescue LoadError
-          Chef::Log.debug("Did not find dnsimple version #{dnsimple_gem_version} installed. Installing now.")
-
-          install_dnsimple_gem(dnsimple_gem_version)
-
-          raise if retried
-          retried = true
-          retry
-        end
-      end
-
-      def dnsimple_gem_version
-        node['dnsimple']['version']
-      end
-
-      def install_dnsimple_gem(gem_version)
-        declare_resource(:chef_gem, 'dnsimple') do
-          version gem_version || dnsimple_gem_version
-        end.run_action(:install)
-      end
-
       def dnsimple_client
-        dnsimple_gem_require
+        require 'dnsimple'
         @dnsimple_client ||= Dnsimple::Client.new(
           access_token: new_resource.access_token,
           base_url: new_resource.base_url

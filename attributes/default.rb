@@ -16,5 +16,3 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
-default['dnsimple']['version'] = '4.1.0' # Version of the DNSimple gem to use

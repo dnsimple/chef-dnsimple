@@ -8,7 +8,9 @@ issues_url       'https://github.com/dnsimple/chef-dnsimple/issues'
 source_url       'https://github.com/dnsimple/chef-dnsimple'
 version          '1.3.4'
 
-recipe   'dnsimple', 'Installs fog gem to use w/ the dnsimple_record'
+chef_version '>= 12.8'
+
+gem 'dnsimple'
 
 supports 'amazon'
 supports 'centos'
