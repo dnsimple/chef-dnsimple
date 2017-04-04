@@ -21,6 +21,7 @@ platforms:
 suites:
   - name: create_record
     run_list:
+      - recipe[dnsimple_test::reset_test_environment]
       - recipe[dnsimple_test::create_record]
     attributes:
       dnsimple:

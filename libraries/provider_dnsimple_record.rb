@@ -42,6 +42,22 @@ class Chef
         end
       end
 
+      action :delete do
+        if [:same, :different].include?(@current_resource.exists)
+          all_records_in_zone do |r|
+            if (r.name == new_resource.name) && (r.type == new_resource.type)
+              r.destroy
+              new_resource.updated_by_last_action(true)
+              Chef::Log.info "DNSimple: destroyed #{new_resource.type} record " \
+                "for #{new_resource.name}.#{new_resource.domain}"
+            end
+          end
+        else
+          Chef::Log.info "DNSimple: no record found #{new_resource.name}.#{new_resource.domain}" \
+            " with type #{new_resource.type}"
+        end
+      end
+
       def create_record
         record_options = {
           name: new_resource.record_name, type: new_resource.type,
