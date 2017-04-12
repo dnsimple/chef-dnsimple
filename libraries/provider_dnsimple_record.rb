@@ -46,7 +46,7 @@ class Chef
         if [:same, :different].include?(@current_resource.exists)
           all_records_in_zone do |r|
             if (r.name == new_resource.name) && (r.type == new_resource.type)
-              r.destroy
+              dnsimple_client.zones.delete_record(dnsimple_client_account_id, new_resource.domain, r.id)
               new_resource.updated_by_last_action(true)
               Chef::Log.info "DNSimple: destroyed #{new_resource.type} record " \
                 "for #{new_resource.name}.#{new_resource.domain}"
