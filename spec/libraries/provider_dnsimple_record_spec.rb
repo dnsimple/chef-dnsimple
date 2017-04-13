@@ -13,7 +13,6 @@ describe Chef::Provider::DnsimpleRecord do
     @new_resource = Chef::Resource::DnsimpleRecord.new('record_name')
     @current_resource = Chef::Resource::DnsimpleRecord.new('record_name')
     @provider = Chef::Provider::DnsimpleRecord.new(@new_resource, @run_context)
-    @provider.current_resource = @current_resource
   end
 
   describe '#create_record' do
@@ -24,6 +23,7 @@ describe Chef::Provider::DnsimpleRecord do
       @new_resource.type = dns_record[:type]
       @new_resource.content = dns_record[:content]
       @new_resource.domain = dns_record[:domain]
+      @provider.current_resource = @current_resource
     end
 
     let(:client) { instance_double(Dnsimple::Client, identity: identity, zones: zones) }
@@ -72,6 +72,44 @@ describe Chef::Provider::DnsimpleRecord do
           raise_exception(RuntimeError,
                           'Unable to complete create record request. Error: 405 Method Not Allowed')
       end
+    end
+  end
+
+  describe '#delete_record' do
+    before(:each) do
+      @new_resource.access_token('this_is_a_token')
+      @provider.dnsimple_client = client
+      @new_resource.record_name = dns_record[:name]
+      @new_resource.type = dns_record[:type]
+      @new_resource.content = dns_record[:content]
+      @new_resource.ttl = dns_record[:ttl]
+      @new_resource.domain = dns_record_domain
+      @provider.current_resource = @new_resource
+      allow(zones).to receive(:delete_record)
+    end
+
+    let(:client) { instance_double(Dnsimple::Client, identity: identity, zones: zones) }
+    let(:identity) { instance_double(Dnsimple::Client::Identity, whoami: response) }
+    let(:response) { instance_double(Dnsimple::Response, data: data) }
+    let(:data) { instance_double(Dnsimple::Struct::Whoami, account: account) }
+    let(:account) { instance_double(Dnsimple::Struct::Account, id: 1) }
+    let(:zones) { instance_double(Dnsimple::Client::ZonesService, all_records: zone_records, create_record: zone_record) }
+    let(:zone_records) { instance_double(Dnsimple::CollectionResponse, data: [zone_record]) }
+    let(:zone_record) { instance_double(Dnsimple::Struct::ZoneRecord, **dns_record) }
+    let(:dns_record_domain) { 'example.com' }
+    let(:dns_record) do
+      {
+        id: 1234,
+        name: 'test_record',
+        type: 'A',
+        content: '1.2.3.4',
+        ttl: 60,
+      }
+    end
+
+    it 'updates the resource if the record exists', focus: true do
+      @provider.run_action(:delete)
+      expect(@new_resource).to be_updated
     end
   end
 end

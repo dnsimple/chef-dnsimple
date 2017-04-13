@@ -45,11 +45,12 @@ class Chef
       action :delete do
         if [:same, :different].include?(@current_resource.exists)
           all_records_in_zone do |r|
-            if (r.name == new_resource.name) && (r.type == new_resource.type)
-              dnsimple_client.zones.delete_record(dnsimple_client_account_id, new_resource.domain, r.id)
-              new_resource.updated_by_last_action(true)
-              Chef::Log.info "DNSimple: destroyed #{new_resource.type} record " \
-                "for #{new_resource.name}.#{new_resource.domain}"
+            if (r.name == new_resource.record_name) && (r.type == new_resource.type)
+              converge_by("delete record #{r.id} from domain #{new_resource.domain}") do
+                dnsimple_client.zones.delete_record(dnsimple_client_account_id, new_resource.domain, r.id)
+                Chef::Log.info "DNSimple: destroyed #{new_resource.type} record " \
+                  "for #{new_resource.name}.#{new_resource.domain}"
+              end
             end
           end
         else
@@ -77,7 +78,7 @@ class Chef
       def check_for_record
         found_content = []
         all_records_in_zone do |r|
-          if (r.name == new_resource.name) && (r.type == new_resource.type) && (r.ttl == new_resource.ttl)
+          if (r.name == new_resource.record_name) && (r.type == new_resource.type) && (r.ttl == new_resource.ttl)
             found_content << r.content
           end
         end
