@@ -1,4 +1,5 @@
 dnsimple_record 'arecord_destroy' do
+  name 'arecord'
   type 'A'
   content '1.2.3.4'
   ttl 3600
