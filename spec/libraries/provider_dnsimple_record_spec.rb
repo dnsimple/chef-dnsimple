@@ -107,9 +107,22 @@ describe Chef::Provider::DnsimpleRecord do
       }
     end
 
-    it 'updates the resource if the record exists', focus: true do
-      @provider.run_action(:delete)
-      expect(@new_resource).to be_updated
+    context 'if the record exists' do
+      it 'updates the resource' do
+        @provider.run_action(:delete)
+        expect(@new_resource).to be_updated
+      end
+    end
+
+    context 'if the record does not exist' do
+      before(:each) do
+        @new_resource.record_name = 'not_this_record'
+      end
+
+      it 'does not update the resource' do
+        @provider.run_action(:delete)
+        expect(@new_resource).to_not be_updated
+      end
     end
   end
 end
