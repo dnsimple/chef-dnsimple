@@ -66,11 +66,12 @@ class Chef
           priority: new_resource.priority
         }
         record_options.merge(regions: new_resource.regions) if new_resource.regions
-        dnsimple_client.zones.create_record(
-          dnsimple_client_account_id, new_resource.domain, **record_options
-        )
-        new_resource.updated_by_last_action(true)
-        Chef::Log.info "DNSimple: created #{new_resource.type} record for #{new_resource.name}.#{new_resource.domain}"
+        converge_by("create record #{new_resource.record_name} for domain #{new_resource.domain}") do
+          dnsimple_client.zones.create_record(
+            dnsimple_client_account_id, new_resource.domain, **record_options
+          )
+          Chef::Log.info "DNSimple: created #{new_resource.type} record for #{new_resource.name}.#{new_resource.domain}"
+        end
       rescue Dnsimple::RequestError => e
         raise "Unable to complete create record request. Error: #{e.message}"
       end
