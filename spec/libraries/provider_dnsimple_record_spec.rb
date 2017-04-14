@@ -93,7 +93,7 @@ describe Chef::Provider::DnsimpleRecord do
     let(:response) { instance_double(Dnsimple::Response, data: data) }
     let(:data) { instance_double(Dnsimple::Struct::Whoami, account: account) }
     let(:account) { instance_double(Dnsimple::Struct::Account, id: 1) }
-    let(:zones) { instance_double(Dnsimple::Client::ZonesService, all_records: zone_records, create_record: zone_record) }
+    let(:zones) { instance_double(Dnsimple::Client::ZonesService, all_records: zone_records) }
     let(:zone_records) { instance_double(Dnsimple::CollectionResponse, data: [zone_record]) }
     let(:zone_record) { instance_double(Dnsimple::Struct::ZoneRecord, **dns_record) }
     let(:dns_record_domain) { 'example.com' }
