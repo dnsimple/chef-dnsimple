@@ -136,8 +136,3 @@ limitations under the License.
 
 [dnsimple]: https://dnsimple.com/
 [account access token]: https://developer.dnsimple.com/v2/#account-tokens-vs-user-tokens
-[ChefDK]: https://downloads.chef.io/chef-dk/
-[VirtualBox]: https://www.virtualbox.org/wiki/Downloads
-[Vagrant]: https://www.vagrantup.com/downloads.html
-[stove]: https://rubygems.org/gems/stove
-[dnsimple-gem]: https://rubygems.org/gems/dnsimple

@@ -20,4 +20,9 @@ attributes to test a domain you create under your sandbox account. In order to
 test regional records, you will want to upgrade the account plan to one that
 supports the regional records feature.
 
+[ChefDK]: https://downloads.chef.io/chef-dk/
+[VirtualBox]: https://www.virtualbox.org/wiki/Downloads
+[Vagrant]: https://www.vagrantup.com/downloads.html
 [sandbox]: https://developer.dnsimple.com/sandbox/#testing-subscriptions
+[stove]: https://rubygems.org/gems/stove
+[dnsimple-gem]: https://rubygems.org/gems/dnsimple
