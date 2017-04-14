@@ -155,6 +155,7 @@ describe Chef::Provider::DnsimpleRecord do
       @new_resource.record_name = dns_record[:name]
       @new_resource.type = dns_record[:type]
       @new_resource.content = dns_record[:content]
+      @new_resource.priority = dns_record[:priority]
       @new_resource.ttl = new_ttl
       @new_resource.domain = dns_record_domain
       @provider.current_resource = @current_resource
@@ -175,6 +176,7 @@ describe Chef::Provider::DnsimpleRecord do
         name: 'test_record',
         type: 'A',
         content: '1.2.3.4',
+        priority: 0,
         ttl: 60,
       }
     end
