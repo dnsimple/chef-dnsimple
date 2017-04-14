@@ -40,8 +40,8 @@ class DnsimpleZone < Inspec.resource(1)
 
     filter = {}
     filter = { type: @type } if @type
-    client.zones.records(account_id, @zone, filter: filter).data.select do |record|
+    client.zones.records(account_id, @zone, filter: filter).data.detect do |record|
       record.name == @name
-    end.first
+    end
   end
 end
