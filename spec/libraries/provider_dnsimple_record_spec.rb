@@ -124,5 +124,27 @@ describe Chef::Provider::DnsimpleRecord do
         expect(@new_resource).to_not be_updated
       end
     end
+
+    context 'when it fails validation' do
+      before do
+        allow(zones).to receive(:delete_record)
+          .and_raise(Dnsimple::RequestError, request_error)
+        allow(@provider).to receive(:existing_record_id).and_return(0)
+      end
+
+      let(:zones) { instance_double(Dnsimple::Client::ZonesService) }
+      let(:request_error) do
+        double('request_error', headers: '', response: request_error_response)
+      end
+      let(:request_error_response) do
+        double('response', code: '405', message: 'Method Not Allowed')
+      end
+
+      it 'raises exception which fails the chef run' do
+        expect { @provider.delete_record }.to \
+          raise_exception(RuntimeError,
+                          'Unable to complete create record request. Error: 405 Method Not Allowed')
+      end
+    end
   end
 end

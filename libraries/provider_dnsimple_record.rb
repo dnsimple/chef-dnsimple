@@ -72,10 +72,12 @@ class Chef
         converge_by("delete record #{@new_resource.record_name} from domain #{@new_resource.domain}") do
           dnsimple_client.zones.delete_record(dnsimple_client_account_id,
                                               @current_resource.domain,
-                                              @existing_record.id)
+                                              existing_record_id)
           Chef::Log.info "DNSimple: destroyed #{@new_resource.type} record " \
             "for #{@new_resource.name}.#{@new_resource.domain}"
         end
+      rescue Dnsimple::RequestError => e
+        raise "Unable to complete create record request. Error: #{e.message}"
       end
 
       def record_options
@@ -86,6 +88,10 @@ class Chef
         }
         options.merge(regions: new_resource.regions) if new_resource.regions
         options
+      end
+
+      def existing_record_id
+        @existing_record.id
       end
     end
   end
