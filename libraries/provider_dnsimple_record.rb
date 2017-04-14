@@ -50,13 +50,7 @@ class Chef
 
       action :delete do
         if @current_resource.exists
-          converge_by("delete record #{@new_resource.record_name} from domain #{@new_resource.domain}") do
-            dnsimple_client.zones.delete_record(dnsimple_client_account_id,
-                                                @current_resource.domain,
-                                                @existing_record.id)
-            Chef::Log.info "DNSimple: destroyed #{@new_resource.type} record " \
-              "for #{@new_resource.name}.#{@new_resource.domain}"
-          end
+          delete_record
         else
           Chef::Log.info "DNSimple: no record found #{new_resource.name}.#{new_resource.domain}" \
             " with type #{new_resource.type}"
@@ -64,12 +58,6 @@ class Chef
       end
 
       def create_record
-        record_options = {
-          name: new_resource.record_name, type: new_resource.type,
-          content: new_resource.content, ttl: new_resource.ttl,
-          priority: new_resource.priority
-        }
-        record_options.merge(regions: new_resource.regions) if new_resource.regions
         converge_by("create record #{new_resource.record_name} for domain #{new_resource.domain}") do
           dnsimple_client.zones.create_record(
             dnsimple_client_account_id, new_resource.domain, **record_options
@@ -80,34 +68,24 @@ class Chef
         raise "Unable to complete create record request. Error: #{e.message}"
       end
 
-      def check_for_record
-        found_content = []
-        all_records_in_zone do |r|
-          if (r.name == new_resource.record_name) && (r.type == new_resource.type) && (r.ttl == new_resource.ttl)
-            found_content << r.content
-          end
-        end
-        new_content = Array(new_resource.content)
-        changes = found_content - new_content
-        existing_records(found_content, changes)
-      end
-
-      def existing_records(found_content, changes)
-        if found_content.empty?
-          :none
-        elsif changes.empty?
-          :same
-        else
-          :different
+      def delete_record
+        converge_by("delete record #{@new_resource.record_name} from domain #{@new_resource.domain}") do
+          dnsimple_client.zones.delete_record(dnsimple_client_account_id,
+                                              @current_resource.domain,
+                                              @existing_record.id)
+          Chef::Log.info "DNSimple: destroyed #{@new_resource.type} record " \
+            "for #{@new_resource.name}.#{@new_resource.domain}"
         end
       end
 
-      def all_records_in_zone
-        records = dnsimple_client.zones.all_records(dnsimple_client_account_id, new_resource.domain)
-
-        records.data.each do |r|
-          yield r if block_given?
-        end
+      def record_options
+        options = {
+          name: new_resource.record_name, type: new_resource.type,
+          content: new_resource.content, ttl: new_resource.ttl,
+          priority: new_resource.priority
+        }
+        options.merge(regions: new_resource.regions) if new_resource.regions
+        options
       end
     end
   end
