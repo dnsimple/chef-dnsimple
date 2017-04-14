@@ -23,7 +23,7 @@ class Chef
     class DnsimpleRecord < DnsimpleResource
       resource_name :dnsimple_record
 
-      allowed_actions :create, :delete
+      allowed_actions :create, :delete, :update
       default_action :create
 
       property :record_name,   kind_of: String, name_property: true

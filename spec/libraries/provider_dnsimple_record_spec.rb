@@ -147,4 +147,54 @@ describe Chef::Provider::DnsimpleRecord do
       end
     end
   end
+
+  describe '#update_record' do
+    before(:each) do
+      @new_resource.access_token('this_is_a_token')
+      @provider.dnsimple_client = client
+      @new_resource.record_name = dns_record[:name]
+      @new_resource.type = dns_record[:type]
+      @new_resource.content = dns_record[:content]
+      @new_resource.ttl = new_ttl
+      @new_resource.domain = dns_record_domain
+      @provider.current_resource = @current_resource
+    end
+
+    let(:client) { instance_double(Dnsimple::Client, identity: identity, zones: zones) }
+    let(:identity) { instance_double(Dnsimple::Client::Identity, whoami: response) }
+    let(:response) { instance_double(Dnsimple::Response, data: data) }
+    let(:data) { instance_double(Dnsimple::Struct::Whoami, account: account) }
+    let(:account) { instance_double(Dnsimple::Struct::Account, id: 1) }
+    let(:zones) { instance_double(Dnsimple::Client::ZonesService, all_records: zone_records, update_record: zone_record) }
+    let(:zone_records) { instance_double(Dnsimple::CollectionResponse, data: [zone_record]) }
+    let(:zone_record) { instance_double(Dnsimple::Struct::ZoneRecord, **dns_record) }
+    let(:dns_record_domain) { 'example.com' }
+    let(:dns_record) do
+      {
+        id: 1234,
+        name: 'test_record',
+        type: 'A',
+        content: '1.2.3.4',
+        ttl: 60,
+      }
+    end
+
+    context 'if the resource exists' do
+      context 'and the properites are different' do
+        let(:new_ttl) { 120 }
+        it 'updates the resource' do
+          @provider.run_action(:update)
+          expect(@new_resource).to be_updated
+        end
+      end
+
+      context 'and the properites are the same' do
+        let(:new_ttl) { dns_record[:ttl] }
+        it 'does not update the resource' do
+          @provider.run_action(:update)
+          expect(@new_resource).to_not be_updated
+        end
+      end
+    end
+  end
 end

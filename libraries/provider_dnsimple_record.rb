@@ -57,6 +57,15 @@ class Chef
         end
       end
 
+      action :update do
+        if @current_resource.exists
+          update_record
+        else
+          Chef::Log.info "DNSimple: no record found #{new_resource.name}.#{new_resource.domain}" \
+            " with type #{new_resource.type}"
+        end
+      end
+
       def create_record
         converge_by("create record #{new_resource.record_name} for domain #{new_resource.domain}") do
           dnsimple_client.zones.create_record(
@@ -80,6 +89,17 @@ class Chef
         raise "Unable to complete create record request. Error: #{e.message}"
       end
 
+      def update_record
+        return unless changed_record?
+        converge_by("update record #{new_resource.record_name} for domain #{new_resource.domain}") do
+          dnsimple_client.zones.update_record(dnsimple_client_account_id,
+                                              new_resource.domain,
+                                              existing_record_id,
+                                              **record_options)
+          Chef::Log.info "DNSimple: updates #{new_resource.type} record for #{new_resource.name}.#{new_resource.domain}"
+        end
+      end
+
       def record_options
         options = {
           name: new_resource.record_name, type: new_resource.type,
@@ -88,6 +108,11 @@ class Chef
         }
         options.merge(regions: new_resource.regions) if new_resource.regions
         options
+      end
+
+      def changed_record?
+        (@existing_record.ttl != new_resource.ttl) ||
+          (@existing_record.content != new_resource.content)
       end
 
       def existing_record_id
