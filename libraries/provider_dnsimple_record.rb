@@ -29,29 +29,33 @@ class Chef
         @current_resource = Chef::Resource::DnsimpleRecord.new(@new_resource.name)
         @current_resource.name(@new_resource.name)
         @current_resource.domain(@new_resource.domain)
+        @current_resource.type(@new_resource.type)
 
-        @current_resource.exists = check_for_record
+        records = dnsimple_client.zones.all_records(dnsimple_client_account_id,
+                                                    @new_resource.domain)
+        @existing_record = records.data.detect do |record|
+          (record.name == @new_resource.record_name) && (record.type == @new_resource.type)
+        end
+
+        @current_resource.exists = !@existing_record.nil?
       end
 
       action :create do
-        case @current_resource.exists
-        when :same
+        if @current_resource.exists
           Chef::Log.info "#{@new_resource} already exists - nothing to do."
-        when :none
+        else
           create_record
         end
       end
 
       action :delete do
-        if [:same, :different].include?(@current_resource.exists)
-          all_records_in_zone do |r|
-            if (r.name == new_resource.record_name) && (r.type == new_resource.type)
-              converge_by("delete record #{r.id} from domain #{new_resource.domain}") do
-                dnsimple_client.zones.delete_record(dnsimple_client_account_id, new_resource.domain, r.id)
-                Chef::Log.info "DNSimple: destroyed #{new_resource.type} record " \
-                  "for #{new_resource.name}.#{new_resource.domain}"
-              end
-            end
+        if @current_resource.exists
+          converge_by("delete record #{@new_resource.record_name} from domain #{@new_resource.domain}") do
+            dnsimple_client.zones.delete_record(dnsimple_client_account_id,
+                                                @current_resource.domain,
+                                                @existing_record.id)
+            Chef::Log.info "DNSimple: destroyed #{@new_resource.type} record " \
+              "for #{@new_resource.name}.#{@new_resource.domain}"
           end
         else
           Chef::Log.info "DNSimple: no record found #{new_resource.name}.#{new_resource.domain}" \
