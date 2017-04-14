@@ -110,6 +110,10 @@ install the dnsimple gem and make the dnsimple\_record resource available.
 
 See TESTING.md
 
+## Contributing
+
+See CONTRIBUTING.md
+
 ## License and Authors
 
 * Author:: [Aaron Kalin](https://github.com/martinisoft)
