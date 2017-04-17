@@ -20,15 +20,16 @@ A chef resource for automated DNS configuration via the [dnsimple][] API.
 dnsimple\_record
 ----------------
 
-Manage a DNS resource record through the DNSimple API. This resource uses
-the [dnsimple Ruby library](https://rubygems.org/gems/dnsimple) to connect and
-use the DNSimple API.
+Manage a DNS record through the dnsimple API. This resource uses the
+[dnsimple Ruby library](https://rubygems.org/gems/dnsimple) to connect and use
+the dnsimple API.
 
 ### Actions:
 
     | Action    | Description          | Default |
     |-----------|----------------------|---------|
     | *create*  | Create the record.   | Yes     |
+    | *update*  | Update the record.   |         |
     | *destroy* | Destroy the record.  |         |
 
 ### Parameter Attributes:
@@ -90,7 +91,9 @@ those attributes directly if you want to use other domains or access contexts.
       action   :create
     end
 
-    dnsimple_record "create a A record in Tokyo only" do
+    # Note: This only works with certain accounts, see the note above for
+    # regional records! The Chef run will fail otherwise.
+    dnsimple_record "create an A record in Tokyo only" do
       name     'myserverinjapan'
       content  '2.2.2.2'
       type     'A'
