@@ -113,7 +113,8 @@ class Chef
       def changed_record?
         (@existing_record.ttl != new_resource.ttl) ||
           (@existing_record.content != new_resource.content) ||
-          (@existing_record.priority != new_resource.priority)
+          (@existing_record.priority != new_resource.priority) ||
+          ((@existing_record.regions != new_resource.regions) if new_resource.regions)
       end
 
       def existing_record_id
