@@ -10,7 +10,7 @@ version          '1.3.4'
 
 chef_version '>= 12.8'
 
-gem 'dnsimple'
+gem 'dnsimple', '>= 4.0'
 
 %w(amazon centos debian fedora redhat rhel ubuntu).each do |os|
   supports os
