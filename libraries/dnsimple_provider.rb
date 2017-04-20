@@ -23,7 +23,8 @@ class Chef
         require 'dnsimple'
         @dnsimple_client ||= Dnsimple::Client.new(
           access_token: new_resource.access_token,
-          base_url: new_resource.base_url
+          base_url: new_resource.base_url,
+          user_agent: "chef-dnsimple #{run_context.cookbook_collection.dnsimple.version}"
         )
       end
     end
