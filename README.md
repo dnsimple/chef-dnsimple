@@ -5,6 +5,10 @@ A chef resource for automated DNS configuration via the [dnsimple](https://dnsim
 [![Build Status](https://travis-ci.org/dnsimple/chef-dnsimple.png?branch=master)](https://travis-ci.org/dnsimple/chef-dnsimple)
 [![Build Status](https://jenkins-01.eastus.cloudapp.azure.com/job/dnsimple-cookbook/badge/icon)](https://jenkins-01.eastus.cloudapp.azure.com/job/dnsimple-cookbook/)
 
+## DEPRECATION WARNING
+
+If you used the 1.x series of this cookbook please carefully review your usage of the resource and create a new account access token. The access token you used previously _will not work_ with this version of the cookbook. You will also not need a username and password for this version either. Please refer to the examples below for more details, but the majority of the changes are around authentication.
+
 ## Requirements
 
 * A [dnsimple](https://dnsimple.com/) account
