@@ -11,7 +11,7 @@ verifier:
   name: inspec
   attributes:
     dnsimple_token: <%= ENV['DNSIMPLE_ACCESS_TOKEN'] %>
-    test_domain: dnsimple.net
+    test_domain: dnsimple.xyz
 
 platforms:
   - name: ubuntu-14.04
