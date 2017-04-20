@@ -1,14 +1,14 @@
 ## Description
 
-A chef resource for automated DNS configuration via the [dnsimple][] API.
+A chef resource for automated DNS configuration via the [dnsimple](https://dnsimple.com/) API.
 
 [![Build Status](https://travis-ci.org/dnsimple/chef-dnsimple.png?branch=master)](https://travis-ci.org/dnsimple/chef-dnsimple)
 [![Build Status](https://jenkins-01.eastus.cloudapp.azure.com/job/dnsimple-cookbook/badge/icon)](https://jenkins-01.eastus.cloudapp.azure.com/job/dnsimple-cookbook/)
 
 ## Requirements
 
-* A [dnsimple][] account
-* An [account access token][] from said dnsimple account
+* A [dnsimple](https://dnsimple.com/) account
+* An [account access token](https://developer.dnsimple.com/v2/#account-tokens-vs-user-tokens) from said dnsimple account
 * Chef 12.8 or newer
 
 ## Attributes
@@ -136,6 +136,3 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-
-[dnsimple]: https://dnsimple.com/
-[account access token]: https://developer.dnsimple.com/v2/#account-tokens-vs-user-tokens
