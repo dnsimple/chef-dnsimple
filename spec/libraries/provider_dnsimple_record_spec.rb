@@ -68,7 +68,7 @@ describe Chef::Provider::DnsimpleRecord do
       it 'raises exception which fails the chef run' do
         expect { @provider.create_record }.to \
           raise_exception(RuntimeError,
-                          'Unable to complete create record request. Error: 405 Method Not Allowed')
+                          'DNSimple: Unable to complete create record request. Error: 405 Method Not Allowed')
       end
     end
   end
@@ -141,7 +141,7 @@ describe Chef::Provider::DnsimpleRecord do
       it 'raises exception which fails the chef run' do
         expect { @provider.delete_record }.to \
           raise_exception(RuntimeError,
-                          'Unable to complete create record request. Error: 405 Method Not Allowed')
+                          'DNSimple: Unable to complete create record request. Error: 405 Method Not Allowed')
       end
     end
   end

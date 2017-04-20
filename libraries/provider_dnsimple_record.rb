@@ -42,7 +42,7 @@ class Chef
 
       action :create do
         if @current_resource.exists
-          Chef::Log.info "#{@new_resource} already exists - nothing to do."
+          Chef::Log.info "DNSimple: #{@new_resource} already exists - nothing to do."
         else
           create_record
         end
@@ -74,7 +74,7 @@ class Chef
           Chef::Log.info "DNSimple: created #{new_resource.type} record for #{new_resource.name}.#{new_resource.domain}"
         end
       rescue Dnsimple::RequestError => e
-        raise "Unable to complete create record request. Error: #{e.message}"
+        raise "DNSimple: Unable to complete create record request. Error: #{e.message}"
       end
 
       def delete_record
@@ -86,7 +86,7 @@ class Chef
             "for #{@new_resource.name}.#{@new_resource.domain}"
         end
       rescue Dnsimple::RequestError => e
-        raise "Unable to complete create record request. Error: #{e.message}"
+        raise "DNSimple: Unable to complete create record request. Error: #{e.message}"
       end
 
       def update_record
@@ -96,7 +96,7 @@ class Chef
                                               new_resource.domain,
                                               existing_record_id,
                                               **record_options)
-          Chef::Log.info "DNSimple: updates #{new_resource.type} record for #{new_resource.name}.#{new_resource.domain}"
+          Chef::Log.info "DNSimple: updated #{new_resource.type} record for #{new_resource.name}.#{new_resource.domain}"
         end
       end
 
