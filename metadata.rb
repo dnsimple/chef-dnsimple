@@ -12,10 +12,6 @@ chef_version '>= 12.8'
 
 gem 'dnsimple'
 
-supports 'amazon'
-supports 'centos'
-supports 'debian'
-supports 'fedora'
-supports 'redhat'
-supports 'rhel'
-supports 'ubuntu'
+%w(amazon centos debian fedora redhat rhel ubuntu).each do |os|
+  supports os
+end
