@@ -11,18 +11,19 @@ addons:
 env:
   global:
   - KITCHEN_LOCAL_YAML=.kitchen.docker.yml
+  - secure: IfD/3A3IPxozFCSTlI5q6PIr1D78WupjhZVU5RlvDRsuajZuhCJHYHQvD1SI0cLAE+MG3XPhg8BXbPDtHGPCpNKybEFhWlRU9tghTxpzijMBvImBVPNzo8otn8ywvpw1XSFHKd79dFj1SRZqWbEFW4G/JFHarxl9svggyrfMTx8=
 
 install: echo "skip bundle install"
 
 before_script:
 - eval "$(/opt/chefdk/bin/chef shell-init bash)"
 - chef gem install kitchen-docker
-- chef gem install chefstyle
 - chef gem install stove
+- chef gem install dnsimple
 
 script: chef exec rake
 
 notifications:
+  email: false
   slack:
-    email: false
     secure: S/tClOuaGnhxdCkyc3WT0kWy9fP4a9dI7Ha0Pk0sjC0Fy1+0V/AShxwfgzJdGlzvbsRlCXmkE8W4BEQmZ0HjiPZgrvOx9mxv1krbBaO+eZDiSJIv2NgkgbwcxfraD+V3s4Mo8q3/FtS27diBOOUip4xqETsAIx0X86ZjHcb21ew=

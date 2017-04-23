@@ -1,7 +1,7 @@
+require 'cookstyle'
 require 'foodcritic'
 require 'kitchen'
 require 'rspec/core/rake_task'
-require 'cookstyle'
 require 'rubocop/rake_task'
 require 'stove/rake_task'
 
@@ -15,7 +15,7 @@ namespace :style do
   desc 'Run Chef style checks'
   FoodCritic::Rake::LintTask.new(:foodcritic) do |t|
     t.options = {
-      fail_tags: ['any']
+      fail_tags: ['any'],
     }
   end
 end

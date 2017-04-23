@@ -1,0 +1,10 @@
+name: create_record
+title: Create Zone Record Test
+maintainer: Aetrion, LLC dba DNSimple
+copyright: Aetrion, LLC dba DNSimple
+copyright_email: ops@dnsimple.com
+license: Apache 2 license
+summary: Confirms the test cookbook to create a record actually does so via the sandbox API
+version: 1.0.0
+supports:
+  - os-family: linux

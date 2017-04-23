@@ -4,24 +4,38 @@ driver:
 
 provisioner:
   name: chef_zero
+  require_chef_omnibus: 12
+  always_update_cookbooks: <%= !ENV['CI'] %>
+
+verifier:
+  name: inspec
+  attributes:
+    dnsimple_token: <%= ENV['DNSIMPLE_ACCESS_TOKEN'] %>
+    test_domain: dnsimple.xyz
 
 platforms:
   - name: ubuntu-14.04
-    run_list: apt::default
-    attributes:
-      apt:
-        compile_time_update: true
-  - name: ubuntu-12.04
-    run_list: apt::default
-    attributes:
-      apt:
-        compile_time_update: true
-  - name: centos-6.7
+  - name: ubuntu-16.04
+  - name: centos-6.8
+  - name: centos-7.3
+  - name: freebsd-11.0
 
 suites:
-  - name: chef12
-    provisioner:
-      require_chef_omnibus: 12
+  - name: create_record
     run_list:
-      - recipe[dnsimple::default]
+      - recipe[dnsimple_test::reset_test_environment]
+      - recipe[dnsimple_test::create_record]
     attributes:
+      dnsimple:
+        access_token: <%= ENV['DNSIMPLE_ACCESS_TOKEN'] %>
+        base_url: https://api.sandbox.dnsimple.com
+        test_domain: dnsimple.xyz
+  - name: update_record
+    run_list:
+      - recipe[dnsimple_test::reset_test_environment]
+      - recipe[dnsimple_test::update_record]
+    attributes:
+      dnsimple:
+        access_token: <%= ENV['DNSIMPLE_ACCESS_TOKEN'] %>
+        base_url: https://api.sandbox.dnsimple.com
+        test_domain: dnsimple.xyz
