@@ -26,7 +26,8 @@ dnsimple\_record
 
 Manage a DNS record through the dnsimple API. This resource uses the
 [dnsimple Ruby library](https://rubygems.org/gems/dnsimple) to connect and use
-the dnsimple API.
+the dnsimple API. This resource also exposes a ChefSpec matcher for you to do
+unit testing as well.
 
 ### Actions:
 
@@ -63,13 +64,14 @@ an error.
 
 ### Examples
 
-Note that these examples assume you have the username, domain, and token
-attributes set as they are implied in these examples. You can always specify
-those attributes directly if you want to use other domains or access contexts.
+Note that these examples assume you have obtained an account level access token
+which is documented above (see Requirements). We're also assuming you're securely
+storing your API keys in [Chef Vault](https://docs.chef.io/chef_vault.html) but
+it is not a requirement.
 
 ```ruby
     dnsimple_record 'fooserver' do
-      zone 'foo.com'
+      domain 'foo.com'
       type 'A'
       content '1.2.3.4'
       ttl 3600
