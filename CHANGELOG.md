@@ -1,101 +1,100 @@
-# 1.3.4 / 2016-09-30
+# Change Log
 
-## Bug Fixes
+## [v2.0.0](https://github.com/dnsimple/chef-dnsimple/tree/v2.0.0) (2017-04-24)
+[Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/v1.3.4...v2.0.0)
 
-* Replaced fog gem with a more specific fog-dnsimple gem. The API was extracted
-  from the fog-core to simplify the base fog gem. What does this mean for you?
-  There is no fog binary to use and the install is much smaller and faster than
-  before, but with the same API signatures so this is a simple patch versus a
-  breaking change release.
+**Fixed bugs:**
 
-# 1.3.3 / 2016-06-27
+- Force apt in the run list for ubuntu platforms [\#41](https://github.com/dnsimple/chef-dnsimple/pull/41) ([martinisoft](https://github.com/martinisoft))
 
-## Bug fixes
-* fixed suite names in kitchen
+**Closed issues:**
 
-## Enhancement
-* update testing documentation
-* add kitchen into travis
+- Chef 11 needs compat resources [\#45](https://github.com/dnsimple/chef-dnsimple/issues/45)
 
-# 1.3.2 / 2016-06-24
+**Merged pull requests:**
 
-## Enhancement
-* use cookstyle instead of chefstyle
-* change library to use a class instance var instead of a class var
+- Replace fog with dnsimple and rewrite to Chef 12.5+ resource [\#46](https://github.com/dnsimple/chef-dnsimple/pull/46) ([martinisoft](https://github.com/martinisoft))
+- It seems that Chef 11 and Compat resources no go [\#44](https://github.com/dnsimple/chef-dnsimple/pull/44) ([jjasghar](https://github.com/jjasghar))
+- Update README.md [\#43](https://github.com/dnsimple/chef-dnsimple/pull/43) ([jjasghar](https://github.com/jjasghar))
 
-# 1.3.1 / 2016-06-10
+## [v1.3.4](https://github.com/dnsimple/chef-dnsimple/tree/v1.3.4) (2016-09-30)
+[Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/v1.3.3...v1.3.4)
 
-## Bug Fixes
+**Merged pull requests:**
 
-* Clarified the API Token portion of the README because of the upcoming API v2
-  changes which have created both User and API tokens.
+- Swap fog gem for fog-dnsimple [\#42](https://github.com/dnsimple/chef-dnsimple/pull/42) ([martinisoft](https://github.com/martinisoft))
 
-# 1.3.0 / 2016-06-10
+## [v1.3.3](https://github.com/dnsimple/chef-dnsimple/tree/v1.3.3) (2016-06-27)
+[Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/v1.3.2...v1.3.3)
 
-## Enhancement
+**Fixed bugs:**
 
-* Add support for API tokens which are the preferred API authentication method
-  per the developer documentation. You must use domain tokens and not account
-  based tokens. Support for both will be in the 2.x series of this cookbook.
+- getchef.com isn't our site anymore [\#37](https://github.com/dnsimple/chef-dnsimple/pull/37) ([jjasghar](https://github.com/jjasghar))
 
-## Deprecations
+**Merged pull requests:**
 
-* You will get a warning now when using the username/password authentcation
-  method with the LWRP as it will no longer be supported in the future release.
-  If you have two-factor authentication enabled on your account, this method
-  will not work either (which is also why it's going away).
+- Update Travis-CI builds to use Integration [\#40](https://github.com/dnsimple/chef-dnsimple/pull/40) ([martinisoft](https://github.com/martinisoft))
+- Fix test suite names for kitchen [\#39](https://github.com/dnsimple/chef-dnsimple/pull/39) ([onlyhavecans](https://github.com/onlyhavecans))
+- Remove 16.04 due to bento issues. Update Documents [\#38](https://github.com/dnsimple/chef-dnsimple/pull/38) ([onlyhavecans](https://github.com/onlyhavecans))
 
-# 1.2.0 / 2016-06-09
+## [v1.3.2](https://github.com/dnsimple/chef-dnsimple/tree/v1.3.2) (2016-06-24)
+[Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/v1.3.1...v1.3.2)
 
-This will be the last non-bugfix version to use the fog gem and the v1 API.
+**Merged pull requests:**
 
-## Bug Fixes
+- Move to cookstyle over chefstyle [\#36](https://github.com/dnsimple/chef-dnsimple/pull/36) ([onlyhavecans](https://github.com/onlyhavecans))
 
-* Nokogiri now bundles libxml2 and libxslt making life somewhat easier for us
-  and simplifying the default recipe, which was broken at the time. We've
-  removed the dependency package installs with exception of zlibg1 for debian
-  family platforms.
-* Change chef_gem resource usage to not break in chef 12 or chef 11
+## [v1.3.1](https://github.com/dnsimple/chef-dnsimple/tree/v1.3.1) (2016-06-10)
+[Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/v1.3.0...v1.3.1)
 
-## Test suite
+**Merged pull requests:**
 
-* Resolved all foodcritic warnings with the newest foodcritic
-* Resolved the chefspec and compile\_time warnings
-* change to chefstyle
-* Clean up and simplify tests with rake
-* fix up travis tests
+- Update documentation with a correction for the token usage [\#35](https://github.com/dnsimple/chef-dnsimple/pull/35) ([martinisoft](https://github.com/martinisoft))
 
-# 1.1.0 / 2015-03-06
+## [v1.3.0](https://github.com/dnsimple/chef-dnsimple/tree/v1.3.0) (2016-06-10)
+[Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/v1.2.0...v1.3.0)
 
-## Breaking Changes
+**Fixed bugs:**
 
-* Changed fog version number to nil, which causes it to install the latest
-  version. This _will_ cause a conflict with Chef 12.1.0 and is currently
-  a known issue. If you are going to set a version, then it is suggested
-  to use _at least_ 1.20.0, which contains the updated api endpoint.
+- DNSimple API authentication [\#24](https://github.com/dnsimple/chef-dnsimple/issues/24)
 
-## Enhancements
+**Merged pull requests:**
 
-* Added support for multiple content values in a record via arrays
-  ([#20][] by [@josacar][])
-## Bug Fixes
+- Support api tokens [\#33](https://github.com/dnsimple/chef-dnsimple/pull/33) ([martinisoft](https://github.com/martinisoft))
 
-* Use latest Fog gem release, not the master git branch.
-* Unpinned build-essential to resolve version constraint issues
-  ([#22][] by [@martinb3][])
+## [v1.2.0](https://github.com/dnsimple/chef-dnsimple/tree/v1.2.0) (2016-06-10)
+**Fixed bugs:**
 
-## Testing
+- Fix ChefSpec Deprecation Warning [\#25](https://github.com/dnsimple/chef-dnsimple/issues/25)
+- centos-65 requires patch utility due to nokogiri, only build-essential ~\> 2.0.4 installs patch [\#21](https://github.com/dnsimple/chef-dnsimple/issues/21)
+- Fix converging in modern chef 11 and chef 12 [\#32](https://github.com/dnsimple/chef-dnsimple/pull/32) ([onlyhavecans](https://github.com/onlyhavecans))
+- Cleanup testing [\#31](https://github.com/dnsimple/chef-dnsimple/pull/31) ([martinisoft](https://github.com/martinisoft))
 
-* Updated and cleaned up test suite to be RSpec 3.0 compatible (truthy and falsy)
-* Upgraded to Berkshelf 3.0
-* Upgraded to ChefSpec 4.0 which officially makes this cookbook Chef 11.x or higher
-  compatible. Noted in the README.
+**Closed issues:**
 
-## Legal
+- Use Fog DNSimple API Auth [\#27](https://github.com/dnsimple/chef-dnsimple/issues/27)
+- Ubuntu 14.04 package requirement [\#23](https://github.com/dnsimple/chef-dnsimple/issues/23)
+- Should have option to gracefully handle existing A record for CNAME create [\#18](https://github.com/dnsimple/chef-dnsimple/issues/18)
+- Release a new version to Chef Community site [\#11](https://github.com/dnsimple/chef-dnsimple/issues/11)
+- Add Test Kitchen [\#10](https://github.com/dnsimple/chef-dnsimple/issues/10)
+- Cookbook removes undesired records [\#9](https://github.com/dnsimple/chef-dnsimple/issues/9)
+- Should depend on 'build-essential' [\#7](https://github.com/dnsimple/chef-dnsimple/issues/7)
+- LWRP should use load\_current\_resource [\#2](https://github.com/dnsimple/chef-dnsimple/issues/2)
 
-* Cleaned up and updated copyrights in the licensing notices
+**Merged pull requests:**
 
-[#22]: https://github.com/aetrion/chef-dnsimple/pull/22
-[#20]: https://github.com/aetrion/chef-dnsimple/pull/20
-[@martinb3]: https://github.com/martinb3
-[@josacar]: https://github.com/josacar
+- Update build status and metadata [\#30](https://github.com/dnsimple/chef-dnsimple/pull/30) ([martinisoft](https://github.com/martinisoft))
+- Unpin build-essential, blocks many popular cookbooks from use [\#22](https://github.com/dnsimple/chef-dnsimple/pull/22) ([martinb3](https://github.com/martinb3))
+- Support creating record with multiple content values [\#20](https://github.com/dnsimple/chef-dnsimple/pull/20) ([josacar](https://github.com/josacar))
+- Use load\_current\_resource in lwrp [\#15](https://github.com/dnsimple/chef-dnsimple/pull/15) ([josacar](https://github.com/josacar))
+- Integrate Test Kitchen [\#14](https://github.com/dnsimple/chef-dnsimple/pull/14) ([dje](https://github.com/dje))
+- Configure attributes for ohai to workaround empty node.platform\_family [\#13](https://github.com/dnsimple/chef-dnsimple/pull/13) ([josacar](https://github.com/josacar))
+- Avoid removing records with different type on create [\#12](https://github.com/dnsimple/chef-dnsimple/pull/12) ([josacar](https://github.com/josacar))
+- Build Essential Dependancy [\#8](https://github.com/dnsimple/chef-dnsimple/pull/8) ([ichilton](https://github.com/ichilton))
+- add platform support for rhel platforms and expand coverage for more debian platforms [\#6](https://github.com/dnsimple/chef-dnsimple/pull/6) ([mattkasa](https://github.com/mattkasa))
+- Fix missing pkg dependencies, update to chef\_gem; add name to metadata. [\#5](https://github.com/dnsimple/chef-dnsimple/pull/5) ([mdxp](https://github.com/mdxp))
+- Improvements to LWRP and Documentation [\#1](https://github.com/dnsimple/chef-dnsimple/pull/1) ([jtimberman](https://github.com/jtimberman))
+
+
+
+\* *This Change Log was automatically generated by [github_changelog_generator](https://github.com/skywinder/Github-Changelog-Generator)*
