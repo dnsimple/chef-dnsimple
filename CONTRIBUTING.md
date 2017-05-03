@@ -10,7 +10,7 @@ In case you get stuck, feel free to email our helpful support staff at support@d
 
 When submitting an issue, please check the Issues section of this repository on Github to make sure it has not already been reported. If it has been reported, then please contribute to the conversation on the issue and provide any additional information you can. If it has not been reported, please be as detailed as possible.
 
-If your issue is in regards to security, please refer to our [security page][https://dnsimple.com/security] on how to submit those more directly to us.
+If your issue is in regards to security, please refer to our [security page](https://dnsimple.com/security) on how to submit those more directly to us.
 
 ## Contribution process
 
