@@ -1,5 +1,12 @@
 # Change Log
 
+## [v2.0.1](https://github.com/dnsimple/chef-dnsimple/tree/v2.0.1) (2017-05-18)
+[Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/v2.0.0...v2.0.1)
+
+**Fixed bugs:**
+
+- Re-release 2.0.0 with updated Stove [\#47](https://github.com/dnsimple/chef-dnsimple/issues/47)
+
 ## [v2.0.0](https://github.com/dnsimple/chef-dnsimple/tree/v2.0.0) (2017-04-24)
 [Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/v1.3.4...v2.0.0)
 
