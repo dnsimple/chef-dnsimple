@@ -59,7 +59,18 @@ class Chef
 
       def install_certificate
         converge_by("install certificate #{current_resource.certificate_common_name} expiring #{current_resource.expires_on}") do
-          # Delegate to file resource
+          declare_resource(:file, "#{current_resource.name}/#{current_resource.domain}.crt") do
+            content "#{current_resource.server_pem}\n#{current_resource.chain_pem}"
+            mode current_resource.mode
+            owner current_resource.owner
+            group current_resource.group
+          end
+          declare_resource(:file, "#{current_resource.name}/#{current_resource.domain}.key") do
+            content current_resource.private_key_pem
+            mode current_resource.mode
+            owner current_resource.owner
+            group current_resource.group
+          end
         end
       end
     end

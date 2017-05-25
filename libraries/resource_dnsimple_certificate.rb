@@ -33,6 +33,10 @@ class Chef
       property :server_pem,               kind_of: String
       property :chain_pem,                kind_of: String
       property :private_key_pem,          kind_of: String
+
+      property :mode,                     kind_of: String
+      property :owner,                    kind_of: String
+      property :group,                    kind_of: String
     end
   end
 end

@@ -1,4 +1,4 @@
-dnsimple_certificate '/etc/apache2/ssl/cert.crt' do
+dnsimple_certificate '/etc/apache2/ssl' do
   certificate_common_name 'www.example.com'
   domain node['dnsimple']['test_domain']
   access_token node['dnsimple']['access_token']
