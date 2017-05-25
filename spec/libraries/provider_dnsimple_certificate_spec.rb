@@ -7,14 +7,44 @@ describe Chef::Provider::DnsimpleCertificate do
   before(:each) do
     @node = stub_node(platform: 'ubuntu', version: '14.04')
     @events = Chef::EventDispatch::Dispatcher.new
-    @new_resource = Chef::Resource::DnsimpleCertificate.new('certificate_id')
+    @new_resource = Chef::Resource::DnsimpleCertificate.new('/path/to/certificate.crt')
     @run_context = Chef::RunContext.new(@node, {}, @events)
+    @current_resource = Chef::Resource::DnsimpleCertificate.new('/path/to/certificate.crt')
     @provider = Chef::Provider::DnsimpleCertificate.new(@new_resource, @run_context)
   end
 
   describe '#install' do
-    it 'does something' do
-      @provider.run_action(:install)
+    before(:each) do
+      @new_resource.access_token('this_is_a_token')
+      @provider.dnsimple_client = client
+      @new_resource.certificate_common_name = certificate_data[:common_name]
+      @new_resource.domain = 'example.com'
+      @provider.current_resource = @current_resource
+    end
+
+    let(:client) { instance_double(Dnsimple::Client, identity: identity, certificates: certificates) }
+    let(:identity) { instance_double(Dnsimple::Client::Identity, whoami: response) }
+    let(:response) { instance_double(Dnsimple::Response, data: data) }
+    let(:data) { instance_double(Dnsimple::Struct::Whoami, account: account) }
+    let(:account) { instance_double(Dnsimple::Struct::Account, id: 1) }
+    let(:certificates) { instance_double(Dnsimple::Client::Certificates, certificates: certificate_list, download_certificate: certificate_bundle, certificate_private_key: private_key_bundle) }
+    let(:certificate_list) { instance_double(Dnsimple::CollectionResponse, data: [certificate]) }
+    let(:certificate) { instance_double(Dnsimple::Struct::Certificate, id: certificate_data[:id], common_name: certificate_data[:common_name], expires_on: certificate_data[:expires_on]) }
+    let(:certificate_bundle) { instance_double(Dnsimple::Struct::CertificateBundle, server: 'server-pem', chain: 'chain-pem') }
+    let(:private_key_bundle) { instance_double(Dnsimple::Struct::CertificateBundle, private_key: 'private-key-pem') }
+    let(:certificate_data) do
+      {
+        id: 1,
+        common_name: 'www.example.com',
+        expires_on: '2018-01-01',
+      }
+    end
+
+    context 'if the certificate exists' do
+      it 'installs the certificate' do
+        @provider.run_action(:install)
+        expect(@new_resource).to be_updated
+      end
     end
 
     it 'implements the load_current_resource interface' do

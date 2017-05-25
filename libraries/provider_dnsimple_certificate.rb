@@ -27,10 +27,40 @@ class Chef
 
       def load_current_resource
         @current_resource = Chef::Resource::DnsimpleCertificate.new(@new_resource.name)
+        @current_resource.certificate_common_name(@new_resource.certificate_common_name)
+        @current_resource.domain(@new_resource.domain)
+
+        # TODO: replace dnsimple_client.certificates.certificates with .all_certificates when it is added
+        # to the API client
+        certificates = dnsimple_client.certificates.certificates(dnsimple_client_account_id, @new_resource.domain)
+        @existing_certificate = certificates.data.detect do |certificate|
+          (certificate.common_name == @new_resource.certificate_common_name) && (Date.parse(certificate.expires_on) > Date.today)
+        end
+
+        @current_resource.exists = !@existing_certificate.nil?
+        # rubocop:disable Style/GuardClause
+        if @current_resource.exists
+          @existing_certificate_bundle = dnsimple_client.certificates.download_certificate(dnsimple_client_account_id, @new_resource.domain, @existing_certificate.id)
+          @existing_private_key = dnsimple_client.certificates.certificate_private_key(dnsimple_client_account_id, @new_resource.domain, @existing_certificate.id)
+          @current_resource.expires_on = Date.parse(@existing_certificate.expires_on)
+          @current_resource.server_pem = @existing_certificate_bundle.server
+          @current_resource.chain_pem = @existing_certificate_bundle.chain
+          @current_resource.private_key_pem = @existing_private_key.private_key
+        end
       end
 
       action :install do
-        # do something
+        if @current_resource.exists
+          install_certificate
+        else
+          Chef::Log.info "DNSimple: no certificate found #{new_resource.certificate_common_name}"
+        end
+      end
+
+      def install_certificate
+        converge_by("install certificate #{current_resource.certificate_common_name} expiring #{current_resource.expires_on}") do
+          # Delegate to file resource
+        end
       end
     end
   end
