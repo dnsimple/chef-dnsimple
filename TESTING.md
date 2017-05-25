@@ -16,9 +16,13 @@ access token. You'll want to define it as an env var for test kitchen under
 `DNSIMPLE_ACCESS_TOKEN=mytoken chef exec kitchen test`
 
 You will also want to edit the `.kitchen.yml` file to adjust the `test_domain`
-attributes to test a domain you create under your sandbox account. In order to
-test regional records, you will want to upgrade the account plan to one that
+attributes to test a domain you create under your sandbox account.
+
+To test regional records, you will want to upgrade the account plan to one that
 supports the regional records feature.
+
+To test certificate installation, you will need to issue a certificate in sandbox
+first.
 
 [ChefDK]: https://downloads.chef.io/chef-dk/
 [VirtualBox]: https://www.virtualbox.org/wiki/Downloads
