@@ -34,14 +34,14 @@ class Chef
         # to the API client
         certificates = dnsimple_client.certificates.certificates(dnsimple_client_account_id, @new_resource.domain)
         @existing_certificate = certificates.data.detect do |certificate|
-          (certificate.common_name == @new_resource.certificate_common_name) && (Date.parse(certificate.expires_on) > Date.today)
+          (certificate.common_name == @new_resource.certificate_common_name) && (certificate.state == 'issued') && (Date.parse(certificate.expires_on) > Date.today)
         end
 
         @current_resource.exists = !@existing_certificate.nil?
         # rubocop:disable Style/GuardClause
         if @current_resource.exists
-          @existing_certificate_bundle = dnsimple_client.certificates.download_certificate(dnsimple_client_account_id, @new_resource.domain, @existing_certificate.id)
-          @existing_private_key = dnsimple_client.certificates.certificate_private_key(dnsimple_client_account_id, @new_resource.domain, @existing_certificate.id)
+          @existing_certificate_bundle = dnsimple_client.certificates.download_certificate(dnsimple_client_account_id, @new_resource.domain, @existing_certificate.id).data
+          @existing_private_key = dnsimple_client.certificates.certificate_private_key(dnsimple_client_account_id, @new_resource.domain, @existing_certificate.id).data
           @current_resource.expires_on = Date.parse(@existing_certificate.expires_on)
           @current_resource.server_pem = @existing_certificate_bundle.server
           @current_resource.chain_pem = @existing_certificate_bundle.chain
@@ -60,7 +60,7 @@ class Chef
       def install_certificate
         converge_by("install certificate #{current_resource.certificate_common_name} expiring #{current_resource.expires_on}") do
           declare_resource(:file, "#{current_resource.name}/#{current_resource.domain}.crt") do
-            content "#{current_resource.server_pem}\n#{current_resource.chain_pem}"
+            content "#{current_resource.server_pem}\n#{current_resource.chain_pem.join("\n")}"
             mode current_resource.mode
             owner current_resource.owner
             group current_resource.group
@@ -70,6 +70,7 @@ class Chef
             mode current_resource.mode
             owner current_resource.owner
             group current_resource.group
+            sensitive true
           end
         end
       end

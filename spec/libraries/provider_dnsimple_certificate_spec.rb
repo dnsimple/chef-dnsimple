@@ -23,14 +23,16 @@ describe Chef::Provider::DnsimpleCertificate do
     end
 
     let(:client) { instance_double(Dnsimple::Client, identity: identity, certificates: certificates) }
-    let(:identity) { instance_double(Dnsimple::Client::Identity, whoami: response) }
-    let(:response) { instance_double(Dnsimple::Response, data: data) }
+    let(:identity) { instance_double(Dnsimple::Client::Identity, whoami: whoami_response) }
+    let(:whoami_response) { instance_double(Dnsimple::Response, data: data) }
     let(:data) { instance_double(Dnsimple::Struct::Whoami, account: account) }
     let(:account) { instance_double(Dnsimple::Struct::Account, id: 1) }
-    let(:certificates) { instance_double(Dnsimple::Client::Certificates, certificates: certificate_list, download_certificate: certificate_bundle, certificate_private_key: private_key_bundle) }
+    let(:certificates) { instance_double(Dnsimple::Client::Certificates, certificates: certificate_list, download_certificate: certificate_bundle_response, certificate_private_key: private_key_bundle_response) }
     let(:certificate_list) { instance_double(Dnsimple::CollectionResponse, data: [certificate]) }
-    let(:certificate) { instance_double(Dnsimple::Struct::Certificate, id: certificate_data[:id], common_name: certificate_data[:common_name], expires_on: certificate_data[:expires_on]) }
-    let(:certificate_bundle) { instance_double(Dnsimple::Struct::CertificateBundle, server: 'server-pem', chain: 'chain-pem') }
+    let(:certificate) { instance_double(Dnsimple::Struct::Certificate, id: certificate_data[:id], common_name: certificate_data[:common_name], expires_on: certificate_data[:expires_on], state: 'issued') }
+    let(:certificate_bundle_response) { instance_double(Dnsimple::Response, data: certificate_bundle) }
+    let(:certificate_bundle) { instance_double(Dnsimple::Struct::CertificateBundle, server: 'server-pem', chain: ['chain-pem']) }
+    let(:private_key_bundle_response) { instance_double(Dnsimple::Response, data: private_key_bundle) }
     let(:private_key_bundle) { instance_double(Dnsimple::Struct::CertificateBundle, private_key: 'private-key-pem') }
     let(:certificate_data) do
       {

@@ -39,3 +39,12 @@ suites:
         access_token: <%= ENV['DNSIMPLE_ACCESS_TOKEN'] %>
         base_url: https://api.sandbox.dnsimple.com
         test_domain: dnsimple.xyz
+  - name: install_certificate
+    run_list:
+      - recipe[dnsimple_test::reset_test_environment]
+      - recipe[dnsimple_test::install_certificate]
+    attributes:
+      dnsimple:
+        access_token: <%= ENV['DNSIMPLE_ACCESS_TOKEN'] %>
+        base_url: https://api.sandbox.dnsimple.com
+        test_domain: dnsimple.xyz

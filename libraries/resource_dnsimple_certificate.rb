@@ -31,7 +31,7 @@ class Chef
       property :domain,                   kind_of: String, required: true
       property :expires_on,               kind_of: Date
       property :server_pem,               kind_of: String
-      property :chain_pem,                kind_of: String
+      property :chain_pem,                kind_of: Array
       property :private_key_pem,          kind_of: String
 
       property :mode,                     kind_of: String
