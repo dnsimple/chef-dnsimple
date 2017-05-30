@@ -1,3 +1,7 @@
+user 'www-data' do
+  action :create
+end
+
 directory '/etc/apache2/ssl' do
   owner 'www-data'
   group 'www-data'
