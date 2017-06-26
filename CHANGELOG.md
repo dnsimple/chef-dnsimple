@@ -1,5 +1,13 @@
 # Change Log
 
+## [v2.1.0](https://github.com/dnsimple/chef-dnsimple/tree/v2.1.0) (2017-06-26)
+[Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/v2.0.1...v2.1.0)
+
+**Merged pull requests:**
+
+- Add Docs for dnsimple\_certificate [\#49](https://github.com/dnsimple/chef-dnsimple/pull/49) ([onlyhavecans](https://github.com/onlyhavecans))
+- Feature/install certificate [\#48](https://github.com/dnsimple/chef-dnsimple/pull/48) ([aeden](https://github.com/aeden))
+
 ## [v2.0.1](https://github.com/dnsimple/chef-dnsimple/tree/v2.0.1) (2017-05-18)
 [Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/v2.0.0...v2.0.1)
 
