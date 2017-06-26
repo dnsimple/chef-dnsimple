@@ -113,7 +113,7 @@ end
 
 Download and install a certificate. Currently this only supports basic matched
 .crt & .key files. We would like to expand this to support all formats
-including java keystores *PRs Welcome*
+including java keystores. *PRs are welcome*!
 
 This resource uses the [dnsimple Ruby
 library](https://rubygems.org/gems/dnsimple) to connect and use the dnsimple
@@ -171,6 +171,7 @@ See CONTRIBUTING.md
 * Author:: [Aaron Kalin](https://github.com/martinisoft)
 * Author:: [David Aronsohn](https://github.com/onlyhavecans)
 * Author:: [Jacobo Garcia](https://github.com/therobot)
+* Author:: [Anthony Eden](https://github.com/aeden)
 
 Copyright:: 2014-2017 Aetrion, LLC dba DNSimple
 
