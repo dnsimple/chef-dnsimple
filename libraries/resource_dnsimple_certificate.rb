@@ -34,9 +34,9 @@ class Chef
       property :chain_pem,                kind_of: Array
       property :private_key_pem,          kind_of: String
 
-      property :mode,                     kind_of: String
-      property :owner,                    kind_of: String
-      property :group,                    kind_of: String
+      property :mode,                     kind_of: String, default: '0600'
+      property :owner,                    kind_of: String, default: 'root'
+      property :group,                    kind_of: String, default: 'root'
     end
   end
 end

@@ -120,6 +120,7 @@ library](https://rubygems.org/gems/dnsimple) to connect and use the dnsimple
 API. This resource also exposes a ChefSpec matcher for you to do unit testing
 as well.
 
+
 #### Actions:
 
 | Action    | Description           | Default |
@@ -129,14 +130,27 @@ as well.
 
 #### Parameter Attributes:
 
-| Parameter | Description | Required | Default |
-|-----------|-------------|----------|---------|
+| Parameter               | Description                       | Required | Default |
+|-------------------------|-----------------------------------|----------|---------|
+| install_path            | where the crt & key are installed | yes      |         |
+| certificate_common_name | name of the files                 | yes      |         |
+| domain                  | the main domain name on the crt   | yes      |         |
+| mode                    | files mode                        | no       | 0600    |
+| owner                   | files owner                       | no       | root    |
+| group                   | files group                       | no       | root    |
 
 
 #### Examples
 
 ```ruby
-
+dnsimple_certificate '/etc/apache2/ssl' do
+  certificate_common_name 'www.dnsimple.xyz'
+  domain 'dnsimple.xyz'
+  access_token chef_vault_item('secrets', 'dnsimple_token')
+  mode '0755'
+  owner 'web_admin'
+  group 'web_admin'
+end
 ```
 
 ## Usage
