@@ -4,7 +4,7 @@ driver:
 
 provisioner:
   name: chef_zero
-  require_chef_omnibus: 12
+  require_chef_omnibus: 13
   always_update_cookbooks: <%= !ENV['CI'] %>
 
 verifier:
