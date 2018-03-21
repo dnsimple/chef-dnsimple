@@ -6,7 +6,7 @@ description      'Provides Chef Resource for automating DNS configuration with D
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 issues_url       'https://github.com/dnsimple/chef-dnsimple/issues'
 source_url       'https://github.com/dnsimple/chef-dnsimple'
-version          '2.1.0'
+version          '2.1.1'
 
 chef_version '>= 12.8'
 

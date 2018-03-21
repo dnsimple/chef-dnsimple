@@ -1,5 +1,20 @@
 # Change Log
 
+## [v2.1.1](https://github.com/dnsimple/chef-dnsimple/tree/v2.1.1) (2018-03-21)
+[Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/v2.1.0...v2.1.1)
+
+**Fixed bugs:**
+
+- Running integration tests with custom domain fails [\#52](https://github.com/dnsimple/chef-dnsimple/issues/52)
+
+**Merged pull requests:**
+
+- Bugfix: Correctly validate the test domain in Inspec [\#55](https://github.com/dnsimple/chef-dnsimple/pull/55) ([martinisoft](https://github.com/martinisoft))
+- Bugfix: AAAA record validation in dnsimple\_record resource [\#54](https://github.com/dnsimple/chef-dnsimple/pull/54) ([martinisoft](https://github.com/martinisoft))
+- Add all\_certificates endpoint and fix certificates spec [\#53](https://github.com/dnsimple/chef-dnsimple/pull/53) ([martinisoft](https://github.com/martinisoft))
+- Use latest versions of images for testing [\#51](https://github.com/dnsimple/chef-dnsimple/pull/51) ([martinisoft](https://github.com/martinisoft))
+- Testing to chef 13 [\#50](https://github.com/dnsimple/chef-dnsimple/pull/50) ([onlyhavecans](https://github.com/onlyhavecans))
+
 ## [v2.1.0](https://github.com/dnsimple/chef-dnsimple/tree/v2.1.0) (2017-06-26)
 [Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/v2.0.1...v2.1.0)
 
