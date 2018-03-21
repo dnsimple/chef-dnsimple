@@ -29,7 +29,7 @@ class Chef
       property :record_name,   kind_of: String, name_property: true
       property :domain,        kind_of: String
       property :name,          kind_of: String, required: true
-      property :type,          kind_of: String, equal_to: %w(A CNAME ALIAS MX SPF URL TXT NS SRV NAPTR PTR AAA SSHFP HFINO), required: true
+      property :type,          kind_of: String, equal_to: %w(A CNAME ALIAS MX SPF URL TXT NS SRV NAPTR PTR AAAA SSHFP HFINO), required: true
       property :content,       kind_of: [String, Array]
       property :ttl,           kind_of: Integer, default: 3600
       property :priority,      kind_of: Integer
