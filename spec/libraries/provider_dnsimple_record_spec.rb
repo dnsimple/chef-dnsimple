@@ -51,7 +51,15 @@ describe Chef::Provider::DnsimpleRecord do
       expect { @provider.load_current_resource }.to_not raise_exception
     end
 
-    context 'when it fails validation' do
+    context 'when it fails type validation' do
+      it 'raises an exception' do
+        expect { @new_resource.type = 'AA' }.to \
+          raise_exception(Chef::Exceptions::ValidationFailed,
+                          'Option type must be equal to one of: A, CNAME, ALIAS, MX, SPF, URL, TXT, NS, SRV, NAPTR, PTR, AAAA, SSHFP, HFINO!  You passed "AA".')
+      end
+    end
+
+    context 'when it fails request validation' do
       before do
         allow(zones).to receive(:create_record)
           .and_raise(Dnsimple::RequestError, request_error)
