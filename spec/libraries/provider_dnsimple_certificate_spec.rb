@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'dnsimple'
+require 'date'
 require_relative '../../libraries/provider_dnsimple_certificate'
 require_relative '../../libraries/resource_dnsimple_certificate'
 
@@ -27,7 +28,7 @@ describe Chef::Provider::DnsimpleCertificate do
     let(:whoami_response) { instance_double(Dnsimple::Response, data: data) }
     let(:data) { instance_double(Dnsimple::Struct::Whoami, account: account) }
     let(:account) { instance_double(Dnsimple::Struct::Account, id: 1) }
-    let(:certificates) { instance_double(Dnsimple::Client::Certificates, certificates: certificate_list, download_certificate: certificate_bundle_response, certificate_private_key: private_key_bundle_response) }
+    let(:certificates) { instance_double(Dnsimple::Client::Certificates, all_certificates: certificate_list, download_certificate: certificate_bundle_response, certificate_private_key: private_key_bundle_response) }
     let(:certificate_list) { instance_double(Dnsimple::CollectionResponse, data: [certificate]) }
     let(:certificate) { instance_double(Dnsimple::Struct::Certificate, id: certificate_data[:id], common_name: certificate_data[:common_name], expires_on: certificate_data[:expires_on], state: 'issued') }
     let(:certificate_bundle_response) { instance_double(Dnsimple::Response, data: certificate_bundle) }
@@ -38,9 +39,10 @@ describe Chef::Provider::DnsimpleCertificate do
       {
         id: 1,
         common_name: 'www.example.com',
-        expires_on: '2018-01-01',
+        expires_on: next_year,
       }
     end
+    let(:next_year) { Date.today.next_day(365).strftime('%F') }
 
     context 'if the certificate exists' do
       it 'installs the certificate' do

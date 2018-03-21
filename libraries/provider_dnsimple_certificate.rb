@@ -30,9 +30,7 @@ class Chef
         @current_resource.certificate_common_name(@new_resource.certificate_common_name)
         @current_resource.domain(@new_resource.domain)
 
-        # TODO: replace dnsimple_client.certificates.certificates with .all_certificates when it is added
-        # to the API client
-        certificates = dnsimple_client.certificates.certificates(dnsimple_client_account_id, @new_resource.domain)
+        certificates = dnsimple_client.certificates.all_certificates(dnsimple_client_account_id, @new_resource.domain)
         @existing_certificate = certificates.data.detect do |certificate|
           (certificate.common_name == @new_resource.certificate_common_name) && (certificate.state == 'issued') && (Date.parse(certificate.expires_on) > Date.today)
         end
