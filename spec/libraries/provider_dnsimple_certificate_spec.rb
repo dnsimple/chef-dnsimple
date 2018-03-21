@@ -4,7 +4,6 @@ require 'date'
 require_relative '../../libraries/provider_dnsimple_certificate'
 require_relative '../../libraries/resource_dnsimple_certificate'
 
-
 describe Chef::Provider::DnsimpleCertificate do
   before(:each) do
     @node = stub_node(platform: 'ubuntu', version: '14.04')
