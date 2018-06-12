@@ -7,7 +7,7 @@ A chef resource for automated DNS configuration via the [dnsimple](https://dnsim
 
 ## DEPRECATION WARNING
 
-If you used the 1.x series of this cookbook please carefully review your usage of the resource and create a new account access token. The access token you used previously _will not work_ with this version of the cookbook. You will also not need a username and password for this version either. Please refer to the examples below for more details, but the majority of the changes are around authentication.
+If you use the 'name' property on the `dnsimple_record` resource, you will need to change this to `record_name` instead. The 'name' property is reserved in Chef and we needed to rename it to preserve future compatibility.
 
 ## Requirements
 
@@ -36,26 +36,28 @@ unit testing as well.
 | *update*  | Update the record.   |         |
 | *destroy* | Destroy the record.  |         |
 
-#### Parameter Attributes:
+#### Resource Properties:
 
-The type of record can be one of the following: A, CNAME, ALIAS, MX,
-SPF, URL, TXT, NS, SRV, NAPTR, PTR, AAA, SSHFP, or HFINO.
+| Property  	| Description                      | Required | Default              |
+|---------------|----------------------------------|----------|----------------------|
+| *domain*      | Domain to manage                 | true     |                      |
+| *record_name* | Name of the record               |          | ''                   |
+| *type*        | Type of DNS record (see note)    | true     |                      |
+| *content*     | String/Array content of records  | true     |                      |
+| *ttl*         | Time to live                     |          | 3600                 |
+| *priority*    | Priorty of record                |          |                      |
+| *regions*     | Specific regions for this record |          |                      |
+| *token*       | DNSimple API token               |          |                      |
 
-| Parameter  | Description                      | Required | Default            |
-|------------|----------------------------------|----------|--------------------|
-| *domain*   | Domain to manage                 | true     |                    |
-| *name*     | Name of the record               |          | Apex of the domain |
-| *type*     | Type of DNS record               | true     |                    |
-| *content*  | String/Array content of records  | true     |                    |
-| *ttl*      | Time to live                     |          | 3600               |
-| *priority* | Priorty of record                |          |                    |
-| *regions*  | Specific regions for this record |          |                    |
-| *token*    | DNSimple API token               |          |                    |
+**Record Types**: The type of record can be one of the following: A, AAAA,
+CAA, CNAME, MX, NS, TXT, SPF, SRV, NAPTR, HINFO, SSHFP, ALIAS, URL or POOL.
+Some of these record types such as POOL require special account access which
+you can [contact support](https://dnsimple.com/contact) for access and
+assistance.
 
-**Note**: If you do not provide the name parameter, it will be assumed from the
-resource name, which cannot be blank. If you want to create multiple record
-types on the apex then you need to name each resource separately, but keep the
-name an empty string.
+**Note**: If you do not provide the record_name parameter, it will be blank
+and thus will be assumed to be the domain apex. The apex is the domain name
+without a subdomain. For example `bar.com` is the apex of `foo.bar.com`.
 
 **Regional Records**: Only certain plan types have regional records so it is
 blank by default. If you do not have this feature available it will return
@@ -69,7 +71,7 @@ storing your API keys in [Chef Vault](https://docs.chef.io/chef_vault.html) but
 it is not a requirement.
 
 ```ruby
-dnsimple_record 'fooserver' do
+dnsimple_record 'foo.com main server' do
   domain 'foo.com'
   type 'A'
   content '1.2.3.4'
@@ -78,34 +80,34 @@ dnsimple_record 'fooserver' do
   action :create
 end
 
-dnsimple_record 'create a CNAME record for a Google Apps site calendar' do
-  name 'calendar'
-  content 'ghs.google.com'
-  type 'CNAME'
-  domain 'example.com'
-  access_token chef_vault_item('secrets', 'dnsimple_token')
-  action :create
+dnsimple_record 'create a CNAME record for a Google Apps site calendar at calendar.example.com' do
+  record_name    'calendar'
+  content        'ghs.google.com'
+  type           'CNAME'
+  domain         'example.com'
+  access_token   chef_vault_item('secrets',   'dnsimple_token')
+  action         :create
 end
 
-dnsimple_record "create a A record with multiple content values" do
-  name     'servers'
-  content  ['1.1.1.1', '2.2.2.2']
-  type     'A'
-  domain   'example.com'
-  access_token chef_vault_item('secrets', 'dnsimple_token')
-  action   :create
+dnsimple_record 'create an A record with multiple content values at servers.example.com' do
+  record_name   'servers'
+  content       ['1.1.1.1', '2.2.2.2']
+  type          'A'
+  domain        'example.com'
+  access_token  chef_vault_item('secrets', 'dnsimple_token')
+  action        :create
 end
 
 # Note: This only works with certain accounts, see the note above for
 # regional records! The Chef run will fail otherwise.
 dnsimple_record "create an A record in Tokyo only" do
-  name     'myserverinjapan'
-  content  '2.2.2.2'
-  type     'A'
-  domain   'example.com'
-  regions  ['tko']
-  access_token chef_vault_item('secrets', 'dnsimple_token')
-  action   :create
+  record_name   'myserverinjapan'
+  content       '2.2.2.2'
+  type          'A'
+  domain        'example.com'
+  regions       ['tko']
+  access_token  chef_vault_item('secrets', 'dnsimple_token')
+  action        :create
 end
 ```
 
@@ -128,9 +130,9 @@ as well.
 | *install* | Install the crt & key | Yes     |
 
 
-#### Parameter Attributes:
+#### Resource Properties:
 
-| Parameter               | Description                       | Required | Default |
+| Property                | Description                       | Required | Default |
 |-------------------------|-----------------------------------|----------|---------|
 | install_path            | where the crt & key are installed | yes      |         |
 | certificate_common_name | name of the files                 | yes      |         |
