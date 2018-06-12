@@ -36,7 +36,6 @@ class Chef
         end
 
         @current_resource.exists = !@existing_certificate.nil?
-        # rubocop:disable Style/GuardClause
         if @current_resource.exists
           @existing_certificate_bundle = dnsimple_client.certificates.download_certificate(dnsimple_client_account_id, @new_resource.domain, @existing_certificate.id).data
           @existing_private_key = dnsimple_client.certificates.certificate_private_key(dnsimple_client_account_id, @new_resource.domain, @existing_certificate.id).data
