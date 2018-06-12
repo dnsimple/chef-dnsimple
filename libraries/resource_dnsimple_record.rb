@@ -26,13 +26,13 @@ class Chef
       allowed_actions :create, :delete, :update
       default_action :create
 
-      property :record_name,   kind_of: String, default: ''
-      property :domain,        kind_of: String
-      property :type,          kind_of: String, equal_to: %w(A AAAA CAA CNAME MX NS TXT SPF SRV NAPTR HINFO SSHFP ALIAS URL POOL), required: true
-      property :content,       kind_of: [String, Array]
-      property :ttl,           kind_of: Integer, default: 3600
-      property :priority,      kind_of: Integer
-      property :regions,       kind_of: [NilClass, Array], default: nil
+      property :record_name,   String, default: ''
+      property :domain,        String
+      property :type,          String, equal_to: %w(A AAAA CAA CNAME MX NS TXT SPF SRV NAPTR HINFO SSHFP ALIAS URL POOL), required: true
+      property :content,       [String, Array]
+      property :ttl,           Integer, default: 3600
+      property :priority,      Integer
+      property :regions,       Array
     end
   end
 end
