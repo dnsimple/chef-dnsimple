@@ -106,7 +106,7 @@ class Chef
           content: new_resource.content, ttl: new_resource.ttl,
           priority: new_resource.priority
         }
-        options.merge(regions: new_resource.regions) if new_resource.regions
+        options = options.merge(regions: new_resource.regions) if new_resource.regions
         options
       end
 
