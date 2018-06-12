@@ -27,22 +27,28 @@ class Chef
 
       def load_current_resource
         @current_resource = Chef::Resource::DnsimpleCertificate.new(@new_resource.name)
-        @current_resource.certificate_common_name(@new_resource.certificate_common_name)
+        @current_resource.common_name(@new_resource.common_name)
         @current_resource.domain(@new_resource.domain)
+        @current_resource.install_path(@new_resource.install_path)
 
         certificates = dnsimple_client.certificates.all_certificates(dnsimple_client_account_id, @new_resource.domain)
         @existing_certificate = certificates.data.detect do |certificate|
-          (certificate.common_name == @new_resource.certificate_common_name) && (certificate.state == 'issued') && (Date.parse(certificate.expires_on) > Date.today)
+          (certificate.common_name == @new_resource.common_name) && (certificate.state == 'issued') && (Date.parse(certificate.expires_on) > Date.today)
         end
 
         @current_resource.exists = !@existing_certificate.nil?
         if @current_resource.exists
+          @current_resource.expires_on = Date.parse(@existing_certificate.expires_on).to_s
           @existing_certificate_bundle = dnsimple_client.certificates.download_certificate(dnsimple_client_account_id, @new_resource.domain, @existing_certificate.id).data
-          @existing_private_key = dnsimple_client.certificates.certificate_private_key(dnsimple_client_account_id, @new_resource.domain, @existing_certificate.id).data
-          @current_resource.expires_on = Date.parse(@existing_certificate.expires_on)
           @current_resource.server_pem = @existing_certificate_bundle.server
           @current_resource.chain_pem = @existing_certificate_bundle.chain
-          @current_resource.private_key_pem = @existing_private_key.private_key
+          # Allow override with custom private key
+          if @new_resource.private_key_pem
+            @current_resource.private_key_pem = @new_resource.private_key_pem
+          else
+            @existing_private_key = dnsimple_client.certificates.certificate_private_key(dnsimple_client_account_id, @new_resource.domain, @existing_certificate.id).data
+            @current_resource.private_key_pem = @existing_private_key.private_key
+          end
         end
       end
 
