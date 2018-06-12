@@ -52,7 +52,7 @@ class Chef
         if @current_resource.exists
           delete_record
         else
-          Chef::Log.info "DNSimple: no record found #{new_resource.name}.#{new_resource.domain}" \
+          Chef::Log.info "DNSimple: no record found #{new_resource.record_name}.#{new_resource.domain}" \
             " with type #{new_resource.type}"
         end
       end
@@ -61,7 +61,7 @@ class Chef
         if @current_resource.exists
           update_record
         else
-          Chef::Log.info "DNSimple: no record found #{new_resource.name}.#{new_resource.domain}" \
+          Chef::Log.info "DNSimple: no record found #{new_resource.record_name}.#{new_resource.domain}" \
             " with type #{new_resource.type}"
         end
       end
