@@ -8,7 +8,7 @@ issues_url       'https://github.com/dnsimple/chef-dnsimple/issues'
 source_url       'https://github.com/dnsimple/chef-dnsimple'
 version          '2.1.1'
 
-chef_version '>= 12.8'
+chef_version '>= 13.9'
 
 gem 'dnsimple', '>= 4.0'
 

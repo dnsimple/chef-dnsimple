@@ -13,7 +13,7 @@ If you use the 'name' property on the `dnsimple_record` resource, you will need 
 
 * A [dnsimple](https://dnsimple.com/) account
 * An [account access token](https://developer.dnsimple.com/v2/#account-tokens-vs-user-tokens) from said dnsimple account
-* Chef 12.8 or newer
+* Chef 13.9 or newer
 
 ## Attributes
 
