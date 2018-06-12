@@ -38,16 +38,17 @@ unit testing as well.
 
 #### Resource Properties:
 
-| Property  	| Description                      | Required | Default              |
-|---------------|----------------------------------|----------|----------------------|
-| *domain*      | Domain to manage                 | true     |                      |
-| *record_name* | Name of the record               |          | ''                   |
-| *type*        | Type of DNS record (see note)    | true     |                      |
-| *content*     | String/Array content of records  | true     |                      |
-| *ttl*         | Time to live                     |          | 3600                 |
-| *priority*    | Priorty of record                |          |                      |
-| *regions*     | Specific regions for this record |          |                      |
-| *token*       | DNSimple API token               |          |                      |
+| Property       | Description                      | Required | Default                    |
+|----------------|----------------------------------|----------|----------------------------|
+| *domain*       | Domain to manage                 | true     |                            |
+| *record_name*  | Name of the record               |          | ''                         |
+| *type*         | Type of DNS record (see note)    | true     |                            |
+| *content*      | String/Array content of records  | true     |                            |
+| *ttl*          | Time to live                     |          | 3600                       |
+| *priority*     | Priorty of record                |          |                            |
+| *regions*      | Specific regions for this record |          |                            |
+| *access_token* | DNSimple API token               | true     |                            |
+| *base_url*     | DNSimple API url                 |          | `https://api.dnsimple.com` |
 
 **Record Types**: The type of record can be one of the following: A, AAAA,
 CAA, CNAME, MX, NS, TXT, SPF, SRV, NAPTR, HINFO, SSHFP, ALIAS, URL or POOL.
@@ -132,26 +133,31 @@ as well.
 
 #### Resource Properties:
 
-| Property                | Description                       | Required | Default |
-|-------------------------|-----------------------------------|----------|---------|
-| install_path            | where the crt & key are installed | yes      |         |
-| certificate_common_name | name of the files                 | yes      |         |
-| domain                  | the main domain name on the crt   | yes      |         |
-| mode                    | files mode                        | no       | 0600    |
-| owner                   | files owner                       | no       | root    |
-| group                   | files group                       | no       | root    |
-
+| Property          | Description                       | Required | Default                    |
+|-------------------|-----------------------------------|----------|----------------------------|
+| *install_path*    | where the crt & key are installed | yes      |                            |
+| *common_name*     | certificate common name           | yes      | name of the resource       |
+| *domain*          | the main domain name on the crt   | yes      |                            |
+| *expires on*      | when the certificate expires      | yes      |                            |
+| *private_key_pem* | provide your own private key      | no       |                            |
+| *mode*            | files mode                        | no       | 0600                       |
+| *owner*           | files owner                       | no       | root                       |
+| *group*           | files group                       | no       | root                       |
+| *access_token*    | DNSimple API token                | true     |                            |
+| *base_url*        | DNSimple API url                  |          | `https://api.dnsimple.com` |
 
 #### Examples
 
 ```ruby
-dnsimple_certificate '/etc/apache2/ssl' do
-  certificate_common_name 'www.dnsimple.xyz'
+dnsimple_certificate 'dnsimple.xyz certificate' do
+  install_path '/etc/apache2/ssl'
+  common_name 'www.dnsimple.xyz'
   domain 'dnsimple.xyz'
-  access_token chef_vault_item('secrets', 'dnsimple_token')
+  expires_on '2019-09-08'
   mode '0755'
   owner 'web_admin'
   group 'web_admin'
+  access_token chef_vault_item('secrets', 'dnsimple_token')
 end
 ```
 
