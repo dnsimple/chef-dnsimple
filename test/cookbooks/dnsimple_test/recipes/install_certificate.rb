@@ -8,8 +8,9 @@ directory '/etc/apache2/ssl' do
   recursive true
 end
 
-dnsimple_certificate '/etc/apache2/ssl' do
-  certificate_common_name 'www.dnsimple.xyz'
+dnsimple_certificate 'dnsimple.xyz' do
+  install_path '/etc/apache2/ssl'
+  common_name 'www.dnsimple.xyz'
   domain node['dnsimple']['test_domain']
   access_token node['dnsimple']['access_token']
   base_url node['dnsimple']['base_url']
