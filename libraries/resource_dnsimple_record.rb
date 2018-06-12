@@ -26,10 +26,9 @@ class Chef
       allowed_actions :create, :delete, :update
       default_action :create
 
-      property :record_name,   kind_of: String, name_property: true
+      property :record_name,   kind_of: String, default: ''
       property :domain,        kind_of: String
-      property :name,          kind_of: String, required: true
-      property :type,          kind_of: String, equal_to: %w(A CNAME ALIAS MX SPF URL TXT NS SRV NAPTR PTR AAAA SSHFP HFINO), required: true
+      property :type,          kind_of: String, equal_to: %w(A AAAA CAA CNAME MX NS TXT SPF SRV NAPTR HINFO SSHFP ALIAS URL POOL), required: true
       property :content,       kind_of: [String, Array]
       property :ttl,           kind_of: Integer, default: 3600
       property :priority,      kind_of: Integer

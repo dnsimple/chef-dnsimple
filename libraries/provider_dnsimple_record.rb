@@ -27,7 +27,7 @@ class Chef
 
       def load_current_resource
         @current_resource = Chef::Resource::DnsimpleRecord.new(@new_resource.name)
-        @current_resource.name(@new_resource.name)
+        @current_resource.record_name(@new_resource.record_name)
         @current_resource.domain(@new_resource.domain)
         @current_resource.type(@new_resource.type)
 
