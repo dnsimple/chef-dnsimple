@@ -54,8 +54,7 @@ describe Chef::Provider::DnsimpleRecord do
     context 'when it fails type validation' do
       it 'raises an exception' do
         expect { @new_resource.type = 'AA' }.to \
-          raise_exception(Chef::Exceptions::ValidationFailed,
-                          'Option type must be equal to one of: A, CNAME, ALIAS, MX, SPF, URL, TXT, NS, SRV, NAPTR, PTR, AAAA, SSHFP, HFINO!  You passed "AA".')
+          raise_exception(Chef::Exceptions::ValidationFailed, /Option type must be equal to one of:/)
       end
     end
 
