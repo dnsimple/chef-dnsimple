@@ -27,7 +27,7 @@ class Chef
       default_action :install
 
       property :install_path,    String, required: true
-      property :common_name,     String, required: true, name_property: true
+      property :common_name,     String, name_property: true
       property :domain,          String, required: true
       property :expires_on,      String, required: true
       property :server_pem,      String
