@@ -1,7 +1,7 @@
 name: install_certificate
 title: Install Certificate Test
-maintainer: Aetrion, LLC dba DNSimple
-copyright: Aetrion, LLC dba DNSimple
+maintainer: DNSimple Corp
+copyright: DNSimple Corp
 copyright_email: ops@dnsimple.com
 license: Apache 2 license
 summary: Confirms the test cookbook to install a certificate via the sandbox API

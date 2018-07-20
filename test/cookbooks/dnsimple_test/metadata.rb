@@ -1,5 +1,5 @@
 name             'dnsimple_test'
-maintainer       'Aetrion, LLC. dba DNSimple'
+maintainer       'DNSimple Corp'
 maintainer_email 'ops@dnsimple.com'
 license          'Apache 2.0'
 description      'Tests dnsimple cookbook integration'
