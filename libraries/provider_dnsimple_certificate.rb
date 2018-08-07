@@ -50,6 +50,7 @@ class Chef
             @current_resource.private_key_pem = @existing_private_key.private_key
           end
         end
+        Chef::Log.warn "DNSimple: The upcoming 3.x release will be Chef 13.9+ and change the certificate_common_name, expires_on, and install_path properties. See README for migration details."
       end
 
       action :install do

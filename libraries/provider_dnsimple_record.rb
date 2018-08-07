@@ -38,6 +38,7 @@ class Chef
         end
 
         @current_resource.exists = !@existing_record.nil?
+        Chef::Log.warn "DNSimple: The upcoming 3.x release will be Chef 13.9+ and change the name property to record_name. See README for migration details."
       end
 
       action :create do
