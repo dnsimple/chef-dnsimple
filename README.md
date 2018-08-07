@@ -7,7 +7,18 @@ A chef resource for automated DNS configuration via the [dnsimple](https://dnsim
 
 ## DEPRECATION WARNING
 
-If you used the 1.x series of this cookbook please carefully review your usage of the resource and create a new account access token. The access token you used previously _will not work_ with this version of the cookbook. You will also not need a username and password for this version either. Please refer to the examples below for more details, but the majority of the changes are around authentication.
+The 3.x series of this cookbook will be Chef 13.9+ and will change the properites of the record and certificate resources! See below for a migration guide:
+
+If you used the dnsimple_record resource, you'll want to do the following to migrate:
+
+* Rename the `name` property to `record_name`
+* For every `record_name` property, if this record was meant to be on the apex (the naked domain) then remove it entirely
+
+If you used the dnsimple_certificate resource, you'll want to do the following to migrate:
+
+* Rename `certificate_common_name` properties to `common_name`
+* Update your `expires_on` to be a parsable date string (see examples below)
+* Add an `install_path` if you have not
 
 ## Requirements
 
