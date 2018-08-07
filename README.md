@@ -7,9 +7,16 @@ A chef resource for automated DNS configuration via the [dnsimple](https://dnsim
 
 ## DEPRECATION WARNING
 
-If you use the 'name' property on the `dnsimple_record` resource, you will need to change this to `record_name` instead. The 'name' property is reserved in Chef and we needed to rename it to preserve future compatibility.
+If you used the dnsimple_record resource, you'll want to do the following to migrate:
 
-For users of the dnsimple_certificate resource, this has been re-factored to use the `common_name` property instead of the `certificate_common_name` property. `expires_on` is now a string that is parsable which is how we locate the certificate via the API. You may now also over-ride the `private_key_pem` property to provide your own private key if you provided DNSimple with a custom CSR during the certificate request. The `install_path` property is now also required and used to be the resource name, but that was too confusing and thus has been fixed. See the updated examples in the README for usage details.
+* Rename the `name` property to `record_name`
+* For every `record_name` property, if this record was meant to be on the apex (the naked domain) then remove it entirely
+
+If you used the dnsimple_certificate resource, you'll want to do the following to migrate:
+
+* Rename `certificate_common_name` properties to `common_name`
+* Update your `expires_on` to be a parsable date string (see examples below)
+* Add an `install_path` if you have not
 
 ## Requirements
 
