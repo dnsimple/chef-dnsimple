@@ -1,5 +1,13 @@
 # Change Log
 
+## [v2.2.0](https://github.com/dnsimple/chef-dnsimple/tree/v2.2.0) (2018-08-07)
+[Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/v2.1.1...v2.2.0)
+
+**Merged pull requests:**
+
+- Deprecate the 2.x series with log warnings [\#59](https://github.com/dnsimple/chef-dnsimple/pull/59) ([martinisoft](https://github.com/martinisoft))
+- Update copyrights [\#58](https://github.com/dnsimple/chef-dnsimple/pull/58) ([onlyhavecans](https://github.com/onlyhavecans))
+
 ## [v2.1.1](https://github.com/dnsimple/chef-dnsimple/tree/v2.1.1) (2018-03-21)
 [Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/v2.1.0...v2.1.1)
 
