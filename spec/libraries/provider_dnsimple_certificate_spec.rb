@@ -18,7 +18,8 @@ describe Chef::Provider::DnsimpleCertificate do
     before(:each) do
       @new_resource.access_token('this_is_a_token')
       @provider.dnsimple_client = client
-      @new_resource.certificate_common_name = certificate_data[:common_name]
+      @new_resource.common_name = certificate_data[:common_name]
+      @new_resource.install_path = '/etc/nginx/ssl'
       @new_resource.domain = 'example.com'
       @provider.current_resource = @current_resource
     end

@@ -1,5 +1,5 @@
 dnsimple_record 'arecord_destroy' do
-  name 'arecord'
+  record_name 'arecord'
   type 'A'
   content '1.2.3.4'
   ttl 3600
@@ -10,7 +10,7 @@ dnsimple_record 'arecord_destroy' do
 end
 
 dnsimple_record 'cname_destroy' do
-  name 'cnamerecord'
+  record_name 'cnamerecord'
   type 'CNAME'
   domain node['dnsimple']['test_domain']
   access_token node['dnsimple']['access_token']
@@ -19,7 +19,7 @@ dnsimple_record 'cname_destroy' do
 end
 
 dnsimple_record 'cname_recreate' do
-  name 'cnamerecord'
+  record_name 'cnamerecord'
   type 'CNAME'
   ttl 3600
   content 'test.dnsimple.com'

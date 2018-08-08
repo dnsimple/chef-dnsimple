@@ -1,5 +1,5 @@
 dnsimple_record 'cname_test' do
-  name 'cnamerecord'
+  record_name 'cnamerecord'
   type 'CNAME'
   ttl 60
   content "testing.#{node['dnsimple']['test_domain']}"

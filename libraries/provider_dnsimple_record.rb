@@ -27,7 +27,7 @@ class Chef
 
       def load_current_resource
         @current_resource = Chef::Resource::DnsimpleRecord.new(@new_resource.name)
-        @current_resource.name(@new_resource.name)
+        @current_resource.record_name(@new_resource.record_name)
         @current_resource.domain(@new_resource.domain)
         @current_resource.type(@new_resource.type)
 
@@ -38,7 +38,6 @@ class Chef
         end
 
         @current_resource.exists = !@existing_record.nil?
-        Chef::Log.warn "DNSimple: The upcoming 3.x release will be Chef 13.9+ and change the name property to record_name. See README for migration details."
       end
 
       action :create do
@@ -53,7 +52,7 @@ class Chef
         if @current_resource.exists
           delete_record
         else
-          Chef::Log.info "DNSimple: no record found #{new_resource.name}.#{new_resource.domain}" \
+          Chef::Log.info "DNSimple: no record found #{new_resource.record_name}.#{new_resource.domain}" \
             " with type #{new_resource.type}"
         end
       end
@@ -62,7 +61,7 @@ class Chef
         if @current_resource.exists
           update_record
         else
-          Chef::Log.info "DNSimple: no record found #{new_resource.name}.#{new_resource.domain}" \
+          Chef::Log.info "DNSimple: no record found #{new_resource.record_name}.#{new_resource.domain}" \
             " with type #{new_resource.type}"
         end
       end
@@ -107,7 +106,7 @@ class Chef
           content: new_resource.content, ttl: new_resource.ttl,
           priority: new_resource.priority
         }
-        options.merge(regions: new_resource.regions) if new_resource.regions
+        options = options.merge(regions: new_resource.regions) if new_resource.regions
         options
       end
 

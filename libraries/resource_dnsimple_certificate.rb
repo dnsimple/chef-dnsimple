@@ -26,17 +26,16 @@ class Chef
       allowed_actions :install
       default_action :install
 
-      property :install_path,             kind_of: String, name_property: true
-      property :certificate_common_name,  kind_of: String, required: true
-      property :domain,                   kind_of: String, required: true
-      property :expires_on,               kind_of: Date
-      property :server_pem,               kind_of: String
-      property :chain_pem,                kind_of: Array
-      property :private_key_pem,          kind_of: String
-
-      property :mode,                     kind_of: String, default: '0600'
-      property :owner,                    kind_of: String, default: 'root'
-      property :group,                    kind_of: String, default: 'root'
+      property :install_path,    String, required: true
+      property :common_name,     String, name_property: true
+      property :domain,          String, required: true
+      property :expires_on,      String, required: true
+      property :server_pem,      String
+      property :chain_pem,       Array
+      property :private_key_pem, String, sensitive: true
+      property :mode,            String, default: '0600'
+      property :owner,           String, default: 'root'
+      property :group,           String, default: 'root'
     end
   end
 end
