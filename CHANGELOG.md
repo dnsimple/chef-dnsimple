@@ -1,5 +1,16 @@
 # Change Log
 
+## [v3.0.0](https://github.com/dnsimple/chef-dnsimple/tree/v3.0.0) (2018-08-08)
+[Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/v2.2.0...v3.0.0)
+
+**Fixed bugs:**
+
+- Rename 'name' property [\#56](https://github.com/dnsimple/chef-dnsimple/issues/56)
+
+**Merged pull requests:**
+
+- Upgrade to Chef 13.9+ [\#57](https://github.com/dnsimple/chef-dnsimple/pull/57) ([martinisoft](https://github.com/martinisoft))
+
 ## [v2.2.0](https://github.com/dnsimple/chef-dnsimple/tree/v2.2.0) (2018-08-07)
 [Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/v2.1.1...v2.2.0)
 
