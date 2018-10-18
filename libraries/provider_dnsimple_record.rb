@@ -82,7 +82,8 @@ class Chef
         converge_by("delete record #{@new_resource.record_name} from domain #{@new_resource.domain}") do
           dnsimple_client.zones.delete_zone_record(dnsimple_client_account_id,
                                                    @current_resource.domain,
-                                                   existing_record_id)
+                                                   existing_record_id
+                                                   )
           Chef::Log.info "DNSimple: destroyed #{@new_resource.type} record " \
             "for #{@new_resource.name}.#{@new_resource.domain}"
         end
