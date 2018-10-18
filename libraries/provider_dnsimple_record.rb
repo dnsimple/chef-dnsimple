@@ -97,7 +97,8 @@ class Chef
           dnsimple_client.zones.update_zone_record(dnsimple_client_account_id,
                                                    new_resource.domain,
                                                    existing_record_id,
-                                                   **record_options)
+                                                   **record_options
+                                                   )
           Chef::Log.info "DNSimple: updated #{new_resource.type} record for #{new_resource.name}.#{new_resource.domain}"
         end
       end
