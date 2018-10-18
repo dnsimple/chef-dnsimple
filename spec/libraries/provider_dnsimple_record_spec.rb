@@ -29,7 +29,7 @@ describe Chef::Provider::DnsimpleRecord do
     let(:response) { instance_double(Dnsimple::Response, data: data) }
     let(:data) { instance_double(Dnsimple::Struct::Whoami, account: account) }
     let(:account) { instance_double(Dnsimple::Struct::Account, id: 1) }
-    let(:zones) { instance_double(Dnsimple::Client::ZonesService, list_zone_records: zone_records, create_record: zone_record) }
+    let(:zones) { instance_double(Dnsimple::Client::ZonesService, list_zone_records: zone_records, create_zone_record: zone_record) }
     let(:zone_records) { instance_double(Dnsimple::CollectionResponse, data: [zone_record]) }
     let(:zone_record) { instance_double(Dnsimple::Struct::ZoneRecord, name: 'example_record') }
     let(:dns_record) do
@@ -60,7 +60,7 @@ describe Chef::Provider::DnsimpleRecord do
 
     context 'when it fails request validation' do
       before do
-        allow(zones).to receive(:create_record)
+        allow(zones).to receive(:create_zone_record)
           .and_raise(Dnsimple::RequestError, request_error)
       end
 
@@ -90,7 +90,7 @@ describe Chef::Provider::DnsimpleRecord do
       @new_resource.ttl = dns_record[:ttl]
       @new_resource.domain = dns_record_domain
       @provider.current_resource = @new_resource
-      allow(zones).to receive(:delete_record)
+      allow(zones).to receive(:delete_zone_record)
     end
 
     let(:client) { instance_double(Dnsimple::Client, identity: identity, zones: zones) }
@@ -132,7 +132,7 @@ describe Chef::Provider::DnsimpleRecord do
 
     context 'when it fails validation' do
       before do
-        allow(zones).to receive(:delete_record)
+        allow(zones).to receive(:delete_zone_record)
           .and_raise(Dnsimple::RequestError, request_error)
         allow(@provider).to receive(:existing_record_id).and_return(0)
       end
@@ -171,7 +171,7 @@ describe Chef::Provider::DnsimpleRecord do
     let(:response) { instance_double(Dnsimple::Response, data: data) }
     let(:data) { instance_double(Dnsimple::Struct::Whoami, account: account) }
     let(:account) { instance_double(Dnsimple::Struct::Account, id: 1) }
-    let(:zones) { instance_double(Dnsimple::Client::ZonesService, list_zone_records: zone_records, update_record: zone_record) }
+    let(:zones) { instance_double(Dnsimple::Client::ZonesService, list_zone_records: zone_records, update_zone_record: zone_record) }
     let(:zone_records) { instance_double(Dnsimple::CollectionResponse, data: [zone_record]) }
     let(:zone_record) { instance_double(Dnsimple::Struct::ZoneRecord, **dns_record) }
     let(:dns_record_domain) { 'example.com' }

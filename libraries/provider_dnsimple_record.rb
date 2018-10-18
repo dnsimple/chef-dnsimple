@@ -68,9 +68,9 @@ class Chef
 
       def create_record
         converge_by("create record #{new_resource.record_name} for domain #{new_resource.domain}") do
-          dnsimple_client.zones.create_record(
-            dnsimple_client_account_id, new_resource.domain, **record_options
-          )
+          dnsimple_client.zones.create_zone_record(dnsimple_client_account_id,
+                                                   new_resource.domain,
+                                                   **record_options)
           Chef::Log.info "DNSimple: created #{new_resource.type} record for #{new_resource.name}.#{new_resource.domain}"
         end
       rescue Dnsimple::RequestError => e
@@ -79,9 +79,9 @@ class Chef
 
       def delete_record
         converge_by("delete record #{@new_resource.record_name} from domain #{@new_resource.domain}") do
-          dnsimple_client.zones.delete_record(dnsimple_client_account_id,
-                                              @current_resource.domain,
-                                              existing_record_id)
+          dnsimple_client.zones.delete_zone_record(dnsimple_client_account_id,
+                                                   @current_resource.domain,
+                                                   existing_record_id)
           Chef::Log.info "DNSimple: destroyed #{@new_resource.type} record " \
             "for #{@new_resource.name}.#{@new_resource.domain}"
         end
@@ -92,10 +92,10 @@ class Chef
       def update_record
         return unless changed_record?
         converge_by("update record #{new_resource.record_name} for domain #{new_resource.domain}") do
-          dnsimple_client.zones.update_record(dnsimple_client_account_id,
-                                              new_resource.domain,
-                                              existing_record_id,
-                                              **record_options)
+          dnsimple_client.zones.update_zone_record(dnsimple_client_account_id,
+                                                   new_resource.domain,
+                                                   existing_record_id,
+                                                   **record_options)
           Chef::Log.info "DNSimple: updated #{new_resource.type} record for #{new_resource.name}.#{new_resource.domain}"
         end
       end
