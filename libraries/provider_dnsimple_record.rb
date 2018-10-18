@@ -71,7 +71,7 @@ class Chef
           dnsimple_client.zones.create_zone_record(dnsimple_client_account_id,
                                                    new_resource.domain,
                                                    **record_options
-                                                   )
+                                                  )
           Chef::Log.info "DNSimple: created #{new_resource.type} record for #{new_resource.name}.#{new_resource.domain}"
         end
       rescue Dnsimple::RequestError => e
@@ -83,7 +83,7 @@ class Chef
           dnsimple_client.zones.delete_zone_record(dnsimple_client_account_id,
                                                    @current_resource.domain,
                                                    existing_record_id
-                                                   )
+                                                  )
           Chef::Log.info "DNSimple: destroyed #{@new_resource.type} record " \
             "for #{@new_resource.name}.#{@new_resource.domain}"
         end
@@ -98,7 +98,7 @@ class Chef
                                                    new_resource.domain,
                                                    existing_record_id,
                                                    **record_options
-                                                   )
+                                                  )
           Chef::Log.info "DNSimple: updated #{new_resource.type} record for #{new_resource.name}.#{new_resource.domain}"
         end
       end
