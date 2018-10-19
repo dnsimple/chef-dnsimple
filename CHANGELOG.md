@@ -1,5 +1,12 @@
 # Change Log
 
+## [v3.0.1](https://github.com/dnsimple/chef-dnsimple/tree/v3.0.1) (2018-10-19)
+[Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/v3.0.0...v3.0.1)
+
+**Merged pull requests:**
+
+- Update our provider to match dnsimple-ruby 4.5.0 [\#60](https://github.com/dnsimple/chef-dnsimple/pull/60) ([martinisoft](https://github.com/martinisoft))
+
 ## [v3.0.0](https://github.com/dnsimple/chef-dnsimple/tree/v3.0.0) (2018-08-08)
 [Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/v2.2.0...v3.0.0)
 
