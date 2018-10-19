@@ -31,8 +31,8 @@ class Chef
         @current_resource.domain(@new_resource.domain)
         @current_resource.type(@new_resource.type)
 
-        records = dnsimple_client.zones.list_zone_records(dnsimple_client_account_id,
-                                                    @new_resource.domain)
+        records = dnsimple_client.zones.all_zone_records(dnsimple_client_account_id,
+                                                         @new_resource.domain)
         @existing_record = records.data.detect do |record|
           (record.name == @new_resource.record_name) && (record.type == @new_resource.type)
         end
