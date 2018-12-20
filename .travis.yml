@@ -1,5 +1,4 @@
 sudo: required
-dist: trusty
 
 addons:
   apt:
@@ -7,6 +6,8 @@ addons:
       - chef-stable-trusty
     packages:
       - chefdk
+
+services: docker
 
 env:
   global:
@@ -16,10 +17,10 @@ env:
 install: echo "skip bundle install"
 
 before_script:
-- eval "$(/opt/chefdk/bin/chef shell-init bash)"
-- chef gem install kitchen-docker
-- chef gem install stove
-- chef gem install dnsimple
+  - sudo iptables -L DOCKER || ( echo "DOCKER iptables chain missing" ; sudo iptables -N DOCKER )
+  - eval "$(chef shell-init bash)"
+  - chef gem install kitchen-docker
+  - chef gem install dnsimple
 
 script: chef exec rake
 
