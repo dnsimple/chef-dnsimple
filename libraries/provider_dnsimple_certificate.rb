@@ -37,7 +37,7 @@ class Chef
         end
 
         @current_resource.exists = !@existing_certificate.nil?
-        if @current_resource.exists
+        if @current_resource.exists # rubocop:disable Style/GuardClause
           @current_resource.expires_on = Date.parse(@existing_certificate.expires_on).to_s
           @existing_certificate_bundle = dnsimple_client.certificates.download_certificate(dnsimple_client_account_id, @new_resource.domain, @existing_certificate.id).data
           @current_resource.server_pem = @existing_certificate_bundle.server
