@@ -11,18 +11,33 @@ services: docker
 
 env:
   global:
-  - KITCHEN_LOCAL_YAML=.kitchen.docker.yml
-  - secure: IfD/3A3IPxozFCSTlI5q6PIr1D78WupjhZVU5RlvDRsuajZuhCJHYHQvD1SI0cLAE+MG3XPhg8BXbPDtHGPCpNKybEFhWlRU9tghTxpzijMBvImBVPNzo8otn8ywvpw1XSFHKd79dFj1SRZqWbEFW4G/JFHarxl9svggyrfMTx8=
+    - KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
+    - secure: IfD/3A3IPxozFCSTlI5q6PIr1D78WupjhZVU5RlvDRsuajZuhCJHYHQvD1SI0cLAE+MG3XPhg8BXbPDtHGPCpNKybEFhWlRU9tghTxpzijMBvImBVPNzo8otn8ywvpw1XSFHKd79dFj1SRZqWbEFW4G/JFHarxl9svggyrfMTx8=
+  matrix:
+    # Split up the test-kitchen run to avoid exceeding 50 minutes:
+    - TASK="quick"
+    - TASK="integration:dokken" ACTION="verify" INSTANCE=create-record-centos-6
+    - TASK="integration:dokken" ACTION="verify" INSTANCE=create-record-centos-7
+    - TASK="integration:dokken" ACTION="verify" INSTANCE=create-record-ubuntu-1404
+    - TASK="integration:dokken" ACTION="verify" INSTANCE=create-record-ubuntu-1604
+    - TASK="integration:dokken" ACTION="verify" INSTANCE=create-record-ubuntu-1804
+    - TASK="integration:dokken" ACTION="verify" INSTANCE=update-record-centos-6
+    - TASK="integration:dokken" ACTION="verify" INSTANCE=update-record-centos-7
+    - TASK="integration:dokken" ACTION="verify" INSTANCE=update-record-ubuntu-1404
+    - TASK="integration:dokken" ACTION="verify" INSTANCE=update-record-ubuntu-1604
+    - TASK="integration:dokken" ACTION="verify" INSTANCE=update-record-ubuntu-1804
+
+matrix:
+  fast_finish: true
 
 install: echo "skip bundle install"
 
 before_script:
   - sudo iptables -L DOCKER || ( echo "DOCKER iptables chain missing" ; sudo iptables -N DOCKER )
   - eval "$(chef shell-init bash)"
-  - chef gem install kitchen-docker
   - chef gem install dnsimple
 
-script: chef exec rake
+script: chef exec rake "$TASK[$INSTANCE, $CONCURRENCY, $ACTION]"
 
 notifications:
   email: false
