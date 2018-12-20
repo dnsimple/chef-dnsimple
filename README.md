@@ -26,7 +26,7 @@ If you used the dnsimple_certificate resource, you'll want to do the following t
 
 ## Attributes
 
-- None
+* None
 
 ## Resources/Providers
 
@@ -188,7 +188,7 @@ See CONTRIBUTING.md
 ## License and Authors
 
 * Author:: [Aaron Kalin](https://github.com/martinisoft)
-* Author:: [David Aronsohn](https://github.com/onlyhavecans)
+* Author:: [Amelia Aronsohn](https://github.com/onlyhavecans)
 * Author:: [Jacobo Garcia](https://github.com/therobot)
 * Author:: [Anthony Eden](https://github.com/aeden)
 
