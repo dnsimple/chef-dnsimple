@@ -12,14 +12,15 @@ verifier:
   name: inspec
   attributes:
     dnsimple_token: <%= ENV['DNSIMPLE_ACCESS_TOKEN'] %>
-    test_domain: dnsimple.xyz
+    test_domain: <%= ENV['DNSIMPLE_TEST_DOMAIN'] || dnsimple.xyz %>
 
 platforms:
-  - name: ubuntu-14.04
-  - name: ubuntu-16.04
   - name: centos-6
   - name: centos-7
   - name: freebsd-11
+  - name: ubuntu-14.04
+  - name: ubuntu-16.04
+  - name: ubuntu-18.04
 
 suites:
   - name: create_record
@@ -30,7 +31,7 @@ suites:
       dnsimple:
         access_token: <%= ENV['DNSIMPLE_ACCESS_TOKEN'] %>
         base_url: https://api.sandbox.dnsimple.com
-        test_domain: dnsimple.xyz
+        test_domain: <%= ENV['DNSIMPLE_TEST_DOMAIN'] || dnsimple.xyz %>
   - name: update_record
     run_list:
       - recipe[dnsimple_test::reset_test_environment]
@@ -39,4 +40,4 @@ suites:
       dnsimple:
         access_token: <%= ENV['DNSIMPLE_ACCESS_TOKEN'] %>
         base_url: https://api.sandbox.dnsimple.com
-        test_domain: dnsimple.xyz
+        test_domain: <%= ENV['DNSIMPLE_TEST_DOMAIN'] || dnsimple.xyz %>

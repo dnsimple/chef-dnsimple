@@ -1,0 +1,47 @@
+---
+driver:
+  name: dokken
+  privileged: true
+
+transport:
+  name: dokken
+
+provisioner:
+  name: dokken
+
+verifier:
+  name: inspec
+  attributes:
+    dnsimple_token: <%= ENV['DNSIMPLE_ACCESS_TOKEN'] %>
+    test_domain: <%= ENV['DNSIMPLE_TEST_DOMAIN'] || dnsimple.xyz %>
+
+platforms:
+  - name: ubuntu-14.04
+    driver:
+      image: dokken/ubuntu-14.04
+      intermediate_instructions:
+      - RUN /usr/bin/apt-get update
+
+  - name: ubuntu-16.04
+    driver:
+      image: dokken/ubuntu-16.04
+      pid_one_command: /bin/systemd
+      intermediate_instructions:
+          - RUN /usr/bin/apt-get update
+
+  - name: ubuntu-18.04
+    driver:
+      image: dokken/ubuntu-18.04
+      pid_one_command: /bin/systemd
+      intermediate_instructions:
+          - RUN /usr/bin/apt-get update
+
+  - name: centos-6
+    driver:
+      image: dokken/centos-6
+      pid_one_command: /sbin/init
+
+  - name: centos-7
+    driver:
+      image: dokken/centos-7
+      pid_one_command: /usr/lib/systemd/systemd
