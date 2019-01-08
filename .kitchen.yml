@@ -5,7 +5,7 @@ driver:
 provisioner:
   name: chef_zero
   product_name: chef
-  product_version: 13
+  product_version: 14
   always_update_cookbooks: <%= !ENV['CI'] %>
 
 verifier:
