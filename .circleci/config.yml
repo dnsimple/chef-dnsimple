@@ -1,7 +1,7 @@
 version: 2.1
 
 executors:
-  chef:
+  chefdk:
     machine: true
 
 jobs:
