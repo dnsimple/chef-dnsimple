@@ -4,16 +4,19 @@ executors:
   chefdk:
     machine: true
 
+jobs:
+  lint:
+    executor: chefdk
+    steps:
+      - checkout
+      - run:
+          name: Install ChefDK
+          command: curl -L https://omnitruck.chef.io/install.sh | sudo bash -s -- -c stable -P chefdk
+      - run:
+          name: Lint & Unit Test
+          command: chef exec rake quick
+
 workflows:
-  kitchen:
+  lint_and_test:
     jobs:
-      lint:
-        executor: chefdk
-        steps:
-          - checkout
-          - run:
-              name: Install ChefDK
-              command: curl -L https://omnitruck.chef.io/install.sh | sudo bash -s -- -c stable -P chefdk
-          - run:
-              name: Lint & Unit Test
-              command: chef exec rake quick
+      - lint
