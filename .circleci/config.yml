@@ -13,6 +13,9 @@ jobs:
           name: Install ChefDK
           command: curl -L https://omnitruck.chef.io/install.sh | sudo bash -s -- -c stable -P chefdk
       - run:
+          name: Add dnsimple gem
+          command: chef gem install dnsimple
+      - run:
           name: Lint & Unit Test
           command: chef exec rake quick
 
