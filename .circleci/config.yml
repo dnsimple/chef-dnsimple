@@ -2,24 +2,29 @@ version: 2.1
 
 executors:
   chefdk:
-    machine: true
+    docker:
+      - image: chef/chefdk:3
 
 jobs:
-  lint:
+  setup:
     executor: chefdk
     steps:
       - checkout
       - run:
-          name: Install ChefDK
-          command: curl -L https://omnitruck.chef.io/install.sh | sudo bash -s -- -c stable -P chefdk
-      - run:
           name: Add dnsimple gem
           command: chef gem install dnsimple
+  lint:
+    executor: chefdk
+    steps:
       - run:
           name: Lint & Unit Test
           command: chef exec rake quick
 
 workflows:
+  version: 2
   lint_and_test:
     jobs:
-      - lint
+      - setup
+      - lint:
+        requires:
+          - setup
