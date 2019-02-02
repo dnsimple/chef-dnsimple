@@ -1,0 +1,35 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: chef/chefdk:3
+    parameters:
+      domain:
+        description: Test domain for dnsimple sandbox
+        type: string
+        default: example.com
+      task:
+        description: Chef exec command to run
+        type: string
+    environment:
+      DNSIMPLE_TEST_DOMAIN: <<parameters.domain>>
+      KITCHEN_LOCAL_YAML: .kitchen.dokken.yml
+    steps:
+      - checkout
+      - run:
+          name: Add dnsimple gem
+          command: chef gem install dnsimple
+      - setup_remote_docker
+      - run: chef exec <<parameters.task>>
+
+workflows:
+  lint_and_unit:
+    jobs:
+      - build:
+          name: lint
+          task: delivery local all
+      - build:
+          name: kitchen-create-record-centos-6
+          task: kitchen test create-record-centos-6
+          domain: create-centos-6-dnsimple.xyz
