@@ -36,6 +36,21 @@ jobs:
           command: kitchen test <<parameters.suite>>-centos-7
           environment:
             DNSIMPLE_TEST_DOMAIN: <<parameters.suite>>-centos-7-dnsimple.xyz
+      - run:
+          name: ubuntu-1404
+          command: kitchen test <<parameters.suite>>-ubuntu-1404
+          environment:
+            DNSIMPLE_TEST_DOMAIN: <<parameters.suite>>-ubuntu-1404-dnsimple.xyz
+      - run:
+          name: ubuntu-1604
+          command: kitchen test <<parameters.suite>>-ubuntu-1604
+          environment:
+            DNSIMPLE_TEST_DOMAIN: <<parameters.suite>>-ubuntu-1604-dnsimple.xyz
+      - run:
+          name: ubuntu-1804
+          command: kitchen test <<parameters.suite>>-ubuntu-1804
+          environment:
+            DNSIMPLE_TEST_DOMAIN: <<parameters.suite>>-ubuntu-1804-dnsimple.xyz
 
 workflows:
   test_kitchen:
@@ -44,5 +59,10 @@ workflows:
       - dokken:
           name: create-record
           suite: create-record
+          requires:
+            - delivery
+      - dokken:
+          name: update-record
+          suite: update-record
           requires:
             - delivery
