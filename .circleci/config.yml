@@ -13,15 +13,10 @@ jobs:
   dokken:
     machine: true
     parameters:
-      domain:
-        description: Test domain for dnsimple sandbox
-        type: string
-        default: example.com
       suite:
         description: Test kitchen suite name
         type: string
     environment:
-      DNSIMPLE_TEST_DOMAIN: <<parameters.domain>>
       KITCHEN_LOCAL_YAML: .kitchen.dokken.yml
     steps:
       - checkout
@@ -33,8 +28,9 @@ jobs:
           command: chef gem install dnsimple
       - run:
           name: centos-6
-          domain: <<parameters.suite>>-6-dnsimple.xyz
           command: kitchen test <<parameters.suite>>-centos-6
+          environment:
+            DNSIMPLE_TEST_DOMAIN: <<parameters.suite>>-6-dnsimple.xyz
 
 
 workflows:
