@@ -30,7 +30,7 @@ jobs:
           name: centos-6
           command: kitchen test <<parameters.suite>>-centos-6
           environment:
-            DNSIMPLE_TEST_DOMAIN: <<parameters.suite>>-6-dnsimple.xyz
+            DNSIMPLE_TEST_DOMAIN: <<parameters.suite>>-centos-6-dnsimple.xyz
 
 
 workflows:
