@@ -31,7 +31,11 @@ jobs:
           command: kitchen test <<parameters.suite>>-centos-6
           environment:
             DNSIMPLE_TEST_DOMAIN: <<parameters.suite>>-centos-6-dnsimple.xyz
-
+      - run:
+          name: centos-7
+          command: kitchen test <<parameters.suite>>-centos-7
+          environment:
+            DNSIMPLE_TEST_DOMAIN: <<parameters.suite>>-centos-7-dnsimple.xyz
 
 workflows:
   test_kitchen:
@@ -40,3 +44,5 @@ workflows:
       - dokken:
           name: create-record
           suite: create-record
+          requires:
+            - delivery
