@@ -16,13 +16,13 @@ jobs:
       suite:
         description: Test kitchen suite name
         type: string
-    environment:
-      KITCHEN_LOCAL_YAML: .kitchen.dokken.yml
+    environment: 
+      CHEF_LICENSE: accept-silent
     steps:
       - checkout
       - run:
           name: Install Chef
-          command: curl -L https://omnitruck.chef.io/install.sh | sudo bash -s -- -c stable -P chefdk
+          command: curl -L https://omnitruck.chef.io/install.sh | sudo bash -s -- -c stable -P chef-workstation
       - run:
           name: Add dnsimple gem
           command: chef gem install dnsimple
