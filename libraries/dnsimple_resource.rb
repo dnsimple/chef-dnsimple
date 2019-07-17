@@ -1,4 +1,3 @@
-
 class Chef
   class Resource
     class DnsimpleResource < Chef::Resource

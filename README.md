@@ -192,7 +192,7 @@ See CONTRIBUTING.md
 * Author:: [Jacobo Garcia](https://github.com/therobot)
 * Author:: [Anthony Eden](https://github.com/aeden)
 
-Copyright:: 2014-2018 DNSimple Corp
+Copyright:: 2014-2019 DNSimple Corp
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

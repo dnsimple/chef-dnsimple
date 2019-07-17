@@ -1,26 +1,53 @@
 ---
 driver:
-  name: vagrant
+  name: dokken
+  privileged: true
+  chef_version: 14
+
+transport:
+  name: dokken
 
 provisioner:
-  name: chef_zero
-  product_name: chef
-  product_version: 14
-  always_update_cookbooks: <%= !ENV['CI'] %>
+  name: dokken
+  deprecations_as_errors: true
+  always_update_cookbooks: true
 
 verifier:
   name: inspec
   attributes:
     dnsimple_token: <%= ENV['DNSIMPLE_ACCESS_TOKEN'] %>
-    test_domain: <%= ENV['DNSIMPLE_TEST_DOMAIN'] || dnsimple.xyz %>
+    test_domain: <%= ENV['DNSIMPLE_TEST_DOMAIN'] || 'dnsimple.xyz' %>
 
 platforms:
-  - name: centos-6
-  - name: centos-7
-  - name: freebsd-11
   - name: ubuntu-14.04
+    driver:
+      image: dokken/ubuntu-14.04
+      intermediate_instructions:
+      - RUN /usr/bin/apt-get update
+
   - name: ubuntu-16.04
+    driver:
+      image: dokken/ubuntu-16.04
+      pid_one_command: /bin/systemd
+      intermediate_instructions:
+          - RUN /usr/bin/apt-get update
+
   - name: ubuntu-18.04
+    driver:
+      image: dokken/ubuntu-18.04
+      pid_one_command: /bin/systemd
+      intermediate_instructions:
+          - RUN /usr/bin/apt-get update
+
+  - name: centos-6
+    driver:
+      image: dokken/centos-6
+      pid_one_command: /sbin/init
+
+  - name: centos-7
+    driver:
+      image: dokken/centos-7
+      pid_one_command: /usr/lib/systemd/systemd
 
 suites:
   - name: create_record
@@ -31,7 +58,7 @@ suites:
       dnsimple:
         access_token: <%= ENV['DNSIMPLE_ACCESS_TOKEN'] %>
         base_url: https://api.sandbox.dnsimple.com
-        test_domain: <%= ENV['DNSIMPLE_TEST_DOMAIN'] || dnsimple.xyz %>
+        test_domain: <%= ENV['DNSIMPLE_TEST_DOMAIN'] || 'dnsimple.xyz' %>
   - name: update_record
     run_list:
       - recipe[dnsimple_test::reset_test_environment]
@@ -40,4 +67,4 @@ suites:
       dnsimple:
         access_token: <%= ENV['DNSIMPLE_ACCESS_TOKEN'] %>
         base_url: https://api.sandbox.dnsimple.com
-        test_domain: <%= ENV['DNSIMPLE_TEST_DOMAIN'] || dnsimple.xyz %>
+        test_domain: <%= ENV['DNSIMPLE_TEST_DOMAIN'] || 'dnsimple.xyz' %>
