@@ -16,7 +16,7 @@ jobs:
       suite:
         description: Test kitchen suite name
         type: string
-    environment: 
+    environment:
       CHEF_LICENSE: accept-silent
     steps:
       - checkout
