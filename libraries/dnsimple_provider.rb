@@ -1,4 +1,3 @@
-
 class Chef
   class Provider
     class DnsimpleProvider < Chef::Provider
