@@ -37,7 +37,7 @@ Manage a DNS record through the dnsimple API. This resource uses the
 the dnsimple API. This resource also exposes a ChefSpec matcher for you to do
 unit testing as well.
 
-#### Actions:
+#### Actions
 
 | Action    | Description          | Default |
 |-----------|----------------------|---------|
@@ -45,7 +45,7 @@ unit testing as well.
 | *update*  | Update the record.   |         |
 | *destroy* | Destroy the record.  |         |
 
-#### Resource Properties:
+#### Resource Properties
 
 | Property       | Description                      | Required | Default                    |
 |----------------|----------------------------------|----------|----------------------------|
@@ -132,15 +132,13 @@ library](https://rubygems.org/gems/dnsimple) to connect and use the dnsimple
 API. This resource also exposes a ChefSpec matcher for you to do unit testing
 as well.
 
-
-#### Actions:
+#### Actions
 
 | Action    | Description           | Default |
 |-----------|-----------------------|---------|
 | *install* | Install the crt & key | Yes     |
 
-
-#### Resource Properties:
+#### Resource Properties
 
 | Property          | Description                       | Required | Default                    |
 |-------------------|-----------------------------------|----------|----------------------------|
@@ -198,7 +196,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-    http://www.apache.org/licenses/LICENSE-2.0
+`http://www.apache.org/licenses/LICENSE-2.0`
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,

@@ -5,7 +5,7 @@ require_relative '../../libraries/resource_dnsimple_record'
 
 describe Chef::Provider::DnsimpleRecord do
   before(:each) do
-    @node = stub_node(platform: 'ubuntu', version: '14.04')
+    @node = stub_node(platform: 'ubuntu', version: '18.04')
     @events = Chef::EventDispatch::Dispatcher.new
     @run_context = Chef::RunContext.new(@node, {}, @events)
     @new_resource = Chef::Resource::DnsimpleRecord.new('record_name')
