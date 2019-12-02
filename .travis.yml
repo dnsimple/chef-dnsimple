@@ -22,12 +22,10 @@ env:
     - TASK="quick"
     - TASK="integration:dokken" ACTION="verify" INSTANCE=create-record-centos-6 DNSIMPLE_TEST_DOMAIN=create-centos-6-dnsimple.xyz
     - TASK="integration:dokken" ACTION="verify" INSTANCE=create-record-centos-7 DNSIMPLE_TEST_DOMAIN=create-centos-7-dnsimple.xyz
-    - TASK="integration:dokken" ACTION="verify" INSTANCE=create-record-ubuntu-1404 DNSIMPLE_TEST_DOMAIN=create-ubuntu-14-dnsimple.xyz
     - TASK="integration:dokken" ACTION="verify" INSTANCE=create-record-ubuntu-1604 DNSIMPLE_TEST_DOMAIN=create-ubuntu-16-dnsimple.xyz
     - TASK="integration:dokken" ACTION="verify" INSTANCE=create-record-ubuntu-1804 DNSIMPLE_TEST_DOMAIN=create-ubuntu-18-dnsimple.xyz
     - TASK="integration:dokken" ACTION="verify" INSTANCE=update-record-centos-6 DNSIMPLE_TEST_DOMAIN=update-centos-6-dnsimple.xyz
     - TASK="integration:dokken" ACTION="verify" INSTANCE=update-record-centos-7 DNSIMPLE_TEST_DOMAIN=update-centos-7-dnsimple.xyz
-    - TASK="integration:dokken" ACTION="verify" INSTANCE=update-record-ubuntu-1404 DNSIMPLE_TEST_DOMAIN=update-ubuntu-14-dnsimple.xyz
     - TASK="integration:dokken" ACTION="verify" INSTANCE=update-record-ubuntu-1604 DNSIMPLE_TEST_DOMAIN=update-ubuntu-16-dnsimple.xyz
     - TASK="integration:dokken" ACTION="verify" INSTANCE=update-record-ubuntu-1804 DNSIMPLE_TEST_DOMAIN=update-ubuntu-18-dnsimple.xyz
 
