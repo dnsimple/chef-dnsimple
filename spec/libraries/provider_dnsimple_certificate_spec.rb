@@ -6,7 +6,7 @@ require_relative '../../libraries/resource_dnsimple_certificate'
 
 describe Chef::Provider::DnsimpleCertificate do
   before(:each) do
-    @node = stub_node(platform: 'ubuntu', version: '14.04')
+    @node = stub_node(platform: 'ubuntu', version: '18.04')
     @events = Chef::EventDispatch::Dispatcher.new
     @new_resource = Chef::Resource::DnsimpleCertificate.new('/path/to/certificate.crt')
     @run_context = Chef::RunContext.new(@node, {}, @events)

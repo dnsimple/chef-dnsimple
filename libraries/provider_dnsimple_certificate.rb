@@ -1,8 +1,8 @@
 #
-# Cookbook Name:: dnsimple
+# Cookbook:: dnsimple
 # Library:: provider_dnsimple_certificate
 #
-# Copyright 2014-2018 DNSimple Corp
+# Copyright:: 2014-2018 DNSimple Corp
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -21,8 +21,6 @@ require_relative 'dnsimple_provider'
 class Chef
   class Provider
     class DnsimpleCertificate < DnsimpleProvider
-      use_inline_resources
-
       provides :dnsimple_certificate
 
       def load_current_resource

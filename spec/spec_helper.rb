@@ -10,7 +10,7 @@ RSpec.configure do |config|
   config.platform = 'ubuntu'
 
   # Specify the operating version to mock Ohai data from
-  config.version = '14.04'
+  config.version = '18.04'
 
   config.mock_with :rspec do |mocks|
     mocks.verify_partial_doubles = true
