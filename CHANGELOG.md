@@ -1,6 +1,19 @@
-# Change Log
+# Changelog
+
+## [v3.1.0](https://github.com/dnsimple/chef-dnsimple/tree/v3.1.0) (2019-12-04)
+
+[Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/v3.0.1...v3.1.0)
+
+**Merged pull requests:**
+
+- Lint to latest codestyle [\#66](https://github.com/dnsimple/chef-dnsimple/pull/66) ([onlyhavecans](https://github.com/onlyhavecans))
+- Move fully to Dokken & a single kitchen configuration [\#65](https://github.com/dnsimple/chef-dnsimple/pull/65) ([onlyhavecans](https://github.com/onlyhavecans))
+- Trial CircleCI for builds [\#63](https://github.com/dnsimple/chef-dnsimple/pull/63) ([martinisoft](https://github.com/martinisoft))
+- Test chef14 [\#62](https://github.com/dnsimple/chef-dnsimple/pull/62) ([onlyhavecans](https://github.com/onlyhavecans))
+- Test 18.04 [\#61](https://github.com/dnsimple/chef-dnsimple/pull/61) ([onlyhavecans](https://github.com/onlyhavecans))
 
 ## [v3.0.1](https://github.com/dnsimple/chef-dnsimple/tree/v3.0.1) (2018-10-19)
+
 [Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/v3.0.0...v3.0.1)
 
 **Merged pull requests:**
@@ -8,6 +21,7 @@
 - Update our provider to match dnsimple-ruby 4.5.0 [\#60](https://github.com/dnsimple/chef-dnsimple/pull/60) ([martinisoft](https://github.com/martinisoft))
 
 ## [v3.0.0](https://github.com/dnsimple/chef-dnsimple/tree/v3.0.0) (2018-08-08)
+
 [Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/v2.2.0...v3.0.0)
 
 **Fixed bugs:**
@@ -19,14 +33,15 @@
 - Upgrade to Chef 13.9+ [\#57](https://github.com/dnsimple/chef-dnsimple/pull/57) ([martinisoft](https://github.com/martinisoft))
 
 ## [v2.2.0](https://github.com/dnsimple/chef-dnsimple/tree/v2.2.0) (2018-08-07)
+
 [Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/v2.1.1...v2.2.0)
 
 **Merged pull requests:**
 
 - Deprecate the 2.x series with log warnings [\#59](https://github.com/dnsimple/chef-dnsimple/pull/59) ([martinisoft](https://github.com/martinisoft))
-- Update copyrights [\#58](https://github.com/dnsimple/chef-dnsimple/pull/58) ([onlyhavecans](https://github.com/onlyhavecans))
 
 ## [v2.1.1](https://github.com/dnsimple/chef-dnsimple/tree/v2.1.1) (2018-03-21)
+
 [Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/v2.1.0...v2.1.1)
 
 **Fixed bugs:**
@@ -35,6 +50,7 @@
 
 **Merged pull requests:**
 
+- Update copyrights [\#58](https://github.com/dnsimple/chef-dnsimple/pull/58) ([onlyhavecans](https://github.com/onlyhavecans))
 - Bugfix: Correctly validate the test domain in Inspec [\#55](https://github.com/dnsimple/chef-dnsimple/pull/55) ([martinisoft](https://github.com/martinisoft))
 - Bugfix: AAAA record validation in dnsimple\_record resource [\#54](https://github.com/dnsimple/chef-dnsimple/pull/54) ([martinisoft](https://github.com/martinisoft))
 - Add all\_certificates endpoint and fix certificates spec [\#53](https://github.com/dnsimple/chef-dnsimple/pull/53) ([martinisoft](https://github.com/martinisoft))
@@ -42,6 +58,7 @@
 - Testing to chef 13 [\#50](https://github.com/dnsimple/chef-dnsimple/pull/50) ([onlyhavecans](https://github.com/onlyhavecans))
 
 ## [v2.1.0](https://github.com/dnsimple/chef-dnsimple/tree/v2.1.0) (2017-06-26)
+
 [Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/v2.0.1...v2.1.0)
 
 **Merged pull requests:**
@@ -50,6 +67,7 @@
 - Feature/install certificate [\#48](https://github.com/dnsimple/chef-dnsimple/pull/48) ([aeden](https://github.com/aeden))
 
 ## [v2.0.1](https://github.com/dnsimple/chef-dnsimple/tree/v2.0.1) (2017-05-18)
+
 [Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/v2.0.0...v2.0.1)
 
 **Fixed bugs:**
@@ -57,6 +75,7 @@
 - Re-release 2.0.0 with updated Stove [\#47](https://github.com/dnsimple/chef-dnsimple/issues/47)
 
 ## [v2.0.0](https://github.com/dnsimple/chef-dnsimple/tree/v2.0.0) (2017-04-24)
+
 [Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/v1.3.4...v2.0.0)
 
 **Fixed bugs:**
@@ -74,6 +93,7 @@
 - Update README.md [\#43](https://github.com/dnsimple/chef-dnsimple/pull/43) ([jjasghar](https://github.com/jjasghar))
 
 ## [v1.3.4](https://github.com/dnsimple/chef-dnsimple/tree/v1.3.4) (2016-09-30)
+
 [Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/v1.3.3...v1.3.4)
 
 **Merged pull requests:**
@@ -81,6 +101,7 @@
 - Swap fog gem for fog-dnsimple [\#42](https://github.com/dnsimple/chef-dnsimple/pull/42) ([martinisoft](https://github.com/martinisoft))
 
 ## [v1.3.3](https://github.com/dnsimple/chef-dnsimple/tree/v1.3.3) (2016-06-27)
+
 [Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/v1.3.2...v1.3.3)
 
 **Fixed bugs:**
@@ -94,6 +115,7 @@
 - Remove 16.04 due to bento issues. Update Documents [\#38](https://github.com/dnsimple/chef-dnsimple/pull/38) ([onlyhavecans](https://github.com/onlyhavecans))
 
 ## [v1.3.2](https://github.com/dnsimple/chef-dnsimple/tree/v1.3.2) (2016-06-24)
+
 [Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/v1.3.1...v1.3.2)
 
 **Merged pull requests:**
@@ -101,6 +123,7 @@
 - Move to cookstyle over chefstyle [\#36](https://github.com/dnsimple/chef-dnsimple/pull/36) ([onlyhavecans](https://github.com/onlyhavecans))
 
 ## [v1.3.1](https://github.com/dnsimple/chef-dnsimple/tree/v1.3.1) (2016-06-10)
+
 [Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/v1.3.0...v1.3.1)
 
 **Merged pull requests:**
@@ -108,6 +131,7 @@
 - Update documentation with a correction for the token usage [\#35](https://github.com/dnsimple/chef-dnsimple/pull/35) ([martinisoft](https://github.com/martinisoft))
 
 ## [v1.3.0](https://github.com/dnsimple/chef-dnsimple/tree/v1.3.0) (2016-06-10)
+
 [Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/v1.2.0...v1.3.0)
 
 **Fixed bugs:**
@@ -119,6 +143,9 @@
 - Support api tokens [\#33](https://github.com/dnsimple/chef-dnsimple/pull/33) ([martinisoft](https://github.com/martinisoft))
 
 ## [v1.2.0](https://github.com/dnsimple/chef-dnsimple/tree/v1.2.0) (2016-06-10)
+
+[Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/3085b8987751eb58e112743ca037cfbda9189222...v1.2.0)
+
 **Fixed bugs:**
 
 - Fix ChefSpec Deprecation Warning [\#25](https://github.com/dnsimple/chef-dnsimple/issues/25)
@@ -153,4 +180,4 @@
 
 
 
-\* *This Change Log was automatically generated by [github_changelog_generator](https://github.com/skywinder/Github-Changelog-Generator)*
+\* *This Changelog was automatically generated by [github_changelog_generator](https://github.com/github-changelog-generator/github-changelog-generator)*
