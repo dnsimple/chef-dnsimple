@@ -185,3 +185,5 @@ See CONTRIBUTING.md
 ## License
 
 Copyright (c) 2014-2020 DNSimple Corporation.
+
+Licensed under the Apache License, Version 2.0.
