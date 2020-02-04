@@ -39,7 +39,7 @@ class Chef
             " with type #{@new_resource.type}. This cookbook only modifies the first record."
         end
 
-        @existing_record = records.data.sort.first
+        @existing_record = records.data.first
         @current_resource.exists = !@existing_record.nil?
       end
 
