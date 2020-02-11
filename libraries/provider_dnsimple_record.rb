@@ -29,12 +29,17 @@ class Chef
         @current_resource.domain(@new_resource.domain)
         @current_resource.type(@new_resource.type)
 
-        records = dnsimple_client.zones.all_zone_records(dnsimple_client_account_id,
-                                                         @new_resource.domain)
-        @existing_record = records.data.detect do |record|
-          (record.name == @new_resource.record_name) && (record.type == @new_resource.type)
+        record_filter = { name: @new_resource.record_name, type: @new_resource.type }
+        records = dnsimple_client.zones.zone_records(dnsimple_client_account_id,
+                                                     @new_resource.domain,
+                                                     filter: record_filter)
+
+        if records.data.length > 1
+          Chef::Log.info "DNSimple: Multiple records found #{@new_resource.record_name}.#{@new_resource.domain}" \
+            " with type #{@new_resource.type}. This cookbook only modifies the first record."
         end
 
+        @existing_record = records.data.first
         @current_resource.exists = !@existing_record.nil?
       end
 
