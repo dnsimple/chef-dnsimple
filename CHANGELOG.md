@@ -1,5 +1,17 @@
 # Changelog
 
+## [v3.2.0](https://github.com/dnsimple/chef-dnsimple/tree/v3.2.0) (2020-02-10)
+
+[Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/v3.1.0...v3.2.0)
+
+**Implemented enhancements:**
+
+- Filter the record lookup [\#67](https://github.com/dnsimple/chef-dnsimple/pull/67) ([onlyhavecans](https://github.com/onlyhavecans))
+
+**Closed issues:**
+
+- Depfu Error: No dependency files found [\#68](https://github.com/dnsimple/chef-dnsimple/issues/68)
+
 ## [v3.1.0](https://github.com/dnsimple/chef-dnsimple/tree/v3.1.0) (2019-12-04)
 
 [Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/v3.0.1...v3.1.0)
@@ -39,6 +51,7 @@
 **Merged pull requests:**
 
 - Deprecate the 2.x series with log warnings [\#59](https://github.com/dnsimple/chef-dnsimple/pull/59) ([martinisoft](https://github.com/martinisoft))
+- Update copyrights [\#58](https://github.com/dnsimple/chef-dnsimple/pull/58) ([onlyhavecans](https://github.com/onlyhavecans))
 
 ## [v2.1.1](https://github.com/dnsimple/chef-dnsimple/tree/v2.1.1) (2018-03-21)
 
@@ -50,7 +63,6 @@
 
 **Merged pull requests:**
 
-- Update copyrights [\#58](https://github.com/dnsimple/chef-dnsimple/pull/58) ([onlyhavecans](https://github.com/onlyhavecans))
 - Bugfix: Correctly validate the test domain in Inspec [\#55](https://github.com/dnsimple/chef-dnsimple/pull/55) ([martinisoft](https://github.com/martinisoft))
 - Bugfix: AAAA record validation in dnsimple\_record resource [\#54](https://github.com/dnsimple/chef-dnsimple/pull/54) ([martinisoft](https://github.com/martinisoft))
 - Add all\_certificates endpoint and fix certificates spec [\#53](https://github.com/dnsimple/chef-dnsimple/pull/53) ([martinisoft](https://github.com/martinisoft))

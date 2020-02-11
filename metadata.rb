@@ -5,7 +5,7 @@ license          'Apache-2.0'
 description      'Provides Chef Resource for automating DNS configuration with DNSimple'
 issues_url       'https://github.com/dnsimple/chef-dnsimple/issues'
 source_url       'https://github.com/dnsimple/chef-dnsimple'
-version          '3.1.0'
+version          '3.2.0'
 
 chef_version '>= 13.9'
 
