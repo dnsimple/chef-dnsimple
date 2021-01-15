@@ -22,6 +22,7 @@ class Chef
   class Resource
     class DnsimpleRecord < DnsimpleResource
       resource_name :dnsimple_record
+      provides :dnsimple_record
 
       allowed_actions :create, :delete, :update
       default_action :create
