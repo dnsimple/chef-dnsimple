@@ -1,4 +1,4 @@
-task style: %w( style:rubocop style:foodcritic )
+task style: %w( style:rubocop style:cookstyle )
 task unit: %w( unit:chefspec )
 task kitchen: %w( integration:dokken )
 
