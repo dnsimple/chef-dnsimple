@@ -1,13 +1,5 @@
 dist: bionic
 
-cache:
-  directories:
-    - $HOME/.berkshelf
-
-# This should match the ruby version bundled with chef-workstation
-rvm:
-  - 2.7
-
 services: docker
 
 env:
