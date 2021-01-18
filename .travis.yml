@@ -30,7 +30,12 @@ before_script:
   - sudo iptables -L DOCKER || ( echo "DOCKER iptables chain missing" ; sudo iptables -N DOCKER )
   - chef gem install dnsimple
 
-script: chef exec rake "$TASK[$INSTANCE, $CONCURRENCY, $ACTION]"
+script:
+  - chef exec rake "$TASK[$INSTANCE, $CONCURRENCY, $ACTION]"
+
+after_failure:
+  - chef exec kitchen list
+  - chef exec kitchen diagnose $KITCHEN_REGEXP
 
 notifications:
   email: false
