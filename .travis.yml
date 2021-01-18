@@ -32,12 +32,7 @@ matrix:
 install: echo "skip bundle install"
 
 before_install:
-  - sudo apt-get install apt-transport-https
-  - wget -qO - https://packages.chef.io/chef.asc | sudo apt-key add -
-  - echo "deb https://packages.chef.io/repos/apt/stable bionic main" > chef-stable.list
-  - sudo mv chef-stable.list /etc/apt/sources.list.d/
-  - sudo apt-get -q update
-  - sudo apt-get -y install chef-workstation
+  - curl -L https://omnitruck.chef.io/install.sh | sudo bash -s -- -P chef-workstation
 
 before_script:
   - sudo iptables -L DOCKER || ( echo "DOCKER iptables chain missing" ; sudo iptables -N DOCKER )
