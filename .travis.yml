@@ -25,6 +25,8 @@ install: echo "skip bundle install"
 
 before_install:
   - curl -L https://omnitruck.chef.io/install.sh | sudo bash -s -- -P chef-workstation
+  - which chef
+  - chef -v
 
 before_script:
   - sudo iptables -L DOCKER || ( echo "DOCKER iptables chain missing" ; sudo iptables -N DOCKER )
