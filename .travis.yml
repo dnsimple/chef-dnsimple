@@ -11,12 +11,12 @@ env:
     - TASK="quick"
     - TASK="kitchen" KITCHEN_REGEXP=create-record-centos-6 DNSIMPLE_TEST_DOMAIN=create-centos-6-dnsimple.xyz
     - TASK="kitchen" KITCHEN_REGEXP=create-record-centos-7 DNSIMPLE_TEST_DOMAIN=create-centos-7-dnsimple.xyz
-    # - TASK="kitchen" KITCHEN_REGEXP=create-record-ubuntu-1604 DNSIMPLE_TEST_DOMAIN=create-ubuntu-16-dnsimple.xyz
-    # - TASK="kitchen" KITCHEN_REGEXP=create-record-ubuntu-1804 DNSIMPLE_TEST_DOMAIN=create-ubuntu-18-dnsimple.xyz
+    - TASK="kitchen" KITCHEN_REGEXP=create-record-ubuntu-1604 DNSIMPLE_TEST_DOMAIN=create-ubuntu-16-dnsimple.xyz
+    - TASK="kitchen" KITCHEN_REGEXP=create-record-ubuntu-1804 DNSIMPLE_TEST_DOMAIN=create-ubuntu-18-dnsimple.xyz
     - TASK="kitchen" KITCHEN_REGEXP=update-record-centos-6 DNSIMPLE_TEST_DOMAIN=update-centos-6-dnsimple.xyz
     - TASK="kitchen" KITCHEN_REGEXP=update-record-centos-7 DNSIMPLE_TEST_DOMAIN=update-centos-7-dnsimple.xyz
-    # - TASK="kitchen" KITCHEN_REGEXP=update-record-ubuntu-1604 DNSIMPLE_TEST_DOMAIN=update-ubuntu-16-dnsimple.xyz
-    # - TASK="kitchen" KITCHEN_REGEXP=update-record-ubuntu-1804 DNSIMPLE_TEST_DOMAIN=update-ubuntu-18-dnsimple.xyz
+    - TASK="kitchen" KITCHEN_REGEXP=update-record-ubuntu-1604 DNSIMPLE_TEST_DOMAIN=update-ubuntu-16-dnsimple.xyz
+    - TASK="kitchen" KITCHEN_REGEXP=update-record-ubuntu-1804 DNSIMPLE_TEST_DOMAIN=update-ubuntu-18-dnsimple.xyz
 
 matrix:
   fast_finish: true
