@@ -1,6 +1,15 @@
 # Changelog
 
-## [v3.2.0](https://github.com/dnsimple/chef-dnsimple/tree/v3.2.0) (2020-02-10)
+## [v3.3.0](https://github.com/dnsimple/chef-dnsimple/tree/v3.3.0) (2021-01-21)
+
+[Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/v3.2.0...v3.3.0)
+
+**Merged pull requests:**
+
+- Updates chef-infra client to v16 [\#71](https://github.com/dnsimple/chef-dnsimple/pull/71) ([AGS4NO](https://github.com/AGS4NO))
+- Updates Travis tests to Bionic distribution. [\#69](https://github.com/dnsimple/chef-dnsimple/pull/69) ([AGS4NO](https://github.com/AGS4NO))
+
+## [v3.2.0](https://github.com/dnsimple/chef-dnsimple/tree/v3.2.0) (2020-02-11)
 
 [Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/v3.1.0...v3.2.0)
 
@@ -20,17 +29,13 @@
 
 - Lint to latest codestyle [\#66](https://github.com/dnsimple/chef-dnsimple/pull/66) ([onlyhavecans](https://github.com/onlyhavecans))
 - Move fully to Dokken & a single kitchen configuration [\#65](https://github.com/dnsimple/chef-dnsimple/pull/65) ([onlyhavecans](https://github.com/onlyhavecans))
-- Trial CircleCI for builds [\#63](https://github.com/dnsimple/chef-dnsimple/pull/63) ([martinisoft](https://github.com/martinisoft))
 - Test chef14 [\#62](https://github.com/dnsimple/chef-dnsimple/pull/62) ([onlyhavecans](https://github.com/onlyhavecans))
 - Test 18.04 [\#61](https://github.com/dnsimple/chef-dnsimple/pull/61) ([onlyhavecans](https://github.com/onlyhavecans))
+- Update our provider to match dnsimple-ruby 4.5.0 [\#60](https://github.com/dnsimple/chef-dnsimple/pull/60) ([martinisoft](https://github.com/martinisoft))
 
 ## [v3.0.1](https://github.com/dnsimple/chef-dnsimple/tree/v3.0.1) (2018-10-19)
 
 [Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/v3.0.0...v3.0.1)
-
-**Merged pull requests:**
-
-- Update our provider to match dnsimple-ruby 4.5.0 [\#60](https://github.com/dnsimple/chef-dnsimple/pull/60) ([martinisoft](https://github.com/martinisoft))
 
 ## [v3.0.0](https://github.com/dnsimple/chef-dnsimple/tree/v3.0.0) (2018-08-08)
 
@@ -63,6 +68,7 @@
 
 **Merged pull requests:**
 
+- Trial CircleCI for builds [\#63](https://github.com/dnsimple/chef-dnsimple/pull/63) ([martinisoft](https://github.com/martinisoft))
 - Bugfix: Correctly validate the test domain in Inspec [\#55](https://github.com/dnsimple/chef-dnsimple/pull/55) ([martinisoft](https://github.com/martinisoft))
 - Bugfix: AAAA record validation in dnsimple\_record resource [\#54](https://github.com/dnsimple/chef-dnsimple/pull/54) ([martinisoft](https://github.com/martinisoft))
 - Add all\_certificates endpoint and fix certificates spec [\#53](https://github.com/dnsimple/chef-dnsimple/pull/53) ([martinisoft](https://github.com/martinisoft))
@@ -133,6 +139,7 @@
 **Merged pull requests:**
 
 - Move to cookstyle over chefstyle [\#36](https://github.com/dnsimple/chef-dnsimple/pull/36) ([onlyhavecans](https://github.com/onlyhavecans))
+- Support api tokens [\#33](https://github.com/dnsimple/chef-dnsimple/pull/33) ([martinisoft](https://github.com/martinisoft))
 
 ## [v1.3.1](https://github.com/dnsimple/chef-dnsimple/tree/v1.3.1) (2016-06-10)
 
@@ -149,10 +156,6 @@
 **Fixed bugs:**
 
 - DNSimple API authentication [\#24](https://github.com/dnsimple/chef-dnsimple/issues/24)
-
-**Merged pull requests:**
-
-- Support api tokens [\#33](https://github.com/dnsimple/chef-dnsimple/pull/33) ([martinisoft](https://github.com/martinisoft))
 
 ## [v1.2.0](https://github.com/dnsimple/chef-dnsimple/tree/v1.2.0) (2016-06-10)
 
