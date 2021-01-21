@@ -22,6 +22,7 @@ class Chef
   class Resource
     class DnsimpleCertificate < DnsimpleResource
       resource_name :dnsimple_certificate
+      provides :dnsimple_certificate
 
       allowed_actions :install
       default_action :install

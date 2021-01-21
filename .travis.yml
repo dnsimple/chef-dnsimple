@@ -1,9 +1,5 @@
 dist: bionic
 
-cache:
-  directories:
-    - $HOME/.berkshelf
-
 services: docker
 
 env:
@@ -13,14 +9,16 @@ env:
   matrix:
     # Split up the test-kitchen run to isolate failures in a large suite
     - TASK="quick"
-    - TASK="integration:dokken" ACTION="verify" INSTANCE=create-record-centos-6 DNSIMPLE_TEST_DOMAIN=create-centos-6-dnsimple.xyz
-    - TASK="integration:dokken" ACTION="verify" INSTANCE=create-record-centos-7 DNSIMPLE_TEST_DOMAIN=create-centos-7-dnsimple.xyz
-    - TASK="integration:dokken" ACTION="verify" INSTANCE=create-record-ubuntu-1604 DNSIMPLE_TEST_DOMAIN=create-ubuntu-16-dnsimple.xyz
-    - TASK="integration:dokken" ACTION="verify" INSTANCE=create-record-ubuntu-1804 DNSIMPLE_TEST_DOMAIN=create-ubuntu-18-dnsimple.xyz
-    - TASK="integration:dokken" ACTION="verify" INSTANCE=update-record-centos-6 DNSIMPLE_TEST_DOMAIN=update-centos-6-dnsimple.xyz
-    - TASK="integration:dokken" ACTION="verify" INSTANCE=update-record-centos-7 DNSIMPLE_TEST_DOMAIN=update-centos-7-dnsimple.xyz
-    - TASK="integration:dokken" ACTION="verify" INSTANCE=update-record-ubuntu-1604 DNSIMPLE_TEST_DOMAIN=update-ubuntu-16-dnsimple.xyz
-    - TASK="integration:dokken" ACTION="verify" INSTANCE=update-record-ubuntu-1804 DNSIMPLE_TEST_DOMAIN=update-ubuntu-18-dnsimple.xyz
+    - TASK="kitchen" KITCHEN_REGEXP=create-record-centos-6 DNSIMPLE_TEST_DOMAIN=create-centos-6-dnsimple.xyz
+    - TASK="kitchen" KITCHEN_REGEXP=create-record-centos-7 DNSIMPLE_TEST_DOMAIN=create-centos-7-dnsimple.xyz
+    - TASK="kitchen" KITCHEN_REGEXP=create-record-ubuntu-1604 DNSIMPLE_TEST_DOMAIN=create-ubuntu-16-dnsimple.xyz
+    - TASK="kitchen" KITCHEN_REGEXP=create-record-ubuntu-1804 DNSIMPLE_TEST_DOMAIN=create-ubuntu-18-dnsimple.xyz
+    # - TASK="kitchen" KITCHEN_REGEXP=create-record-ubuntu-2004 DNSIMPLE_TEST_DOMAIN=create-ubuntu-20-dnsimple.xyz
+    - TASK="kitchen" KITCHEN_REGEXP=update-record-centos-6 DNSIMPLE_TEST_DOMAIN=update-centos-6-dnsimple.xyz
+    - TASK="kitchen" KITCHEN_REGEXP=update-record-centos-7 DNSIMPLE_TEST_DOMAIN=update-centos-7-dnsimple.xyz
+    - TASK="kitchen" KITCHEN_REGEXP=update-record-ubuntu-1604 DNSIMPLE_TEST_DOMAIN=update-ubuntu-16-dnsimple.xyz
+    - TASK="kitchen" KITCHEN_REGEXP=update-record-ubuntu-1804 DNSIMPLE_TEST_DOMAIN=update-ubuntu-18-dnsimple.xyz
+    # - TASK="kitchen" KITCHEN_REGEXP=update-record-ubuntu-2004 DNSIMPLE_TEST_DOMAIN=update-ubuntu-20-dnsimple.xyz
 
 matrix:
   fast_finish: true
@@ -28,19 +26,20 @@ matrix:
 install: echo "skip bundle install"
 
 before_install:
-  - sudo apt-get install apt-transport-https
-  - wget -qO - https://packages.chef.io/chef.asc | sudo apt-key add -
-  - echo "deb https://packages.chef.io/repos/apt/stable bionic main" > chef-stable.list
-  - sudo mv chef-stable.list /etc/apt/sources.list.d/
-  - sudo apt-get -q update
-  - sudo apt-get -y install chef-workstation
+  - curl -L https://omnitruck.chef.io/install.sh | sudo bash -s -- -P chef-workstation
+  - which chef
+  - chef -v
 
 before_script:
   - sudo iptables -L DOCKER || ( echo "DOCKER iptables chain missing" ; sudo iptables -N DOCKER )
-  - eval "$(chef shell-init bash)"
   - chef gem install dnsimple
 
-script: chef exec rake "$TASK[$INSTANCE, $CONCURRENCY, $ACTION]"
+script:
+  - chef exec rake $TASK
+
+after_failure:
+  - chef exec kitchen list
+  - chef exec kitchen diagnose $KITCHEN_REGEXP
 
 notifications:
   email: false

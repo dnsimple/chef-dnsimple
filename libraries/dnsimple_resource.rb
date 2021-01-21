@@ -1,6 +1,8 @@
 class Chef
   class Resource
     class DnsimpleResource < Chef::Resource
+      provides :dnsimple_resource
+
       attr_accessor :exists
 
       def after_created

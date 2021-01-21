@@ -19,6 +19,7 @@ describe Chef::Provider::DnsimpleCertificate do
       @new_resource.access_token('this_is_a_token')
       @provider.dnsimple_client = client
       @new_resource.common_name = certificate_data[:common_name]
+      @new_resource.expires_on = certificate_data[:expires_on]
       @new_resource.install_path = '/etc/nginx/ssl'
       @new_resource.domain = 'example.com'
       @provider.current_resource = @current_resource
