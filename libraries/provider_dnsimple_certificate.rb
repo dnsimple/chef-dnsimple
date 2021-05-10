@@ -2,7 +2,7 @@
 # Cookbook:: dnsimple
 # Library:: provider_dnsimple_certificate
 #
-# Copyright:: 2014-2018 DNSimple Corp
+# Copyright:: 2021, DNSimple Corp, All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -31,12 +31,12 @@ class Chef
 
         certificates = dnsimple_client.certificates.all_certificates(dnsimple_client_account_id, @new_resource.domain)
         @existing_certificate = certificates.data.detect do |certificate|
-          (certificate.common_name == @new_resource.common_name) && (certificate.state == 'issued') && (Date.parse(certificate.expires_on) > Date.today)
+          (certificate.common_name == @new_resource.common_name) && (certificate.state == 'issued') && (Time.parse(certificate.expires_at) > Time.now)
         end
 
         @current_resource.exists = !@existing_certificate.nil?
         if @current_resource.exists
-          @current_resource.expires_on = Date.parse(@existing_certificate.expires_on).to_s
+          @current_resource.expires_at = @existing_certificate.expires_at
           @existing_certificate_bundle = dnsimple_client.certificates.download_certificate(dnsimple_client_account_id, @new_resource.domain, @existing_certificate.id).data
           @current_resource.server_pem = @existing_certificate_bundle.server
           @current_resource.chain_pem = @existing_certificate_bundle.chain
@@ -54,12 +54,12 @@ class Chef
         if @current_resource.exists
           install_certificate
         else
-          Chef::Log.info "DNSimple: no certificate found #{new_resource.certificate_common_name}"
+          Chef::Log.info "DNSimple: no certificate found #{new_resource.common_name}"
         end
       end
 
       def install_certificate
-        converge_by("install certificate #{current_resource.common_name} expiring #{current_resource.expires_on}") do
+        converge_by("install certificate #{current_resource.common_name} expiring #{current_resource.expires_at}") do
           declare_resource(:file, "#{current_resource.name}/#{current_resource.domain}.crt") do
             content "#{current_resource.server_pem}#{current_resource.chain_pem.join("\n")}"
             mode current_resource.mode

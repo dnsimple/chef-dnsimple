@@ -19,7 +19,7 @@ describe Chef::Provider::DnsimpleCertificate do
       @new_resource.access_token('this_is_a_token')
       @provider.dnsimple_client = client
       @new_resource.common_name = certificate_data[:common_name]
-      @new_resource.expires_on = certificate_data[:expires_on]
+      @new_resource.expires_at = certificate_data[:expires_at]
       @new_resource.install_path = '/etc/nginx/ssl'
       @new_resource.domain = 'example.com'
       @provider.current_resource = @current_resource
@@ -32,7 +32,7 @@ describe Chef::Provider::DnsimpleCertificate do
     let(:account) { instance_double(Dnsimple::Struct::Account, id: 1) }
     let(:certificates) { instance_double(Dnsimple::Client::Certificates, all_certificates: certificate_list, download_certificate: certificate_bundle_response, certificate_private_key: private_key_bundle_response) }
     let(:certificate_list) { instance_double(Dnsimple::CollectionResponse, data: [certificate]) }
-    let(:certificate) { instance_double(Dnsimple::Struct::Certificate, id: certificate_data[:id], common_name: certificate_data[:common_name], expires_on: certificate_data[:expires_on], state: 'issued') }
+    let(:certificate) { instance_double(Dnsimple::Struct::Certificate, id: certificate_data[:id], common_name: certificate_data[:common_name], expires_at: certificate_data[:expires_at], state: 'issued') }
     let(:certificate_bundle_response) { instance_double(Dnsimple::Response, data: certificate_bundle) }
     let(:certificate_bundle) { instance_double(Dnsimple::Struct::CertificateBundle, server: 'server-pem', chain: ['chain-pem']) }
     let(:private_key_bundle_response) { instance_double(Dnsimple::Response, data: private_key_bundle) }
@@ -41,10 +41,10 @@ describe Chef::Provider::DnsimpleCertificate do
       {
         id: 1,
         common_name: 'www.example.com',
-        expires_on: next_year,
+        expires_at: future_time,
       }
     end
-    let(:next_year) { Date.today.next_day(365).strftime('%F') }
+    let(:future_time) { (Time.now + 3600).strftime('%FT%R') }
 
     context 'if the certificate exists' do
       it 'installs the certificate' do
