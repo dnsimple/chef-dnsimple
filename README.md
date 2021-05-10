@@ -14,7 +14,7 @@ If you used the dnsimple_record resource, you'll want to do the following to mig
 If you used the dnsimple_certificate resource, you'll want to do the following to migrate:
 
 * Rename `certificate_common_name` properties to `common_name`
-* Update your `expires_on` to be a parsable date string (see examples below)
+* Update your `expires_at` to be a parsable timestamp (see examples below)
 * Add an `install_path` if you have not
 
 ## Requirements
@@ -159,7 +159,7 @@ dnsimple_certificate 'dnsimple.xyz certificate' do
   install_path '/etc/apache2/ssl'
   common_name 'www.dnsimple.xyz'
   domain 'dnsimple.xyz'
-  expires_on '2019-09-08'
+  expires_at '2019-09-08 12:05:00'
   mode '0755'
   owner 'web_admin'
   group 'web_admin'
@@ -184,6 +184,6 @@ See CONTRIBUTING.md
 
 ## License
 
-Copyright (c) 2014-2020 DNSimple Corporation.
+Copyright 2021, DNSimple Corp.
 
 Licensed under the Apache License, Version 2.0.
