@@ -14,7 +14,7 @@ If you used the dnsimple_record resource, you'll want to do the following to mig
 If you used the dnsimple_certificate resource, you'll want to do the following to migrate:
 
 * Rename `certificate_common_name` properties to `common_name`
-* Update your `expires_on` to be a parsable timestamp (see examples below)
+* Update your `expires_on` to be a parsable date string (see examples below)
 * Add an `install_path` if you have not
 
 ## Requirements
