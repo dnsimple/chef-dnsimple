@@ -28,7 +28,7 @@ before_install:
 
 before_script:
   - sudo iptables -L DOCKER || ( echo "DOCKER iptables chain missing" ; sudo iptables -N DOCKER )
-  - chef gem install dnsimple
+  - chef gem install dnsimple -v '< 6.0'
 
 script:
   - chef exec rake $TASK
