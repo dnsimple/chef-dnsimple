@@ -144,7 +144,7 @@ as well.
 | *install_path*    | where the crt & key are installed | yes      |                            |
 | *common_name*     | certificate common name           | yes      | name of the resource       |
 | *domain*          | the main domain name on the crt   | yes      |                            |
-| *expires on*      | when the certificate expires      | yes      |                            |
+| *expires_on*      | when the certificate expires      | yes      |                            |
 | *private_key_pem* | provide your own private key      | no       |                            |
 | *mode*            | files mode                        | no       | 0600                       |
 | *owner*           | files owner                       | no       | root                       |
