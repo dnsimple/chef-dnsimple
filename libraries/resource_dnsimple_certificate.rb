@@ -2,7 +2,7 @@
 # Cookbook:: dnsimple
 # Library:: resource_dnsimple_certificate
 #
-# Copyright:: 2021, DNSimple Corp, All Rights Reserved.
+# Copyright:: 2014-2018 DNSimple Corp
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ class Chef
       property :install_path,    String, required: true
       property :common_name,     String, name_property: true
       property :domain,          String, required: true
-      property :expires_at,      String, required: true
+      property :expires_on,      String, required: true
       property :server_pem,      String
       property :chain_pem,       Array
       property :private_key_pem, String, sensitive: true
