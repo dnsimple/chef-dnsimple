@@ -7,9 +7,9 @@ issues_url       'https://github.com/dnsimple/chef-dnsimple/issues'
 source_url       'https://github.com/dnsimple/chef-dnsimple'
 version          '3.3.0'
 
-chef_version '>= 13.9'
+chef_version '>= 15'
 
-gem 'dnsimple', '>= 4.0'
+gem 'dnsimple', '< 6.0'
 
 %w(amazon centos debian fedora freebsd redhat ubuntu).each do |os|
   supports os

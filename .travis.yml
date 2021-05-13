@@ -1,4 +1,4 @@
-dist: bionic
+dist: focal
 
 services: docker
 
@@ -11,14 +11,12 @@ env:
     - TASK="quick"
     - TASK="kitchen" KITCHEN_REGEXP=create-record-centos-6 DNSIMPLE_TEST_DOMAIN=create-centos-6-dnsimple.xyz
     - TASK="kitchen" KITCHEN_REGEXP=create-record-centos-7 DNSIMPLE_TEST_DOMAIN=create-centos-7-dnsimple.xyz
-    - TASK="kitchen" KITCHEN_REGEXP=create-record-ubuntu-1604 DNSIMPLE_TEST_DOMAIN=create-ubuntu-16-dnsimple.xyz
     - TASK="kitchen" KITCHEN_REGEXP=create-record-ubuntu-1804 DNSIMPLE_TEST_DOMAIN=create-ubuntu-18-dnsimple.xyz
-    # - TASK="kitchen" KITCHEN_REGEXP=create-record-ubuntu-2004 DNSIMPLE_TEST_DOMAIN=create-ubuntu-20-dnsimple.xyz
+    - TASK="kitchen" KITCHEN_REGEXP=create-record-ubuntu-2004 DNSIMPLE_TEST_DOMAIN=create-ubuntu-20-dnsimple.xyz
     - TASK="kitchen" KITCHEN_REGEXP=update-record-centos-6 DNSIMPLE_TEST_DOMAIN=update-centos-6-dnsimple.xyz
     - TASK="kitchen" KITCHEN_REGEXP=update-record-centos-7 DNSIMPLE_TEST_DOMAIN=update-centos-7-dnsimple.xyz
-    - TASK="kitchen" KITCHEN_REGEXP=update-record-ubuntu-1604 DNSIMPLE_TEST_DOMAIN=update-ubuntu-16-dnsimple.xyz
     - TASK="kitchen" KITCHEN_REGEXP=update-record-ubuntu-1804 DNSIMPLE_TEST_DOMAIN=update-ubuntu-18-dnsimple.xyz
-    # - TASK="kitchen" KITCHEN_REGEXP=update-record-ubuntu-2004 DNSIMPLE_TEST_DOMAIN=update-ubuntu-20-dnsimple.xyz
+    - TASK="kitchen" KITCHEN_REGEXP=update-record-ubuntu-2004 DNSIMPLE_TEST_DOMAIN=update-ubuntu-20-dnsimple.xyz
 
 matrix:
   fast_finish: true
@@ -27,17 +25,17 @@ install: echo "skip bundle install"
 
 before_install:
   - curl -L https://omnitruck.chef.io/install.sh | sudo bash -s -- -P chef-workstation
-  - which chef
-  - chef -v
 
 before_script:
   - sudo iptables -L DOCKER || ( echo "DOCKER iptables chain missing" ; sudo iptables -N DOCKER )
-  - chef gem install dnsimple
+  - chef gem install dnsimple -v '< 6.0'
 
 script:
   - chef exec rake $TASK
 
 after_failure:
+  - which chef
+  - chef -v
   - chef exec kitchen list
   - chef exec kitchen diagnose $KITCHEN_REGEXP
 
