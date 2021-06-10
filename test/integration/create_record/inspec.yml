@@ -8,3 +8,11 @@ summary: Confirms the test cookbook to create a record actually does so via the 
 version: 1.0.0
 supports:
   - os-family: linux
+
+inputs:
+- name: dnsimple_token
+  description: The dnsimple API token
+  type: string
+- name: test_domain
+  description: The domain to test against the API
+  type: string
