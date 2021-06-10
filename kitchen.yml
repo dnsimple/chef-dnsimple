@@ -14,12 +14,11 @@ provisioner:
 
 verifier:
   name: inspec
-  attributes:
+  inputs:
     dnsimple_token: <%= ENV['DNSIMPLE_ACCESS_TOKEN'] %>
     test_domain: <%= ENV['DNSIMPLE_TEST_DOMAIN'] || 'dnsimple.xyz' %>
 
 platforms:
-
   - name: ubuntu-18.04
     driver:
       image: dokken/ubuntu-18.04
