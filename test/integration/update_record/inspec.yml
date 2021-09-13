@@ -10,9 +10,9 @@ supports:
   - os-family: linux
 
 inputs:
-- name: dnsimple_token
-  description: The dnsimple API token
-  type: string
-- name: test_domain
-  description: The domain to test against the API
-  type: string
+  - name: dnsimple_token
+    description: The dnsimple API token
+    type: string
+  - name: test_domain
+    description: The domain to test against the API
+    type: string
