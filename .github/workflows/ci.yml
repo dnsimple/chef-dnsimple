@@ -60,6 +60,8 @@ jobs:
         uses: actionshub/chef-install@main
       - name: Install DNSimple gem
         run: chef gem install -N dnsimple -v '< 6.0'
+        env:
+          CHEF_LICENSE: accept-no-persist
       - name: Run Test Kitchen
         uses: actionshub/test-kitchen@main
         env:
