@@ -64,12 +64,12 @@ jobs:
           CHEF_LICENSE: accept-no-persist
           KITCHEN_LOCAL_YAML: kitchen.yml
         with:
-          suite: ${{ matrix.suite }}
+          suite: ${{ matrix.suite }}-record
           os: ${{ matrix.os }}
       - name: Debug
         if: failure()
         run: |
             set -x
             sudo journalctl -l --since today
-            KITCHEN_LOCAL_YAML=kitchen.yml DNSIMPLE_TEST_DOMAIN=${{ matrix.suite }}-${{ matrix.os }}-dnsimple.xyz /usr/bin/kitchen exec \
+            KITCHEN_LOCAL_YAML=kitchen.yml DNSIMPLE_ACCESS_TOKEN=${{ secrets.DNSIMPLE_ACCESS_TOKEN }} DNSIMPLE_TEST_DOMAIN=${{ matrix.suite }}-${{ matrix.os }}-dnsimple.xyz /usr/bin/kitchen exec \
             ${{ matrix.suite }}-record-${{ matrix.os }} -c "journalctl -l"
