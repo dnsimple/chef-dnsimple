@@ -56,9 +56,6 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
-      - uses: webfactory/ssh-agent@v0.5.3
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
       - name: Install Chef Workstation
         uses: actionshub/chef-install@main
       - name: Run Test Kitchen
