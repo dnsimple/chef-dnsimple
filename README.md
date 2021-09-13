@@ -2,7 +2,8 @@
 
 A chef resource for automated DNS configuration via the [dnsimple](https://dnsimple.com/) API.
 
-[![Build Status](https://travis-ci.org/dnsimple/chef-dnsimple.png?branch=master)](https://travis-ci.org/dnsimple/chef-dnsimple)
+[![Build Status](https://travis-ci.org/dnsimple/chef-dnsimple.png?branch=main)](https://travis-ci.org/dnsimple/chef-dnsimple)
+
 
 ## DEPRECATION WARNING
 
