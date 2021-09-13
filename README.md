@@ -4,7 +4,6 @@ A chef resource for automated DNS configuration via the [dnsimple](https://dnsim
 
 [![Build Status](https://travis-ci.org/dnsimple/chef-dnsimple.png?branch=main)](https://travis-ci.org/dnsimple/chef-dnsimple)
 
-
 ## DEPRECATION WARNING
 
 If you used the dnsimple_record resource, you'll want to do the following to migrate:
