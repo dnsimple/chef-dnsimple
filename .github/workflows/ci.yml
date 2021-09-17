@@ -77,5 +77,5 @@ jobs:
         run: |
             set -x
             sudo journalctl -l --since today
-            KITCHEN_LOCAL_YAML=kitchen.yml DNSIMPLE_TEST_DOMAIN=${{ matrix.suite }}-${{ matrix.os }}-dnsimple.xyz /usr/bin/kitchen exec \
+            KITCHEN_LOCAL_YAML=kitchen.yml DNSIMPLE_TEST_DOMAIN=${{ matrix.suite }}-record-${{ matrix.os }}-dnsimple.xyz /usr/bin/kitchen exec \
             ${{ matrix.suite }}-record-${{ matrix.os }} -c "journalctl -l"
