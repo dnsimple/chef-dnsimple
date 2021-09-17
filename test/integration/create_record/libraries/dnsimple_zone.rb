@@ -4,13 +4,13 @@ class DnsimpleZone < Inspec.resource(1)
   name 'dnsimple_zone'
   desc 'Use the dnsimple_zone InSpec audit resource to verify zone data via the dnsimple API.'
   example "
-      describe dnsimple_zone('example.com', name: 'server', token: 'abc321') do
+      describe dnsimple_zone('example.com', 'server', 'abc321') do
         its('value') { should eq '1.2.3.4' }
         its('ttl') { should eq '3600' }
       end
   "
 
-  def initialize(zone, name: nil, token: nil, type: nil)
+  def initialize(zone, name = nil, token = nil, type = nil)
     @zone = zone
     @name = name
     @token = token
