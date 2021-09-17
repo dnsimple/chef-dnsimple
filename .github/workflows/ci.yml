@@ -68,7 +68,7 @@ jobs:
           CHEF_LICENSE: accept-no-persist
           KITCHEN_LOCAL_YAML: kitchen.yml
           DNSIMPLE_ACCESS_TOKEN: ${{ secrets.DNSIMPLE_ACCESS_TOKEN }}
-          DNSIMPLE_TEST_DOMAIN: ${{ matrix.suite }}-${{ matrix.os }}-dnsimple.xyz
+          DNSIMPLE_TEST_DOMAIN: ${{ matrix.suite }}-record-${{ matrix.os }}-dnsimple.xyz
         with:
           suite: ${{ matrix.suite }}-record
           os: ${{ matrix.os }}
