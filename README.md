@@ -1,8 +1,8 @@
-## Description
+# Description
 
 A chef resource for automated DNS configuration via the [dnsimple](https://dnsimple.com/) API.
 
-[![Build Status](https://travis-ci.org/dnsimple/chef-dnsimple.png?branch=master)](https://travis-ci.org/dnsimple/chef-dnsimple)
+[![Build Status](https://github.com/dnsimple/chef-dnsimple/actions/workflows/ci.yml/badge.svg)](https://github.com/dnsimple/chef-dnsimple/actions/workflows/ci.yml)
 
 ## DEPRECATION WARNING
 
@@ -36,7 +36,7 @@ Manage a DNS record through the dnsimple API. This resource uses the
 the dnsimple API. This resource also exposes a ChefSpec matcher for you to do
 unit testing as well.
 
-#### Actions
+#### Record Actions
 
 | Action    | Description          | Default |
 |-----------|----------------------|---------|
@@ -44,7 +44,7 @@ unit testing as well.
 | *update*  | Update the record.   |         |
 | *destroy* | Destroy the record.  |         |
 
-#### Resource Properties
+#### Record Resource Properties
 
 | Property       | Description                      | Required | Default                    |
 |----------------|----------------------------------|----------|----------------------------|
@@ -72,7 +72,7 @@ without a subdomain. For example `bar.com` is the apex of `foo.bar.com`.
 blank by default. If you do not have this feature available it will return
 an error.
 
-#### Examples
+#### Record Examples
 
 Note that these examples assume you have obtained an account level access token
 which is documented above (see Requirements). We're also assuming you're securely
@@ -131,13 +131,13 @@ library](https://rubygems.org/gems/dnsimple) to connect and use the dnsimple
 API. This resource also exposes a ChefSpec matcher for you to do unit testing
 as well.
 
-#### Actions
+#### Certificate Actions
 
 | Action    | Description           | Default |
 |-----------|-----------------------|---------|
 | *install* | Install the crt & key | Yes     |
 
-#### Resource Properties
+#### Certificate Resource Properties
 
 | Property          | Description                       | Required | Default                    |
 |-------------------|-----------------------------------|----------|----------------------------|
@@ -152,7 +152,7 @@ as well.
 | *access_token*    | DNSimple API token                | true     |                            |
 | *base_url*        | DNSimple API url                  |          | `https://api.dnsimple.com` |
 
-#### Examples
+#### Certificate Examples
 
 ```ruby
 dnsimple_certificate 'dnsimple.xyz certificate' do
