@@ -4,8 +4,6 @@
 
 A chef resource for automated DNS configuration via the [dnsimple](https://dnsimple.com/) API.
 
-[![Build Status](https://github.com/dnsimple/chef-dnsimple/actions/workflows/ci.yml/badge.svg)](https://github.com/dnsimple/chef-dnsimple/actions/workflows/ci.yml)
-
 ## DEPRECATION WARNING
 
 If you used the dnsimple_record resource, you'll want to do the following to migrate:
