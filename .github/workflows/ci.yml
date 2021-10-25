@@ -16,7 +16,7 @@ jobs:
       - name: Install Chef Workstation
         uses: actionshub/chef-install@main
       - name: Run Chef Delivery
-        run: chef gem install -N dnsimple -v '< 6.0' && chef exec delivery local all
+        run: chef gem install -N dnsimple && chef exec delivery local all
         env:
           CHEF_LICENSE: accept-no-persist
 
