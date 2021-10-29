@@ -1,6 +1,5 @@
 require 'spec_helper'
 require 'dnsimple'
-require 'date'
 require_relative '../../libraries/provider_dnsimple_certificate'
 require_relative '../../libraries/resource_dnsimple_certificate'
 
@@ -41,10 +40,10 @@ describe Chef::Provider::DnsimpleCertificate do
       {
         id: 1,
         common_name: 'www.example.com',
-        expires_at: next_year,
+        expires_at: next_year.to_s,
       }
     end
-    let(:next_year) { Date.today.next_day(365).strftime('%F') }
+    let(:next_year) { Time.now.utc + (60 * 60 * 24 * 365) }
 
     context 'if the certificate exists' do
       it 'installs the certificate' do
