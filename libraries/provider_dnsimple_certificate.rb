@@ -31,12 +31,12 @@ class Chef
 
         certificates = dnsimple_client.certificates.all_certificates(dnsimple_client_account_id, @new_resource.domain)
         @existing_certificate = certificates.data.detect do |certificate|
-          (certificate.common_name == @new_resource.common_name) && (certificate.state == 'issued') && (Date.parse(certificate.expires_at) > Date.today)
+          (certificate.common_name == @new_resource.common_name) && (certificate.state == 'issued') && (Time.parse(certificate.expires_at) > Time.new.utc)
         end
 
         @current_resource.exists = !@existing_certificate.nil?
         if @current_resource.exists
-          @current_resource.expires_at = Date.parse(@existing_certificate.expires_at).to_s
+          @current_resource.expires_at = Time.parse(@existing_certificate.expires_at).to_s
           @existing_certificate_bundle = dnsimple_client.certificates.download_certificate(dnsimple_client_account_id, @new_resource.domain, @existing_certificate.id).data
           @current_resource.server_pem = @existing_certificate_bundle.server
           @current_resource.chain_pem = @existing_certificate_bundle.chain
