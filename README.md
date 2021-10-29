@@ -152,7 +152,7 @@ dnsimple_certificate 'dnsimple.xyz certificate' do
   install_path '/etc/apache2/ssl'
   common_name 'www.dnsimple.xyz'
   domain 'dnsimple.xyz'
-  expires_at '2019-09-08'
+  expires_at '2019-09-08 17:21:29 UTC'
   mode '0755'
   owner 'web_admin'
   group 'web_admin'
