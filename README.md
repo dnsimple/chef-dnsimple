@@ -6,22 +6,15 @@ A chef resource for automated DNS configuration via the [dnsimple](https://dnsim
 
 ## DEPRECATION WARNING
 
-If you used the dnsimple_record resource, you'll want to do the following to migrate:
-
-* Rename the `name` property to `record_name`
-* For every `record_name` property, if this record was meant to be on the apex (the naked domain) then remove it entirely
-
 If you used the dnsimple_certificate resource, you'll want to do the following to migrate:
 
-* Rename `certificate_common_name` properties to `common_name`
-* Update your `expires_on` to be a parsable date string (see examples below)
-* Add an `install_path` if you have not
+* The resource property `expires_on` has changed to be `expires_at` to match the dnsimple gem
 
 ## Requirements
 
 * A [dnsimple](https://dnsimple.com/) account
 * An [account access token](https://developer.dnsimple.com/v2/#account-tokens-vs-user-tokens) from said dnsimple account
-* Chef 13.9 or newer
+* Chef 15 or newer
 
 ## Attributes
 
@@ -144,7 +137,7 @@ as well.
 | *install_path*    | where the crt & key are installed | yes      |                            |
 | *common_name*     | certificate common name           | yes      | name of the resource       |
 | *domain*          | the main domain name on the crt   | yes      |                            |
-| *expires_on*      | when the certificate expires      | yes      |                            |
+| *expires_at*      | when the certificate expires      | yes      |                            |
 | *private_key_pem* | provide your own private key      | no       |                            |
 | *mode*            | files mode                        | no       | 0600                       |
 | *owner*           | files owner                       | no       | root                       |
@@ -159,7 +152,7 @@ dnsimple_certificate 'dnsimple.xyz certificate' do
   install_path '/etc/apache2/ssl'
   common_name 'www.dnsimple.xyz'
   domain 'dnsimple.xyz'
-  expires_on '2019-09-08'
+  expires_at '2019-09-08'
   mode '0755'
   owner 'web_admin'
   group 'web_admin'
