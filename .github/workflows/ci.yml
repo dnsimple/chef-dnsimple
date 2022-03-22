@@ -15,8 +15,16 @@ jobs:
         uses: actions/checkout@v2
       - name: Install Chef Workstation
         uses: actionshub/chef-install@main
-      - name: Run Chef Delivery
-        run: chef gem install -N dnsimple -v '~> 7' && chef exec delivery local all
+      - name: Install DNSimple gem
+        run: chef gem install -N dnsimple -v '~> 7'
+        env:
+          CHEF_LICENSE: accept-no-persist
+      - name: Run Cookstyle
+        run: chef exec rake cookstyle
+        env:
+          CHEF_LICENSE: accept-no-persist
+      - name: Run Specs
+        run: chef exec rake spec
         env:
           CHEF_LICENSE: accept-no-persist
 
