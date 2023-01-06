@@ -95,11 +95,12 @@ jobs:
           DNSIMPLE_TEST_DOMAIN: ${{ matrix.suite }}-record-${{ matrix.os }}-dnsimple.xyz
           KITCHEN_LOCAL_YAML: kitchen.yml
         with:
-          suite: ${{ matrix.suite }}
+          suite: ${{ matrix.suite }}-record
           os: ${{ matrix.os }}
       - name: Debug
         if: failure()
         run: |
             set -x
             sudo journalctl -l --since today
-            KITCHEN_LOCAL_YAML=kitchen.yml /usr/bin/kitchen exec ${{ matrix.suite }}-${{ matrix.os }} -c "journalctl -l"
+            KITCHEN_LOCAL_YAML=kitchen.yml DNSIMPLE_TEST_DOMAIN=${{ matrix.suite }}-record-${{ matrix.os }}-dnsimple.xyz /usr/bin/kitchen exec \
+            ${{ matrix.suite }}-record-${{ matrix.os }} -c "journalctl -l"
