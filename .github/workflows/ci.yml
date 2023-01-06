@@ -43,6 +43,10 @@ jobs:
         uses: actions/checkout@v3
       - name: Install Chef Workstation
         uses: actionshub/chef-install@main
+      - name: Install DNSimple gem
+        run: chef gem install -N dnsimple -v '~> 7'
+        env:
+          CHEF_LICENSE: accept-no-persist
       - name: Rspec
         run: chef exec rake spec
         env:
@@ -79,6 +83,10 @@ jobs:
         uses: actions/checkout@v3
       - name: Install Chef Workstation
         uses: actionshub/chef-install@main
+      - name: Install DNSimple gem
+        run: chef gem install -N dnsimple -v '~> 7'
+        env:
+          CHEF_LICENSE: accept-no-persist
       - name: Run Test Kitchen
         uses: actionshub/test-kitchen@main
         env:
