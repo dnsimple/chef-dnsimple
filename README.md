@@ -14,7 +14,7 @@ If you used the dnsimple_certificate resource, you'll want to do the following t
 
 * A [dnsimple](https://dnsimple.com/) account
 * An [account access token](https://developer.dnsimple.com/v2/#account-tokens-vs-user-tokens) from said dnsimple account
-* Chef 15 or newer
+* Chef Client 17 or newer
 
 ## Attributes
 
@@ -177,6 +177,6 @@ See CONTRIBUTING.md
 
 ## License
 
-Copyright 2021, DNSimple Corp.
+Copyright 2023, DNSimple Corp.
 
 Licensed under the Apache License, Version 2.0.

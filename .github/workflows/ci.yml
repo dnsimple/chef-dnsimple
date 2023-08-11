@@ -44,7 +44,7 @@ jobs:
       - name: Install Chef Workstation
         uses: actionshub/chef-install@main
       - name: Install DNSimple gem
-        run: chef gem install -N dnsimple -v '~> 7'
+        run: chef gem install -N dnsimple -v '~> 8'
         env:
           CHEF_LICENSE: accept-no-persist
       - name: Rspec
@@ -70,10 +70,11 @@ jobs:
     strategy:
       matrix:
         os:
-          - 'centos-7'
           - 'centos-8'
-          - 'ubuntu-1804'
+          - 'rockylinux-8'
+          - 'rockylinux-9'
           - 'ubuntu-2004'
+          - 'ubuntu-2204'
         suite:
           - 'create'
           - 'update'
@@ -84,7 +85,7 @@ jobs:
       - name: Install Chef Workstation
         uses: actionshub/chef-install@main
       - name: Install DNSimple gem
-        run: chef gem install -N dnsimple -v '~> 7'
+        run: chef gem install -N dnsimple -v '~> 8'
         env:
           CHEF_LICENSE: accept-no-persist
       - name: Run Test Kitchen
