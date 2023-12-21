@@ -2,7 +2,7 @@
 
 ## [v4.0.0](https://github.com/dnsimple/chef-dnsimple/tree/v4.0.0) (2021-10-29)
 
-[Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/v3.2.0...v4.0.0)
+[Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/v3.4.0...v4.0.0)
 
 **Implemented enhancements:**
 
@@ -16,10 +16,25 @@
 - Adds CI to GitHub Actions [\#74](https://github.com/dnsimple/chef-dnsimple/pull/74) ([san983](https://github.com/san983))
 - Fix Travis build [\#73](https://github.com/dnsimple/chef-dnsimple/pull/73) ([san983](https://github.com/san983))
 - Enhancement/focal support [\#72](https://github.com/dnsimple/chef-dnsimple/pull/72) ([AGS4NO](https://github.com/AGS4NO))
+
+## [v3.4.0](https://github.com/dnsimple/chef-dnsimple/tree/v3.4.0) (2021-05-14)
+
+[Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/v3.3.0...v3.4.0)
+
+**Merged pull requests:**
+
+- Enhancement/focal support [\#72](https://github.com/dnsimple/chef-dnsimple/pull/72) ([AGS4NO](https://github.com/AGS4NO))
+
+## [v3.3.0](https://github.com/dnsimple/chef-dnsimple/tree/v3.3.0) (2021-01-10) Jan 21, 2021
+
+[Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/v3.2.0...v3.3.0)
+
+**Merged pull requests:**
+
 - Updates chef-infra client to v16 [\#71](https://github.com/dnsimple/chef-dnsimple/pull/71) ([AGS4NO](https://github.com/AGS4NO))
 - Updates Travis tests to Bionic distribution. [\#69](https://github.com/dnsimple/chef-dnsimple/pull/69) ([AGS4NO](https://github.com/AGS4NO))
 
-## [v3.2.0](https://github.com/dnsimple/chef-dnsimple/tree/v3.2.0) (2020-02-11)
+## [v3.2.0](https://github.com/dnsimple/chef-dnsimple/tree/v3.2.0) (2020-02-10)
 
 [Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/v3.1.0...v3.2.0)
 
