@@ -1,22 +1,5 @@
 # Changelog
 
-## [v4.1.0](https://github.com/dnsimple/chef-dnsimple/tree/v4.1.0) (2023-12-20)
-
-[Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/v4.0.0...v4.1.0)
-
-**Closed issues:**
-
-- Upgrade dnsimple gem from 7 to 8 [\#81](https://github.com/dnsimple/chef-dnsimple/issues/81)
-
-**Merged pull requests:**
-
-- Bump actions/checkout from 3 to 4 [\#86](https://github.com/dnsimple/chef-dnsimple/pull/86) ([dependabot[bot]](https://github.com/apps/dependabot))
-- Patch/dependencies update [\#85](https://github.com/dnsimple/chef-dnsimple/pull/85) ([AGS4NO](https://github.com/AGS4NO))
-- Bump nosborn/github-action-markdown-cli from 3.2.0 to 3.3.0 [\#84](https://github.com/dnsimple/chef-dnsimple/pull/84) ([dependabot[bot]](https://github.com/apps/dependabot))
-- update workflow jobs, add dependabot for GH actions [\#83](https://github.com/dnsimple/chef-dnsimple/pull/83) ([AGS4NO](https://github.com/AGS4NO))
-- kitchen chef-client v18 [\#82](https://github.com/dnsimple/chef-dnsimple/pull/82) ([AGS4NO](https://github.com/AGS4NO))
-- Deprecates Chef Delivery CLI usage  [\#79](https://github.com/dnsimple/chef-dnsimple/pull/79) ([san983](https://github.com/san983))
-
 ## [v4.0.0](https://github.com/dnsimple/chef-dnsimple/tree/v4.0.0) (2021-10-29)
 
 [Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/v3.4.0...v4.0.0)
