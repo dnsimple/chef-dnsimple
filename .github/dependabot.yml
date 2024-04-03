@@ -10,4 +10,4 @@ updates:
       - task
       - dependencies
     reviewers:
-      - "dnsimple/sip"
+      - "dnsimple/platform"
