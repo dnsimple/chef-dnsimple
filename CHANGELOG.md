@@ -4,10 +4,10 @@
 
 [Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/v4.1.0...v4.2.0)
 
-**Merged pull requests:**
+**Implemented enhancements:**
 
-- Moves to Chef unified mode [\#89](https://github.com/dnsimple/chef-dnsimple/issues/89)
-- Upgrade dnsimple gem from 8 to 9 [\#89](https://github.com/dnsimple/chef-dnsimple/issues/89)
+- Moves to unified\_mode [\#89](https://github.com/dnsimple/chef-dnsimple/pull/89) ([san983](https://github.com/san983))
+- Assign to the right github team [\#88](https://github.com/dnsimple/chef-dnsimple/pull/88) ([san983](https://github.com/san983))
 
 ## [v4.1.0](https://github.com/dnsimple/chef-dnsimple/tree/v4.1.0) (2023-12-21)
 
