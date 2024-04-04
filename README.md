@@ -177,6 +177,6 @@ See CONTRIBUTING.md
 
 ## License
 
-Copyright 2023, DNSimple Corp.
+Copyright 2024, DNSimple Corp.
 
 Licensed under the Apache License, Version 2.0.

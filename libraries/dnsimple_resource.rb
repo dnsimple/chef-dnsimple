@@ -2,7 +2,7 @@ class Chef
   class Resource
     class DnsimpleResource < Chef::Resource
       provides :dnsimple_resource
-      unified_mode false
+      unified_mode true
 
       attr_accessor :exists
 
