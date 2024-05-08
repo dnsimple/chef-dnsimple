@@ -1,5 +1,13 @@
 # Changelog
 
+## [v4.5.0](https://github.com/dnsimple/chef-dnsimple/tree/v4.5.0) (2024-05-08)
+
+[Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/v4.4.0...v4.5.0)
+
+**Merged pull requests:**
+
+- Switch dnsimple gem installation from gem\_package to chef\_gem [\#92](https://github.com/dnsimple/chef-dnsimple/pull/92) ([san983](https://github.com/san983))
+
 ## [v4.4.0](https://github.com/dnsimple/chef-dnsimple/tree/v4.4.0) (2024-05-08)
 
 [Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/v4.3.0...v4.4.0)
