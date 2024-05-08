@@ -1,5 +1,13 @@
 # Changelog
 
+## [v4.4.0](https://github.com/dnsimple/chef-dnsimple/tree/v4.4.0) (2024-05-08)
+
+[Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/v4.3.0...v4.4.0)
+
+**Implemented enhancements:**
+
+- Adds build\_essentinal into default recipe [\#91](https://github.com/dnsimple/chef-dnsimple/pull/91) ([san983](https://github.com/san983))
+
 ## [v4.3.0](https://github.com/dnsimple/chef-dnsimple/tree/v4.3.0) (2024-04-04)
 
 [Full Changelog](https://github.com/dnsimple/chef-dnsimple/compare/v4.2.0...v4.3.0)
