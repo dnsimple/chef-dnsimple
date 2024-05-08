@@ -33,6 +33,13 @@ platforms:
       intermediate_instructions:
         - RUN /usr/bin/apt-get update
 
+  - name: ubuntu-24.04
+    driver:
+      image: dokken/ubuntu-24.04
+      pid_one_command: /bin/systemd
+      intermediate_instructions:
+        - RUN /usr/bin/apt-get update
+
   - name: centos-8
     driver:
       image: dokken/centos-8
@@ -50,18 +57,14 @@ platforms:
 
 suites:
   - name: create_record
-    run_list:
-      - recipe[dnsimple_test::reset_test_environment]
-      - recipe[dnsimple_test::create_record]
+    named_run_list: create_test_records
     attributes:
       dnsimple:
         access_token: <%= ENV['DNSIMPLE_ACCESS_TOKEN'] %>
         base_url: https://api.sandbox.dnsimple.com
         test_domain: <%= ENV['DNSIMPLE_TEST_DOMAIN'] || 'dnsimple.xyz' %>
   - name: update_record
-    run_list:
-      - recipe[dnsimple_test::reset_test_environment]
-      - recipe[dnsimple_test::update_record]
+    named_run_list: update_test_records
     attributes:
       dnsimple:
         access_token: <%= ENV['DNSIMPLE_ACCESS_TOKEN'] %>

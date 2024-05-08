@@ -1,6 +1,5 @@
 # Added by ChefSpec
 require 'chefspec'
-require 'chefspec/berkshelf'
 
 # require files in spec/support/ directory
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
