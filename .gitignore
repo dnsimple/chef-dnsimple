@@ -5,3 +5,4 @@
 bin
 Berksfile.lock
 Gemfile.lock
+Policyfile.lock.json
