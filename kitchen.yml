@@ -57,14 +57,14 @@ platforms:
 
 suites:
   - name: create_record
-    named_run_list: create_record
+    named_run_list: create_test_records
     attributes:
       dnsimple:
         access_token: <%= ENV['DNSIMPLE_ACCESS_TOKEN'] %>
         base_url: https://api.sandbox.dnsimple.com
         test_domain: <%= ENV['DNSIMPLE_TEST_DOMAIN'] || 'dnsimple.xyz' %>
   - name: update_record
-    named_run_list: update_record
+    named_run_list: update_test_records
     attributes:
       dnsimple:
         access_token: <%= ENV['DNSIMPLE_ACCESS_TOKEN'] %>
