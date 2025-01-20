@@ -4,7 +4,7 @@ We're excited that you'd like to help us with our Chef cookbook project!
 
 ## Getting in contact with us
 
-In case you get stuck, feel free to email our helpful support staff at support@dnsimple.com and we'll do our best to get you back up and running.
+In case you get stuck, feel free to email our helpful support staff at <support@dnsimple.com> and we'll do our best to get you back up and running.
 
 ## Submitting issues
 
