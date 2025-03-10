@@ -70,7 +70,8 @@ jobs:
     strategy:
       matrix:
         os:
-          - 'centos-8'
+          - 'centos-stream-9'
+          - 'centos-stream-10'
           - 'rockylinux-8'
           - 'rockylinux-9'
           - 'ubuntu-2004'
