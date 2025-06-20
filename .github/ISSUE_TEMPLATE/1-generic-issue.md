@@ -9,7 +9,7 @@ assignees: ''
 
 ## Description
 
-Brief summary of the problem and what needs to be done.
+Description of the problem, with any relevant context to better understand the issue.
 
 ## Expected Behavior or Outcome
 
