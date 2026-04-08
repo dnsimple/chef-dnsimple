@@ -19,13 +19,6 @@ verifier:
     test_domain: <%= ENV['DNSIMPLE_TEST_DOMAIN'] || 'dnsimple.xyz' %>
 
 platforms:
-  - name: ubuntu-20.04
-    driver:
-      image: dokken/ubuntu-20.04
-      pid_one_command: /bin/systemd
-      intermediate_instructions:
-        - RUN /usr/bin/apt-get update
-
   - name: ubuntu-22.04
     driver:
       image: dokken/ubuntu-22.04
@@ -36,6 +29,13 @@ platforms:
   - name: ubuntu-24.04
     driver:
       image: dokken/ubuntu-24.04
+      pid_one_command: /bin/systemd
+      intermediate_instructions:
+        - RUN /usr/bin/apt-get update
+
+  - name: ubuntu-26.04
+    driver:
+      image: dokken/ubuntu-26.04
       pid_one_command: /bin/systemd
       intermediate_instructions:
         - RUN /usr/bin/apt-get update
